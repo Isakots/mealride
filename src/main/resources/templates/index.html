@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+   <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Title -->
+            <h3 class="mt-4">Add some topic to database</h3>
+
+            <hr>
+            <!-- Date/Time -->
+
+            <!-- Preview Image -->
+            <img class="img-fluid rounded" src="/pics/restaurant.jpg" alt="">
+
+            <hr>
+
+
+            <div class="container">
+                <form action="#" th:action="@{/}" th:object="${topic}" method="post">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="topicId">Id</label>
+                            <input type="text" class="form-control" id="topicId"
+                                   th:field="*{id}" >
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="topicName">Name</label>
+                            <input type="text" class="form-control" id="topicName"
+                                   th:field="*{name}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="topicDescription">Description</label>
+                            <input type="text" class="form-control" id="topicDescription"
+                                   th:field="*{description}">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+                </form>
+                <hr>
+            </div>
+
+        </div>
+
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>

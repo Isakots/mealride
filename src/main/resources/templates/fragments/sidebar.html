@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+</head>
+<body>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4" th:fragment="sidebar">
+
+    <!-- Search Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Search restaurant</h5>
+        <div class="card-body">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Card Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Shopping Cart</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            Food
+                        </li>
+                        <li>
+                            Food
+                        </li>
+                        <li>
+                            Food
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                           Drink
+                        </li>
+                        <li>
+                            Drink
+                        </li>
+                        <li>
+                            Drink
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
