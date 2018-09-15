@@ -1,4 +1,4 @@
-package hu.student.selflaboratory.mealride;
+package hu.student.projlab.mealride;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package hu.student.selflaboratory.mealride.topic;
+package hu.student.projlab.mealride.topic;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

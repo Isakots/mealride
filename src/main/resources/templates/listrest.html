@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Title -->
+            <h3 class="mt-4">Listing all existing topics</h3>
+
+            <hr>
+
+            <!-- Preview Image -->
+            <img class="img-fluid rounded" src="/pics/restaurant.jpg" alt="">
+
+            <hr>
+            <!-- Date/Time -->
+
+            <div class="container">
+                <div class="starter-template">
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                        </tr>
+                        <tbody>
+                        <tr th:each="rest: ${rests}">
+                            <td th:text="${rest.id}" />
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <hr>
+
+        </div>
+
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>

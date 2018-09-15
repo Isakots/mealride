@@ -1,4 +1,4 @@
-package hu.student.selflaboratory.mealride;
+package hu.student.projlab.mealride;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

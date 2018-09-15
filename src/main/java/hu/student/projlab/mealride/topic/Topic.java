@@ -1,4 +1,4 @@
-package hu.student.selflaboratory.mealride.topic;
+package hu.student.projlab.mealride.topic;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,8 +1,10 @@
-package hu.student.selflaboratory.mealride;
+package hu.student.projlab.mealride;
 
 
-import hu.student.selflaboratory.mealride.topic.Topic;
-import hu.student.selflaboratory.mealride.topic.TopicService;
+import hu.student.projlab.mealride.user.UserService;
+import hu.student.projlab.mealride.restaurant.RestaurantService;
+import hu.student.projlab.mealride.topic.Topic;
+import hu.student.projlab.mealride.topic.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,11 @@ public class HomeController {
 
     @Autowired
     private TopicService topicService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private RestaurantService restaurantService;
+
 
     @GetMapping("/")
     public String IndexResponse(Model model) {
@@ -31,6 +38,17 @@ public class HomeController {
         return "listtopics";
     }
 
+    @GetMapping("/listrest")
+    public String listRests(Model model) {
+        model.addAttribute("rests", restaurantService.getRests());
+        return "listrest";
+    }
+
+    @GetMapping("/listusers")
+    public String listUsers(Model model) {
+        model.addAttribute("users", userService.getUsers());
+        return "listusers";
+    }
     // but this is NOT rest..
     @PostMapping("/")
     public String addTopic(@ModelAttribute(value="topic") Topic topic) {
