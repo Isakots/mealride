@@ -16,7 +16,7 @@
         <div class="col-lg-8">
 
             <!-- Title -->
-            <h3 class="mt-4">Add some topic to database</h3>
+            <h3 class="mt-4">Add User to database</h3>
 
             <hr>
             <!-- Date/Time -->
@@ -28,28 +28,39 @@
 
 
             <div class="container">
-                <form action="#" th:action="@{/}" th:object="${topic}" method="post">
+                <form action="#" th:action="@{/}" th:object="${user}" method="post">
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="topicId">Id</label>
-                            <input type="text" class="form-control" id="topicId"
-                                   th:field="*{id}" >
+                            <label for="firstName">Firstname</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Firstname"
+                                   th:field="*{firstname}">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Lastname</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Lastname"
+                                   th:field="*{lastname}">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="topicName">Name</label>
-                            <input type="text" class="form-control" id="topicName"
-                                   th:field="*{name}">
+                            <label for="phoneNumber">Phone</label>
+                            <input type="tel" class="form-control" id="phoneNumber" placeholder="Phone Number"
+                                   th:field="*{phone}">
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="topicDescription">Description</label>
-                            <input type="text" class="form-control" id="topicDescription"
-                                   th:field="*{description}">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email"
+                                   th:field="*{email}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password"
+                                   th:field="*{password}">
                         </div>
                     </div>
 

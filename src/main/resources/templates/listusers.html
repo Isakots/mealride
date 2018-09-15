@@ -16,7 +16,7 @@
         <div class="col-lg-8">
 
             <!-- Title -->
-            <h3 class="mt-4">Listing all restaurants</h3>
+            <h3 class="mt-4">Listing all users</h3>
 
             <hr>
 
@@ -30,11 +30,19 @@
                 <div class="starter-template">
                     <table>
                         <tr>
-                            <th>Id</th>
+                            <th>ID</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Phone</th>
                         </tr>
                         <tbody>
-                        <tr th:each="rest: ${rests}">
-                            <td th:text="${rest.id}" />
+                        <tr th:each="user: ${users}">
+                            <td th:text="${user.id}" />
+                            <td th:text="${user.firstname}" />
+                            <td th:text="${user.lastname}" />
+                            <td th:text="${user.email}" />
+                            <td th:text="${user.phone}" />
                         </tr>
                         </tbody>
                     </table>

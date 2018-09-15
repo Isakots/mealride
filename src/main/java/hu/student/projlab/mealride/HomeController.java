@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride;
 
 
+import hu.student.projlab.mealride.user.User;
 import hu.student.projlab.mealride.user.UserService;
 import hu.student.projlab.mealride.restaurant.RestaurantService;
 import hu.student.projlab.mealride.topic.Topic;
@@ -27,8 +28,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String IndexResponse(Model model) {
-        Topic topic = new Topic();
-        model.addAttribute("topic", topic);
+        User user = new User();
+        model.addAttribute("user", user);
         return "index";
     }
 
@@ -51,8 +52,8 @@ public class HomeController {
     }
     // but this is NOT rest..
     @PostMapping("/")
-    public String addTopic(@ModelAttribute(value="topic") Topic topic) {
-       topicService.addTopic(topic);
+    public String addTopic(@ModelAttribute(value="user") User user) {
+      userService.addUser(user);
        // redirecting to index.html to view it again..
         return "redirect:/";
     }

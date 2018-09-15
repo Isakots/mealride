@@ -1,13 +1,18 @@
 package hu.student.projlab.mealride.restaurant;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.Time;
 
 @Entity
 public class Restaurant {
 
     @Id
+    @GeneratedValue
+    private Long id;
     private String name;
+
 
     public Restaurant() {
     }
