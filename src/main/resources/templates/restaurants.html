@@ -1,11 +1,21 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
 </head>
 <body>
 
 <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- Header with Background Image -->
+<header class="business-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+            </div>
+        </div>
+    </div>
+</header>
 
 <!-- Page Content -->
 <div class="container">
@@ -20,27 +30,42 @@
 
             <hr>
 
-            <!-- Preview Image -->
-            <img class="img-fluid rounded" src="/pics/restaurant.jpg" alt="">
-
-            <hr>
             <!-- Date/Time -->
 
             <div class="container">
                 <div class="starter-template">
-                    <table>
+
+                    <table class="table">
+                        <thead>
                         <tr>
-                            <th>Id</th>
+                            <th scope="col">Étterem</th>
+                            <th scope="col">Szállítási idő</th>
+                            <th scope="col">Szállítási költség</th>
+                            <th scope="col">Minimum rendelés</th>
+                            <th scope="col">Nyitvatartás</th>
                         </tr>
+                        </thead>
                         <tbody>
                         <tr th:each="rest: ${rests}">
-                            <td th:text="${rest.id}" />
+                            <td th:text="${rest.name}" />
+                        </tr>
+                        <tr th:each="rest: ${rests}">
+                            <td th:text="${rest.avgdeliverytime}" />
+                        </tr>
+                        <tr th:each="rest: ${rests}">
+                            <td th:text="${rest.deliveryprice}" />
+                        </tr>
+                        <tr th:each="rest: ${rests}">
+                            <td th:text="${rest.minorderprice}" />
+                        </tr>
+                        <tr th:each="rest: ${rests}">
+                            <td th:text="${rest.opentime}"/>
                         </tr>
                         </tbody>
                     </table>
+
                 </div>
             </div>
-
 
             <hr>
 

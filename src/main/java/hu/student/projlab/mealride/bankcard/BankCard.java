@@ -1,6 +1,8 @@
 package hu.student.projlab.mealride.bankcard;
 
 
+import hu.student.projlab.mealride.user.User;
+
 import javax.persistence.*;
 import java.sql.Date;
 

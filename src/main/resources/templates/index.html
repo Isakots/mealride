@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
 </head>
@@ -12,25 +12,30 @@
     to reduce data usage
  -->
 
+<!-- Header with Background Image -->
+<header class="business-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+            </div>
+        </div>
+    </div>
+</header>
+
 <!-- Page Content -->
 <div class="container">
 
     <div class="row">
 
         <!-- Post Content Column -->
-        <div class="col-lg-8">
+        <div class="col-lg-12">
 
             <!-- Title -->
             <h3 class="mt-4">Registration</h3>
 
             <hr>
+
             <!-- Date/Time -->
-
-            <!-- Preview Image -->
-            <img class="img-fluid rounded" src="/pics/restaurant.jpg" alt="">
-
-            <hr>
-
 
             <div class="container">
                 <form action="#" th:attr="action=@{/}" th:object="${user}" method="post">
@@ -52,20 +57,63 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="phoneNumber">Phone</label>
-                            <input type="tel" class="form-control" id="phoneNumber" placeholder="Phone Number"
+                            <input type="tel" class="form-control" id="phoneNumber" placeholder="+36301234567"
                                    th:field="*{phone}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email"
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="example@mealride.com"
                                    th:field="*{email}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Password</label>
                             <input type="password" class="form-control" id="inputPassword4" placeholder="Password"
                                    th:field="*{password}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Address</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Address 2</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="inputCity" placeholder="Budapest">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">State</label>
+                            <select id="inputState" class="form-control">
+                                <option selected>Bács-Kiskun megye</option>
+                                <option>Baranya megye</option>
+                                <option>Békés megye</option>
+                                <option>Borsod-Abaúj-Zemplén megye</option>
+                                <option>Budapest</option>
+                                <option>Csongrád megye</option>
+                                <option>Fejér megye</option>
+                                <option>Győr-Moson-Sopron megye</option>
+                                <option>Hajdú-Bihar megye</option>
+                                <option>Heves megye</option>
+                                <option>Jász-Nagykun-Szolnok megye</option>
+                                <option>Komárom-Esztergom megye</option>
+                                <option>Nógrád megye</option>
+                                <option>Pest megye</option>
+                                <option>Somogy megye</option>
+                                <option>Szabolcs-Szatmár-Bereg megye</option>
+                                <option>Tolna megye</option>
+                                <option>Vas megye</option>
+                                <option>Veszprém megye</option>
+                                <option>Zala megye</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputZip">Zip</label>
+                            <input type="text" class="form-control" id="inputZip" placeholder="0000">
                         </div>
                     </div>
 
@@ -75,8 +123,6 @@
             </div>
 
         </div>
-
-        <div th:replace="fragments/sidebar :: sidebar"></div>
 
     </div>
     <!-- /.row -->

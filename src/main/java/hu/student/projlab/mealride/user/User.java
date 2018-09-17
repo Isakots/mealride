@@ -18,9 +18,9 @@ public class User {
     private String password; //hash!
     private String email;
     private String phone;
-    @OneToMany
+    @ElementCollection
     private List<DeliveryAddress> addresses;
-    @OneToMany
+    @ElementCollection
     private List<BankCard> bankcards;
 
     public User() {

@@ -1,9 +1,7 @@
 package hu.student.projlab.mealride.deliveryaddress;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Address")
@@ -12,11 +10,12 @@ public class DeliveryAddress {
     @Id
     private String name;
     private Short zipcode;
-    private String settlement;
+    private String city;
     private String street;
     private Short housenumber;
     private Short floor;
     private Short door;
+
 
     public DeliveryAddress() {
     }
@@ -24,7 +23,7 @@ public class DeliveryAddress {
     public DeliveryAddress(String name, Short zipcode, String settlement, String street, Short housenumber, Short floor, Short door) {
         this.name = name;
         this.zipcode = zipcode;
-        this.settlement = settlement;
+        this.city = settlement;
         this.street = street;
         this.housenumber = housenumber;
         this.floor = floor;
@@ -47,12 +46,12 @@ public class DeliveryAddress {
         this.zipcode = zipcode;
     }
 
-    public String getSettlement() {
-        return settlement;
+    public String getCity() {
+        return city;
     }
 
-    public void setSettlement(String settlement) {
-        this.settlement = settlement;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getStreet() {

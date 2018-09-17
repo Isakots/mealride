@@ -1,9 +1,8 @@
  h2 { color: #2189ce; }
 
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+li {
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 td, th {
@@ -15,3 +14,4 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+

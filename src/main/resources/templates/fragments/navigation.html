@@ -29,12 +29,27 @@
                     <li class="nav-item">
                         <a class="nav-link"th:classappend="${#request.getRequestURI() == '/restaurants' ? 'active' : ''}" href="/restaurants">Restaurants</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Kovács Pista
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/">Home Page</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Personal Data</a>
+                            <a class="dropdown-item" href="#">Addresses</a>
+                            <a class="dropdown-item" href="#">Credit Cards</a>
+                            <a class="dropdown-item" href="#">New Address</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Previous Orders</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    </br>
 
 </div>
 </body>

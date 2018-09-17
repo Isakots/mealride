@@ -5,9 +5,7 @@ import hu.student.projlab.mealride.meal.Meal;
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import hu.student.projlab.mealride.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -17,8 +15,11 @@ public class Order {
     @Id
     @GeneratedValue
     private Long id;
+    @OneToOne
     private User customer;
+    @OneToOne
     private Restaurant restaurant;
+    @ElementCollection
     private List<Meal> meals;
     private Integer price;
     private Timestamp datetime;

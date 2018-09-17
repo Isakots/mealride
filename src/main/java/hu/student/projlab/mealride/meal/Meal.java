@@ -1,7 +1,11 @@
 package hu.student.projlab.mealride.meal;
 
+import hu.student.projlab.mealride.order.Order;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Meal {
