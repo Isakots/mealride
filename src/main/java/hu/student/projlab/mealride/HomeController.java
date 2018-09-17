@@ -4,7 +4,6 @@ package hu.student.projlab.mealride;
 import hu.student.projlab.mealride.user.User;
 import hu.student.projlab.mealride.user.UserService;
 import hu.student.projlab.mealride.restaurant.RestaurantService;
-import hu.student.projlab.mealride.topic.Topic;
 import hu.student.projlab.mealride.topic.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -39,23 +39,23 @@ public class HomeController {
         return "listtopics";
     }
 
-    @GetMapping("/listrest")
+    @GetMapping("/restaurants")
     public String listRests(Model model) {
         model.addAttribute("rests", restaurantService.getRests());
-        return "listrest";
+        return "restaurants";
     }
 
-    @GetMapping("/listusers")
+    @GetMapping("/users")
     public String listUsers(Model model) {
         model.addAttribute("users", userService.getUsers());
-        return "listusers";
+        return "users";
     }
     // but this is NOT rest..
     @PostMapping("/")
     public String addTopic(@ModelAttribute(value="user") User user) {
       userService.addUser(user);
        // redirecting to index.html to view it again..
-        return "redirect:/";
+       return "redirect:/";
     }
 
 }

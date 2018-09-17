@@ -1,0 +1,13 @@
+@Controller: sends back a view
+@RestController: sends back a JSON (@Controller plus @ResponseBody annotation from Spring4)
+@Autowired: Injects an instance of an object
+In Thymeleaf you have to add a variable to the Model as attribute if you want to use it in HTML code.
+GetMapping is a equivalent to RequestMapping(method=RequestMethod.GET) (same with put/post/delete)
+It is possible to redirect HTML page if the return value of a Controller's method is like this: return "redirect:/";
+Spring automatically implements queries if I provide/declare the query method correctly. It looks like: findById(Long id) or findByCourseName(String name);
+Redirecting the page instead of making it RESTful is a really bad practice, because of data usage. (I just don"t rly know yet how to make it restful with views..)
+Somehow I cannot create a User table in the embedded apache derby database, due to SQLGrammarException, so I had to rename it.
+Thymeleaf is based on creating view templates, we can structure our code into fragments.
+In Thymeleaf for HTML5 compatibility we can use "data-th-" prefixes instead of "th:". This only works in HTML documents.
+For more complex applications, we can handle the rendering and responses on our own by writing our own WebContext, TemplateEngine and TemplateResolver
+

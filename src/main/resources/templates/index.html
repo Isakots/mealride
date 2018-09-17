@@ -7,6 +7,11 @@
 
 <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
 
+<!-- TO DO
+    Write a Thymeleaf script which includes fragments of the page body based on the active tab/page (like navbar)
+    to reduce data usage
+ -->
+
 <!-- Page Content -->
 <div class="container">
 
@@ -16,7 +21,7 @@
         <div class="col-lg-8">
 
             <!-- Title -->
-            <h3 class="mt-4">Add User to database</h3>
+            <h3 class="mt-4">Registration</h3>
 
             <hr>
             <!-- Date/Time -->
@@ -28,7 +33,7 @@
 
 
             <div class="container">
-                <form action="#" th:action="@{/}" th:object="${user}" method="post">
+                <form action="#" th:attr="action=@{/}" th:object="${user}" method="post">
 
                     <div class="form-row">
                         <div class="form-group col-md-6">

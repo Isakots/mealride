@@ -16,7 +16,7 @@
         <div class="col-lg-8">
 
             <!-- Title -->
-            <h3 class="mt-4">Listing all existing topics</h3>
+            <h3 class="mt-4">Restaurant browser</h3>
 
             <hr>
 
@@ -31,14 +31,10 @@
                     <table>
                         <tr>
                             <th>Id</th>
-                            <th>Name</th>
-                            <th>Description</th>
                         </tr>
                         <tbody>
-                        <tr th:each="topic: ${topics}">
-                            <td th:text="${topic.id}" />
-                            <td th:text="${topic.name}" />
-                            <td th:text="${topic.description}" />
+                        <tr th:each="rest: ${rests}">
+                            <td th:text="${rest.id}" />
                         </tr>
                         </tbody>
                     </table>
