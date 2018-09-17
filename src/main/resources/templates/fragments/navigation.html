@@ -14,7 +14,7 @@
             <img src="/icons/favicon.ico" width="30" height="30" alt="">
             </a>
 
-            <a class="navbar-brand" href="#">MealRide</a>
+            <a class="navbar-brand" th:classappend="${#request.getRequestURI() == '/' ? 'active' : ''}" href="/">MealRide</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,9 +31,23 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Kovács Pista
+                            Trófea Grill Étterem
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/">Incoming Orders</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Menu</a>
+                            <a class="dropdown-item" href="#">Manage Workers</a>
+                            <a class="dropdown-item" href="#">Restaurant Logs</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Previous Orders</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Kovács Pista
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <a class="dropdown-item" href="/">Home Page</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Personal Data</a>

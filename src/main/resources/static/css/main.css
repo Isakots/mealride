@@ -1,10 +1,5 @@
  h2 { color: #2189ce; }
 
-li {
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
@@ -15,3 +10,7 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+.table{
+    width: 100%;
+    overflow-x: auto;
+}
