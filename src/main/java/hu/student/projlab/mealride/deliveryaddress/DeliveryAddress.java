@@ -1,6 +1,8 @@
 package hu.student.projlab.mealride.deliveryaddress;
 
 
+import hu.student.projlab.mealride.user.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,8 @@ public class DeliveryAddress {
     private Short floor;
     private Short door;
 
+    @ManyToOne
+    private User user;
 
     public DeliveryAddress() {
     }
@@ -84,5 +88,13 @@ public class DeliveryAddress {
 
     public void setDoor(Short door) {
         this.door = door;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

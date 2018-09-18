@@ -41,15 +41,25 @@
                             <th>Lastname</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>ZipCode</th>
+                            <th>City</th>
+                            <th>Street</th>
+                            <th>House number</th>
                         </tr>
                         <tbody>
-                        <tr th:each="user: ${users}">
+                        <div  th:each="address: ${addresses}">
+                        <tr th:each="user: ${users}" >
                             <td th:text="${user.id}" />
                             <td th:text="${user.firstname}" />
                             <td th:text="${user.lastname}" />
                             <td th:text="${user.email}" />
                             <td th:text="${user.phone}" />
+                            <td th:text="${address.zipcode}" />
+                            <td th:text="${address.city}" />
+                            <td th:text="${address.street}" />
+                            <td th:text="${address.housenumber}" />
                         </tr>
+                            </div>
                         </tbody>
                     </table>
                 </div>

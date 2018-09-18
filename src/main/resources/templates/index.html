@@ -38,19 +38,19 @@
             <!-- Date/Time -->
 
             <div class="container">
-                <form action="#" th:attr="action=@{/}" th:object="${user}" method="post">
-
+                <form action="#" th:attr="action=@{/}" th:object="${user}"  method="post">
+                    <div  th:object="${address}">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstName">Firstname</label>
                             <input type="text" class="form-control" id="firstName" placeholder="Firstname"
-                                   th:field="*{firstname}">
+                                   th:field="${user.firstname}">
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="lastName">Lastname</label>
                             <input type="text" class="form-control" id="lastName" placeholder="Lastname"
-                                   th:field="*{lastname}">
+                                   th:field="${user.lastname}">
                         </div>
                     </div>
 
@@ -58,36 +58,29 @@
                         <div class="form-group col-md-6">
                             <label for="phoneNumber">Phone</label>
                             <input type="tel" class="form-control" id="phoneNumber" placeholder="+36301234567"
-                                   th:field="*{phone}">
+                                   th:field="${user.phone}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Email</label>
                             <input type="email" class="form-control" id="inputEmail4" placeholder="example@mealride.com"
-                                   th:field="*{email}">
+                                   th:field="${user.email}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Password</label>
                             <input type="password" class="form-control" id="inputPassword4" placeholder="Password"
-                                   th:field="*{password}">
+                                   th:field="${user.password}">
                         </div>
                     </div>
 
-                    <hr>
+                        <hr>
 
-                    <div class="form-group">
-                        <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="Budapest">
+                            <input type="text" class="form-control" id="inputCity" placeholder="Budapest"
+                                   th:field="${address.city}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">State</label>
@@ -116,12 +109,41 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip" placeholder="0000">
+                            <input type="number" class="form-control" id="inputZip" placeholder="0000"
+                                   th:field="${address.zipcode}">
                         </div>
                     </div>
 
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="street">Street</label>
+                            <input type="text" class="form-control" id="street" placeholder="Teréz krt."
+                                   th:field="${address.street}">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="housenumber">House Number</label>
+                         <input type="number" class="form-control" id="housenumber" placeholder="122"
+                                th:field="${address.housenumber}">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="floor">Floor</label>
+                            <input type="text" class="form-control" id="floor" placeholder="MF"
+                                   th:field="${address.floor}">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="door">Door</label>
+                            <input type="number" class="form-control" id="door" placeholder="3"
+                                   th:field="${address.door}">
+                        </div>
+                    </div>
+
+
+
                     <button type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
                 </form>
+
+
                 <hr>
             </div>
 

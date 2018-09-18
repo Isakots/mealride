@@ -17,6 +17,9 @@ public class BankCard {
     private Date expriationdate;
     private Short cvc;  //has to hashed!
 
+    @ManyToOne
+    private User user;
+
     public BankCard() {
     }
 

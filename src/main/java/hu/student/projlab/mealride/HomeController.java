@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride;
 
 
+import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.user.User;
 import hu.student.projlab.mealride.user.UserService;
 import hu.student.projlab.mealride.restaurant.RestaurantService;
@@ -26,7 +27,9 @@ public class HomeController {
     @GetMapping("/")
     public String IndexResponse(Model model) {
         User user = new User();
+        DeliveryAddress address = new DeliveryAddress();
         model.addAttribute("user", user);
+        model.addAttribute("address", address);
         return "index";
     }
 

@@ -4,7 +4,6 @@ import hu.student.projlab.mealride.bankcard.BankCard;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="Person")
@@ -18,28 +17,25 @@ public class User {
     private String password; //hash!
     private String email;
     private String phone;
-    @ElementCollection
-    private List<DeliveryAddress> addresses;
-    @ElementCollection
-    private List<BankCard> bankcards;
 
     public User() {
 
     }
 
-    public User(String firstname, String lastname, String password, String email, String phone,
-                List<DeliveryAddress> addresses, List<BankCard> bankcards) {
+    public User(String firstname, String lastname, String password, String email, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.addresses = addresses;
-        this.bankcards = bankcards;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -80,21 +76,5 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public List<DeliveryAddress> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<DeliveryAddress> addresses) {
-        this.addresses = addresses;
-    }
-
-    public List<BankCard> getBankcards() {
-        return bankcards;
-    }
-
-    public void setBankcards(List<BankCard> bankcards) {
-        this.bankcards = bankcards;
     }
 }
