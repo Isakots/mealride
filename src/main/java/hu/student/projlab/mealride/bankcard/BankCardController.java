@@ -24,7 +24,12 @@ class BankCardController {
         return "cards";
     }
 
+    @GetMapping("cards")
+    public String getCard() {
 
+
+        return "cards";
+    }
 
 
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DeliveryAddressSerive {
+public class DeliveryAddressService {
 
     @Autowired
     private DeliveryAddressRepository deliveryAddressRepository;

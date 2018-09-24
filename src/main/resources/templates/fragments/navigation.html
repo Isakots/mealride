@@ -52,7 +52,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" href="/personaldata">Personal Data</a>
                             <a class="dropdown-item" href="#">Addresses</a>
-                            <a class="dropdown-item" href="#">Credit Cards</a>
+                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/cards' ? 'active' : ''}" href="/cards">Credit Cards</a>
                             <a class="dropdown-item" href="#">New Address</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Previous Orders</a>
