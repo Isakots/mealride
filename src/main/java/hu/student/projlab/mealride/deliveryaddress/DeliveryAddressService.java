@@ -16,7 +16,6 @@ public class DeliveryAddressService {
 
     public void addAddress(DeliveryAddress address, User user) {
         address.setUser(user);
-        address.setName(address.getStreet());
         deliveryAddressRepository.save(address);
     }
 

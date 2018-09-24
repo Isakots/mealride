@@ -10,7 +10,8 @@ import javax.persistence.*;
 public class DeliveryAddress {
 
     @Id
-    private String name;
+    @GeneratedValue
+    private Long id;
     private Short zipcode;
     private String city;
     private String street;
@@ -25,8 +26,7 @@ public class DeliveryAddress {
     public DeliveryAddress() {
     }
 
-    public DeliveryAddress(String name, Short zipcode, String city, String street, String state, Short housenumber, Short floor, Short door, User user) {
-        this.name = name;
+    public DeliveryAddress(Short zipcode, String city, String street, String state, Short housenumber, Short floor, Short door, User user) {
         this.zipcode = zipcode;
         this.city = city;
         this.street = street;
@@ -37,12 +37,12 @@ public class DeliveryAddress {
         this.user = user;
     }
 
-    public String getName() {
-        return name;
+    public Long getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Short getZipcode() {
