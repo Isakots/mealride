@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- TO DO
+    Write a Thymeleaf script which includes fragments of the page body based on the active tab/page (like navbar)
+    to reduce data usage
+ -->
+
+<!-- Header with Background Image -->
+<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-12">
+
+            <!-- Title -->
+            <h3 class="mt-4">Registration</h3>
+
+            <hr>
+
+            <!-- Date/Time -->
+
+            <div class="container">
+                <form action="#" th:attr="action=@{/}" th:object="${user}"  method="post">
+                    <div  th:object="${address}">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="firstName">Firstname</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Firstname"
+                                       th:field="${user.firstname}">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="lastName">Lastname</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Lastname"
+                                       th:field="${user.lastname}">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="phoneNumber">Phone</label>
+                                <input type="tel" class="form-control" id="phoneNumber" placeholder="+36301234567"
+                                       th:field="${user.phone}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="example@mealride.com"
+                                       th:field="${user.email}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Password</label>
+                                <input type="password" class="form-control" id="inputPassword4" placeholder="Password"
+                                       th:field="${user.password}">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity" placeholder="Budapest"
+                                       th:field="${address.city}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">State</label>
+                                <select id="inputState" class="form-control" >
+                                    <option selected>Bács-Kiskun megye</option>
+                                    <option th:value="${address.state}">Baranya megye</option>
+                                    <option th:value="${address.state}">Békés megye</option>
+                                    <option>Borsod-Abaúj-Zemplén megye</option>
+                                    <option>Budapest</option>
+                                    <option th:value="${address.state}">Csongrád megye</option>
+                                    <option>Fejér megye</option>
+                                    <option>Győr-Moson-Sopron megye</option>
+                                    <option>Hajdú-Bihar megye</option>
+                                    <option>Heves megye</option>
+                                    <option>Jász-Nagykun-Szolnok megye</option>
+                                    <option>Komárom-Esztergom megye</option>
+                                    <option>Nógrád megye</option>
+                                    <option>Pest megye</option>
+                                    <option th:value="${address.state}">Somogy megye</option>
+                                    <option>Szabolcs-Szatmár-Bereg megye</option>
+                                    <option>Tolna megye</option>
+                                    <option>Vas megye</option>
+                                    <option>Veszprém megye</option>
+                                    <option>Zala megye</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="number" class="form-control" id="inputZip" placeholder="0000"
+                                       th:field="${address.zipcode}">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="street">Street</label>
+                                <input type="text" class="form-control" id="street" placeholder="Teréz krt."
+                                       th:field="${address.street}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="housenumber">House Number</label>
+                                <input type="number" class="form-control" id="housenumber" placeholder="122"
+                                       th:field="${address.housenumber}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="floor">Floor</label>
+                                <input type="text" class="form-control" id="floor" placeholder="MF"
+                                       th:field="${address.floor}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="door">Door</label>
+                                <input type="number" class="form-control" id="door" placeholder="3"
+                                       th:field="${address.door}">
+                            </div>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-secondary">Submit</button>
+                    </div>
+                </form>
+
+                <hr>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>

@@ -8,14 +8,7 @@
 <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
 
 <!-- Header with Background Image -->
-<header class="business-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-            </div>
-        </div>
-    </div>
-</header>
+<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
 
 <!-- Page Content -->
 <div class="container">
@@ -30,8 +23,6 @@
 
            <hr>
 
-            <!-- Date/Time -->
-
             <div class="container ">
                 <div class="starter-template" style="overflow-x:auto;">
                     <table class="table">
@@ -42,6 +33,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>ZipCode</th>
+                            <th>State</th>
                             <th>City</th>
                             <th>Street</th>
                             <th>House number</th>
@@ -55,6 +47,7 @@
                             <td th:text="${user.email}" />
                             <td th:text="${user.phone}" />
                             <td th:text="${address.zipcode}" />
+                            <td th:text="${address.state}" />
                             <td th:text="${address.city}" />
                             <td th:text="${address.street}" />
                             <td th:text="${address.housenumber}" />
@@ -64,7 +57,6 @@
                     </table>
                 </div>
             </div>
-
 
             <hr>
 
@@ -77,8 +69,6 @@
 
 </div>
 <!-- /.container -->
-
-
 
 <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
 

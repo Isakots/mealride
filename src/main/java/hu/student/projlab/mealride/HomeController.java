@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -25,12 +23,17 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String IndexResponse(Model model) {
+    public String IndexResponse() {
+        return "index";
+    }
+
+    @GetMapping("/registration")
+    public String registrationForm(Model model) {
         User user = new User();
         DeliveryAddress address = new DeliveryAddress();
         model.addAttribute("user", user);
         model.addAttribute("address", address);
-        return "index";
+        return "registration";
     }
 
     @GetMapping("/restaurants")

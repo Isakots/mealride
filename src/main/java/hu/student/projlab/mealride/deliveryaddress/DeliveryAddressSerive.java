@@ -26,5 +26,13 @@ public class DeliveryAddressSerive {
         return addresses;
     }
 
+    public void updateAddress(DeliveryAddress address) {
+        deliveryAddressRepository.save(address);
+    }
+
+    public void deleteAddress(DeliveryAddress address) {
+        deliveryAddressRepository.delete(address);
+    }
+
 
 }

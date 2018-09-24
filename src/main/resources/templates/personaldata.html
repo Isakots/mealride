@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- TO DO
+    Write a Thymeleaf script which includes fragments of the page body based on the active tab/page (like navbar)
+    to reduce data usage
+ -->
+
+<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-3">
+            <nav class="nav flex-column nav-pills">
+                <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" href="/personaldata">Personal Data</a>
+                <a class="nav-link" href="#">Addresses</a>
+                <a class="nav-link" href="#">Credit Cards</a>
+                <a class="nav-link" href="#">Previous Orders</a>
+            </nav>
+        </div>
+
+
+        <!-- Post Content Column -->
+        <div class="col-lg-9">
+            <!-- Title -->
+            <h3 class="mt-4">Personal Data</h3>
+
+            <hr>
+
+            <form action="#" th:attr="action=@{/personaldata}" th:object="${user}"  method="post">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">Firstname</label>
+                            <input type="text" class="form-control" id="firstName" aria-describedby="nameHelp" placeholder="Firstname"
+                                   th:field="${user.firstname}">
+                            <small id="nameHelp" class="form-text text-muted">It's recommended to give full name, in order to contact you easier.</small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Lastname</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Lastname"
+                                   th:field="${user.lastname}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="phoneNumber">Phone</label>
+                            <input type="tel" class="form-control" id="phoneNumber" aria-describedby="phoneHelp" placeholder="+36301234567"
+                                   th:field="${user.phone}">
+                            <small id="phoneHelp" class="form-text text-muted">We suggest you to add mobile phone number.</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" aria-describedby="emailHelp" placeholder="example@mealride.com"
+                                   th:field="${user.email}">
+                            <small id="emailHelp" class="form-text text-muted">Later, you can login with this email address.</small>
+                        </div>
+                    </div>
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+            <hr>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>

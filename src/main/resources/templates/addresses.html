@@ -1,36 +1,43 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
 </head>
 <body>
 
 <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
 
-<!-- TO DO
-    Write a Thymeleaf script which includes fragments of the page body based on the active tab/page (like navbar)
-    to reduce data usage
- -->
-
+<!-- Header with Background Image -->
 <!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
 
 <!-- Page Content -->
 <div class="container">
 
-    <div class="row">,
+    <div class="row">
 
         <!-- Post Content Column -->
-        <div class="col-lg-12">
+        <div class="col-lg-8">
+
             <!-- Title -->
-            <h3 class="mt-4">Welcome</h3>
+            <h3 class="mt-4">Restaurant browser</h3>
 
             <hr>
 
-            <p>Üdvözlő szöveg heló</p>
+            <!-- Date/Time -->
+
+            <div class="container">
+                <div class="starter-template">
+
+
+
+                </div>
+            </div>
 
             <hr>
 
         </div>
+
+        <div th:replace="fragments/sidebar :: sidebar"></div>
 
     </div>
     <!-- /.row -->

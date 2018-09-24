@@ -1,4 +1,4 @@
- h2 { color: #2189ce; }
+h2 { color: #2189ce; }
 
 td, th {
     border: 1px solid #dddddd;
@@ -13,4 +13,14 @@ tr:nth-child(even) {
 .table{
     width: 100%;
     overflow-x: auto;
+}
+
+.orange:active{
+    color: #E64A19;
+    background-color: #1b1e21;
+}
+
+.orange:hover {
+    color: #FF5722;
+    background-color: #1d2124;
 }

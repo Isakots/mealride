@@ -4,7 +4,7 @@ package hu.student.projlab.mealride.deliveryaddress;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class DeliveryAddressController {
+class DeliveryAddressController {
 
     private DeliveryAddressSerive deliveryAddressSerive;
 

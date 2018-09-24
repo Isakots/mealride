@@ -14,6 +14,7 @@ public class DeliveryAddress {
     private Short zipcode;
     private String city;
     private String street;
+    private String state;
     private Short housenumber;
     private Short floor;
     private Short door;
@@ -24,14 +25,16 @@ public class DeliveryAddress {
     public DeliveryAddress() {
     }
 
-    public DeliveryAddress(String name, Short zipcode, String settlement, String street, Short housenumber, Short floor, Short door) {
+    public DeliveryAddress(String name, Short zipcode, String city, String street, String state, Short housenumber, Short floor, Short door, User user) {
         this.name = name;
         this.zipcode = zipcode;
-        this.city = settlement;
+        this.city = city;
         this.street = street;
+        this.state = state;
         this.housenumber = housenumber;
         this.floor = floor;
         this.door = door;
+        this.user = user;
     }
 
     public String getName() {
@@ -64,6 +67,14 @@ public class DeliveryAddress {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Short getHousenumber() {

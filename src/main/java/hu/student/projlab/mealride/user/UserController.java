@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class UserController {
+class UserController {
 
     @Autowired
      private UserService userService;
@@ -25,6 +25,12 @@ public class UserController {
         model.addAttribute("addresses", deliveryAddressService.getAddresses());
         return "users";
     }
+
+    @GetMapping("/personaldata")
+    public String getUserData(Model model, @ModelAttribute(value="user") User user) {
+        return "personaldata";
+    }
+
     // but this is NOT rest..
     @PostMapping("/")
     public String addUser(@ModelAttribute(value="user") User user, @ModelAttribute(value="address")DeliveryAddress address) {
