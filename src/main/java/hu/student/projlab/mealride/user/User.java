@@ -1,9 +1,10 @@
 package hu.student.projlab.mealride.user;
 
-import hu.student.projlab.mealride.bankcard.BankCard;
-import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="Person")
@@ -14,7 +15,7 @@ public class User {
     private Long id;
     private String firstname;
     private String lastname;
-    private String password; //hash!
+    private String password; //hash
     private String email;
     private String phone;
 

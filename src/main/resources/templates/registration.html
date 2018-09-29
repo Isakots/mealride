@@ -31,7 +31,7 @@
             <!-- Date/Time -->
 
             <div class="container">
-                <form action="#" th:attr="action=@{/}" th:object="${user}"  method="post">
+                <form th:action="@{/}" th:object="${user}"  method="post">
                     <div  th:object="${address}">
                         <div class="form-row">
                             <div class="form-group col-md-6">
