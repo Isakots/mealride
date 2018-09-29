@@ -31,7 +31,7 @@
             <!-- Date/Time -->
 
             <div class="container">
-                <form th:action="@{/}" th:object="${user}"  method="post">
+                <form th:action="@{/registration}" th:object="${user}"  method="post">
                     <div  th:object="${address}">
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -130,7 +130,11 @@
                             </div>
                         </div>
 
+                        <div th:if="${alreadyRegisteredMessage}" class="alert alert-danger"
+                             role="alert" th:text="${alreadyRegisteredMessage}"></div>
 
+                        <div th:if="${successMessage}" class="alert alert-success"
+                             role="alert" th:text="${successMessage}"></div>
 
                         <button type="submit" class="btn btn-secondary">Submit</button>
                     </div>

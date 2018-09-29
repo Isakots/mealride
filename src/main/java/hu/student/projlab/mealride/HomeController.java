@@ -23,7 +23,7 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String IndexResponse() {
+    public String getHomepage() {
         return "index";
     }
 

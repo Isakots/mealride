@@ -36,7 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-
         auth
                 .userDetailsService(userDetailsService())
                 .passwordEncoder(passwordEncoder())
@@ -68,9 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/resources/**","/assets/**","/css/**","/icons/**","/pics/**","/vendor/**");
-
     }
-
 
 }
 

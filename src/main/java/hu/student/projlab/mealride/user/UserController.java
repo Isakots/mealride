@@ -6,9 +6,13 @@ import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 class UserController {
@@ -26,14 +30,23 @@ class UserController {
         return "users";
     }
 
-    // but this is NOT rest..
-    @PostMapping("/")
-    public String addUser(@ModelAttribute(value="user") User user, @ModelAttribute(value="address")DeliveryAddress address) {
-        userService.addUser(user);
-        deliveryAddressService.addAddress(address,user);
+    @PostMapping("/registration")
+    public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid User user,
+                                   @ModelAttribute(value="address")DeliveryAddress address, BindingResult bindingResult) {
 
-        // redirecting to index.html to view it again..
-        return "redirect:/";
+        User userExists = userService.findUserByEmail(user.getEmail());
+
+        if(userExists != null) {
+            modelAndView.addObject("alreadyRegisteredMessage", "Oops!  There is already a user registered with the email provided.");
+                        bindingResult.reject("email");
+        } else {
+            userService.addUser(user);
+            deliveryAddressService.addAddress(address,user);
+            modelAndView.addObject("successMessage", "You are registered successfully!");
+        }
+
+        modelAndView.setViewName("registration");
+        return modelAndView;
     }
 
 
