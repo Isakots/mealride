@@ -15,16 +15,7 @@
 
     <div class="row">
 
-        <div class="col-lg-3">
-            <nav class="nav flex-column nav-pills">
-                <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" href="/personaldata">Personal Data</a>
-                <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/addresses' ? 'active' : ''}" href="/addresses">Addresses</a>
-                <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/cards' ? 'active' : ''}" href="/cards">Credit Cards</a>
-                <a class="nav-link" href="#">Change Password</a>
-                <a class="nav-link" href="#">Previous Orders</a>
-                <a class="nav-link" href="#">Logout</a>
-            </nav>
-        </div>
+        <!--/*/ <th:block th:include="fragments/side_navbar :: side_navbar"></th:block> /*/-->
 
         <!-- Post Content Column -->
         <div class="col-lg-8">

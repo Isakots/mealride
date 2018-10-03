@@ -1,27 +1,33 @@
 package hu.student.projlab.mealride.user;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
+
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-@Table(name="Person")
+@Table(name="PERSON")
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+    @Column(name="FIRSTNAME")
     private String firstname;
+    @Column(name="LASTNAME")
     private String lastname;
+    @Column(name="PASSWORD")
     private String password; //hash
+    @Column(name="EMAIL")
     private String email;
+    @Column(name="PHONE")
     private String phone;
 
-    public User() {
-
-    }
+    public User() {}
 
     public User(String firstname, String lastname, String password, String email, String phone) {
         this.firstname = firstname;

@@ -15,16 +15,21 @@ public class Order {
     @Id
     @GeneratedValue
     private Long id;
-    @OneToOne
+    @Column(name="CUSTOMER")
     private User customer;
-    @OneToOne
+    @Column(name="RESTAURANT")
     private Restaurant restaurant;
     @ElementCollection
     private List<Meal> meals;
+    @Column(name="PRICE")
     private Integer price;
+    @Column(name="ORDER_TIME")
     private Timestamp datetime;
+    @Column(name="COURIER_NAME")
     private String couriername;
+    @Column(name="CUSTOMER_COMMENT")
     private String usercomment;
+    @Column(name="WORKER_COMMENT")
     private String restaurantcomment;
    // private State state;  // enum type State
 

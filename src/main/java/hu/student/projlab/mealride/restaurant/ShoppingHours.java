@@ -1,11 +1,16 @@
 package hu.student.projlab.mealride.restaurant;
 
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.sql.Time;
 
+@Embeddable
 public class ShoppingHours {
 
+    @Column(name="OPENING_TIME")
     private Time open;
+    @Column(name="CLOSING_TIME")
     private Time close;
 
     public ShoppingHours() {

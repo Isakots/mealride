@@ -7,17 +7,21 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name="Card")
+@Table(name="CARD")
 public class BankCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name="OWNER_NAME")
     private String ownername;
+    @Column(name="EXPIRATION_DATE")
     private Date expriationdate;
+    @Column(name="CVC")
     private Short cvc;  //has to hashed!
 
     @ManyToOne
+    @Column(name="USER_ID")
     private User user;
 
     public BankCard() {

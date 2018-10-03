@@ -44,8 +44,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            [[${#httpServletRequest.remoteUser}]]
+                        <a th:text="${username}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <a class="dropdown-item" href="/">Home Page</a>
@@ -57,7 +56,9 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Previous Orders</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <form  th:action="@{/logout}" method="post">
+                                <button type="submit" class="dropdown-item btn">Logout</button>
+                            </form>
                         </div>
                     </li>
                 </ul>

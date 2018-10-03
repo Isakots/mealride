@@ -64,6 +64,9 @@
                                 <label for="inputPassword4">Password</label>
                                 <input type="password" class="form-control" id="inputPassword4" placeholder="Password"
                                        th:field="${user.password}">
+                                <div class="alert alert-danger" role="alert"
+                                     th:if="${#fields.hasErrors('user.password')}" th:errors="${user.password}" ></div>
+
                             </div>
                         </div>
 
@@ -79,11 +82,11 @@
                                 <label for="inputState">State</label>
                                 <select id="inputState" class="form-control" >
                                     <option selected>Bács-Kiskun megye</option>
-                                    <option th:value="${address.state}">Baranya megye</option>
-                                    <option th:value="${address.state}">Békés megye</option>
+                                    <option>Baranya megye</option>
+                                    <option>Békés megye</option>
                                     <option>Borsod-Abaúj-Zemplén megye</option>
                                     <option>Budapest</option>
-                                    <option th:value="${address.state}">Csongrád megye</option>
+                                    <option>Csongrád megye</option>
                                     <option>Fejér megye</option>
                                     <option>Győr-Moson-Sopron megye</option>
                                     <option>Hajdú-Bihar megye</option>
@@ -92,7 +95,7 @@
                                     <option>Komárom-Esztergom megye</option>
                                     <option>Nógrád megye</option>
                                     <option>Pest megye</option>
-                                    <option th:value="${address.state}">Somogy megye</option>
+                                    <option>Somogy megye</option>
                                     <option>Szabolcs-Szatmár-Bereg megye</option>
                                     <option>Tolna megye</option>
                                     <option>Vas megye</option>

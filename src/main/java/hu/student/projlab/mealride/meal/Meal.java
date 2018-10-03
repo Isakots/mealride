@@ -2,27 +2,28 @@ package hu.student.projlab.mealride.meal;
 
 import hu.student.projlab.mealride.order.Order;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Meal {
 
     @Id
+    @Column(name="MEAL_NAME")
     private String name;
+    @Column(name="PRICE")
     private Integer price;
-    private Boolean garnish;
+    @Column(name="IS_GARNISH")
+    private Boolean isgarnish;
+    @Column(name="MEAL_COMMENT")
     private String comment;
 
     public Meal() {
     }
 
-    public Meal(String name, Integer price, Boolean garnish, String comment) {
+    public Meal(String name, Integer price, Boolean isgarnish, String comment) {
         this.name = name;
         this.price = price;
-        this.garnish = garnish;
+        this.isgarnish = isgarnish;
         this.comment = comment;
     }
 
@@ -42,12 +43,12 @@ public class Meal {
         this.price = price;
     }
 
-    public Boolean getGarnish() {
-        return garnish;
+    public Boolean isGarnish() {
+        return isgarnish;
     }
 
-    public void setGarnish(Boolean garnish) {
-        this.garnish = garnish;
+    public void setGarnish(Boolean isgarnish) {
+        this.isgarnish = isgarnish;
     }
 
     public String getComment() {

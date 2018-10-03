@@ -4,24 +4,33 @@ package hu.student.projlab.mealride.deliveryaddress;
 import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="Address")
+@Table(name="ADDRESS")
 public class DeliveryAddress {
 
     @Id
     @GeneratedValue
     private Long id;
+    @Column(name="ZIP")
     private Short zipcode;
+    @Column(name="CITY")
     private String city;
+    @Column(name="STREET")
     private String street;
+    @Column(name="STATE")
     private String state;
+    @Column(name="HOUSE_NUMBER")
     private Short housenumber;
+    @Column(name="FLOOR")
     private Short floor;
+    @Column(name="DOOR")
     private Short door;
 
     @ManyToOne
     private User user;
+
 
     public DeliveryAddress() {
     }
@@ -34,7 +43,7 @@ public class DeliveryAddress {
         this.housenumber = housenumber;
         this.floor = floor;
         this.door = door;
-        this.user = user;
+        this. user = user;
     }
 
     public Long getId() {

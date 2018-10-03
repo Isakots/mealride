@@ -7,12 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 
 @Controller
 class UserController {
@@ -30,9 +27,15 @@ class UserController {
         return "users";
     }
 
+
     @PostMapping("/registration")
-    public ModelAndView processRegistrationForm(ModelAndView modelAndView, @Valid User user,
+    public ModelAndView processRegistrationForm(ModelAndView modelAndView, @ModelAttribute(value="user") User user,
                                    @ModelAttribute(value="address")DeliveryAddress address, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("registration");
+            return modelAndView;
+        }
 
         User userExists = userService.findUserByEmail(user.getEmail());
 
@@ -48,7 +51,6 @@ class UserController {
         modelAndView.setViewName("registration");
         return modelAndView;
     }
-
 
     // We will know which user is logged in, then we can autocomplete the form
     @GetMapping("/personaldata")

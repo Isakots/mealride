@@ -2,10 +2,7 @@ package hu.student.projlab.mealride.restaurant;
 
 import hu.student.projlab.mealride.meal.Meal;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Time;
 import java.util.List;
 
@@ -15,31 +12,32 @@ public class Restaurant {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(name="RESTAURANT_NAME")
     private String name;
+    @Column(name="AVERAGE_DELIVERY_TIME")
     private Time avgdeliverytime;
+    @Column(name="MINIMUM_ORDER_PRICE")
     private Short minorderprice;
+    @Column(name="DELIVERY_PRICE")
     private Short deliveryprice;
 
-    // Shopping hours
-    private Time opentime;
-    private Time closetime;
+    @Embedded
+    private ShoppingHours hours;
 
     @ElementCollection
     private List<Meal> menu;
 
-    //private ShoppingHours hours;
 
     public Restaurant() {
     }
 
-
-    public Restaurant(String name, Time avgdeliverytime, Short minorderprice, Short deliveryprice, Time opentime, Time closetime, List<Meal> menu) {
+    public Restaurant(String name, Time avgdeliverytime, Short minorderprice, Short deliveryprice,
+                      ShoppingHours hours, List<Meal> menu) {
         this.name = name;
         this.avgdeliverytime = avgdeliverytime;
         this.minorderprice = minorderprice;
         this.deliveryprice = deliveryprice;
-        this.opentime = opentime;
-        this.closetime = closetime;
+        this.hours = hours;
         this.menu = menu;
     }
 
@@ -83,20 +81,12 @@ public class Restaurant {
         this.deliveryprice = deliveryprice;
     }
 
-    public Time getOpentime() {
-        return opentime;
+    public ShoppingHours getHours() {
+        return hours;
     }
 
-    public void setOpentime(Time opentime) {
-        this.opentime = opentime;
-    }
-
-    public Time getClosetime() {
-        return closetime;
-    }
-
-    public void setClosetime(Time closetime) {
-        this.closetime = closetime;
+    public void setHours(ShoppingHours hours) {
+        this.hours = hours;
     }
 
     public List<Meal> getMenu() {
