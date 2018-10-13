@@ -38,6 +38,7 @@ public class UserService {
 
             // Set new parameters
             dbuser.setFirstname(user.getFirstname());
+
             dbuser.setLastname(user.getLastname());
             dbuser.setPhone(user.getPhone());
 

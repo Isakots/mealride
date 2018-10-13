@@ -18,7 +18,7 @@ public class BankCard {
     @Column(name="EXPIRATION_DATE")
     private Date expriationdate;
     @Column(name="CVC")
-    private Short cvc;  //has to hashed!
+    private Short cvc;  //has to be hashed!
 
     @ManyToOne
     private User user;
