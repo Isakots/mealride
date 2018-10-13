@@ -21,7 +21,6 @@ public class BankCard {
     private Short cvc;  //has to hashed!
 
     @ManyToOne
-    @Column(name="USER_ID")
     private User user;
 
     public BankCard() {

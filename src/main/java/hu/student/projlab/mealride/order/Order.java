@@ -15,21 +15,19 @@ public class Order {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name="CUSTOMER")
-    private User customer;
-    @Column(name="RESTAURANT")
-    private Restaurant restaurant;
+    //private User customer;
+   // private Restaurant restaurant;
     @ElementCollection
     private List<Meal> meals;
-    @Column(name="PRICE")
+    //@Column(name="PRICE")
     private Integer price;
-    @Column(name="ORDER_TIME")
+    //@Column(name="ORDER_TIME")
     private Timestamp datetime;
-    @Column(name="COURIER_NAME")
+    //@Column(name="COURIER_NAME")
     private String couriername;
-    @Column(name="CUSTOMER_COMMENT")
+   // @Column(name="CUSTOMER_COMMENT")
     private String usercomment;
-    @Column(name="WORKER_COMMENT")
+   // @Column(name="WORKER_COMMENT")
     private String restaurantcomment;
    // private State state;  // enum type State
 
@@ -39,8 +37,8 @@ public class Order {
 
     public Order(User customer, Restaurant restaurant, List<Meal> meals, Integer price,
                  Timestamp datetime, String couriername, String usercomment, String restaurantcomment) {
-        this.customer = customer;
-        this.restaurant = restaurant;
+       // this.customer = customer;
+        //this.restaurant = restaurant;
         this.meals = meals;
         this.price = price;
         this.datetime = datetime;
@@ -57,21 +55,21 @@ public class Order {
         this.id = id;
     }
 
-    public User getCustomer() {
+   /* public User getCustomer() {
         return customer;
     }
 
     public void setCustomer(User customer) {
         this.customer = customer;
-    }
+    }*/
 
-    public Restaurant getRestaurant() {
+    /*public Restaurant getRestaurant() {
         return restaurant;
     }
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
-    }
+    }*/
 
     public List<Meal> getMeals() {
         return meals;

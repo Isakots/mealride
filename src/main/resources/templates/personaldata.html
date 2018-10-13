@@ -29,7 +29,7 @@
 
             <hr>
 
-            <form action="#" th:attr="action=@{/personaldata}" th:object="${user}"  method="post">
+            <form th:action="@{/personaldata}" th:object="${user}"  method="post">
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -57,8 +57,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" aria-describedby="emailHelp" placeholder="example@mealride.com"
-                                   th:field="${user.email}">
+                            <input type="email" class="form-control disabled" id="inputEmail4" aria-describedby="emailHelp"
+                                   th:field="${user.email}" readonly>
                             <small id="emailHelp" class="form-text text-muted">Later, you can login with this email address.</small>
                         </div>
                     </div>

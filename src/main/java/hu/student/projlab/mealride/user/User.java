@@ -1,16 +1,10 @@
 package hu.student.projlab.mealride.user;
 
 
-import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
-
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
-@Table(name="PERSON")
+@Table(name="Person")
 public class User {
 
     @Id
