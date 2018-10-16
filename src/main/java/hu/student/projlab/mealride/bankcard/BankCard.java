@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.bankcard;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
@@ -11,33 +12,39 @@ import java.sql.Date;
 public class BankCard {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long number;
+
+    @JsonIgnore
     @Column(name="OWNER_NAME")
     private String ownername;
+
+
     @Column(name="EXPIRATION_DATE")
     private Date expriationdate;
-    @Column(name="CVC")
-    private Short cvc;  //has to be hashed!
 
+    @JsonIgnore
+    @Column(name="CVC")
+    private String cvc; // hashed
+
+    @JsonIgnore
     @ManyToOne
     private User user;
 
     public BankCard() {
     }
 
-    public BankCard(String ownername, Date expriationdate, Short cvc) {
+    public BankCard(String ownername, Date expriationdate, String cvc) {
         this.ownername = ownername;
         this.expriationdate = expriationdate;
         this.cvc = cvc;
     }
 
-    public Long getId() {
-        return id;
+    public Long getNumber() {
+        return number;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
     public String getOwnername() {
@@ -56,11 +63,19 @@ public class BankCard {
         this.expriationdate = expriationdate;
     }
 
-    public Short getCvc() {
+    public String getCvc() {
         return cvc;
     }
 
-    public void setCvc(Short cvc) {
+    public void setCvc(String cvc) {
         this.cvc = cvc;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -80,27 +80,27 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputState">State</label>
-                                <select id="inputState" class="form-control" >
-                                    <option selected>Bács-Kiskun megye</option>
-                                    <option>Baranya megye</option>
-                                    <option>Békés megye</option>
-                                    <option>Borsod-Abaúj-Zemplén megye</option>
-                                    <option>Budapest</option>
-                                    <option>Csongrád megye</option>
-                                    <option>Fejér megye</option>
-                                    <option>Győr-Moson-Sopron megye</option>
-                                    <option>Hajdú-Bihar megye</option>
-                                    <option>Heves megye</option>
-                                    <option>Jász-Nagykun-Szolnok megye</option>
-                                    <option>Komárom-Esztergom megye</option>
-                                    <option>Nógrád megye</option>
-                                    <option>Pest megye</option>
-                                    <option>Somogy megye</option>
-                                    <option>Szabolcs-Szatmár-Bereg megye</option>
-                                    <option>Tolna megye</option>
-                                    <option>Vas megye</option>
-                                    <option>Veszprém megye</option>
-                                    <option>Zala megye</option>
+                                <select id="inputState" class="form-control"  th:field="${address.state}">
+                                    <option th:value="'Bács-Kiskun megye'" selected>Bács-Kiskun megye</option>
+                                    <option th:value="'Baranya megye'" >Baranya megye</option>
+                                    <option th:value="'Békés megye'" >Békés megye</option>
+                                    <option th:value="'Borsod-Abaúj-Zemplén megye'" >Borsod-Abaúj-Zemplén megye</option>
+                                    <option th:value="'Budapest'" >Budapest</option>
+                                    <option th:value="'Csongrád megye'" >Csongrád megye</option>
+                                    <option th:value="'Fejér megye'" >Fejér megye</option>
+                                    <option th:value="'Győr-Moson-Sopron megye'" >Győr-Moson-Sopron megye</option>
+                                    <option th:value="'Hajdú-Bihar megye'" >Hajdú-Bihar megye</option>
+                                    <option th:value="'Heves megye'" >Heves megye</option>
+                                    <option th:value="'Jász-Nagykun-Szolnok megye'" >Jász-Nagykun-Szolnok megye</option>
+                                    <option th:value="'Komárom-Esztergom megye'" >Komárom-Esztergom megye</option>
+                                    <option th:value="'Nógrád megye'" >Nógrád megye</option>
+                                    <option th:value="'Pest megye'" >Pest megye</option>
+                                    <option th:value="'Somogy megye'" >Somogy megye</option>
+                                    <option th:value="'Szabolcs-Szatmár-Bereg megye'" >Szabolcs-Szatmár-Bereg megye</option>
+                                    <option th:value="'Tolna megye'" >Tolna megye</option>
+                                    <option th:value="'Vas megye'" >Vas megye</option>
+                                    <option th:value="'Veszprém megye'" >Veszprém megye</option>
+                                    <option th:value="'Zala megye'" >Zala megye</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">

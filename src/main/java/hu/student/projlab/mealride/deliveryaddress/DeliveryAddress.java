@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.deliveryaddress;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class DeliveryAddress {
     @Column(name="DOOR")
     private Short door;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

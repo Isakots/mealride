@@ -1,11 +1,11 @@
 package hu.student.projlab.mealride.bankcard;
 
-
-import hu.student.projlab.mealride.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -15,21 +15,45 @@ class BankCardController {
     @Autowired
     private BankCardService bankCardService;
 
-    @GetMapping("/user/{userId}/cards")
-    public String getCards(@PathVariable Long userId) {
-        User user = new User();
-        user.setId(userId);
-        List<BankCard> cards = bankCardService.getBankcards(user);
+    @GetMapping("/cards/list")
+    @ResponseBody
+    public List<BankCard> getCards(Model model) {
+        BankCard card = new BankCard();
+        model.addAttribute("card", card);
+        List<BankCard> cards = bankCardService.getBankcards();
+        return cards;
+    }
+
+    @PostMapping("/cards")
+    public ModelAndView addCard(ModelAndView modelAndView, @ModelAttribute(value="card")BankCard card, BindingResult results) {
+
+        if(results.hasErrors()) {
+            modelAndView.setViewName("/cards");
+            return modelAndView;
+        }
+
+        if(card.getNumber() == null) {
+            modelAndView.addObject("numberMustNotBeEmpty", "The card number must not be empty!");
+            modelAndView.setViewName("/cards");
+            System.out.println("Card number is empty!");
+            results.reject("number");
+            return modelAndView;
+        }
+
+
+        bankCardService.addCard(card);
+        modelAndView.setViewName("/cards");
+        return modelAndView;
+    }
+
+    @GetMapping("/cards")
+    public String getCard(Model model) {
+        BankCard card = new BankCard();
+        model.addAttribute("card", card);
 
         return "cards";
     }
 
-    @GetMapping("cards")
-    public String getCard() {
-
-
-        return "cards";
-    }
 
 
 }

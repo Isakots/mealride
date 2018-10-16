@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- Header with Background Image -->
+<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!--/*/ <th:block th:include="fragments/side_navbar :: side_navbar"></th:block> /*/-->
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Title -->
+            <h3 class="mt-4">New Address</h3>
+
+            <hr>
+
+            <!-- Date/Time -->
+
+            <div class="container">
+
+                <form th:action="@{/addresses}" th:object="${address}"  method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" id="inputCity" placeholder="Budapest"
+                               th:field="${address.city}">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control"  th:field="${address.state}">
+                            <option th:value="'Bács-Kiskun megye'" selected>Bács-Kiskun megye</option>
+                            <option th:value="'Baranya megye'" >Baranya megye</option>
+                            <option th:value="'Békés megye'" >Békés megye</option>
+                            <option th:value="'Borsod-Abaúj-Zemplén megye'" >Borsod-Abaúj-Zemplén megye</option>
+                            <option th:value="'Budapest'" >Budapest</option>
+                            <option th:value="'Csongrád megye'" >Csongrád megye</option>
+                            <option th:value="'Fejér megye'" >Fejér megye</option>
+                            <option th:value="'Győr-Moson-Sopron megye'" >Győr-Moson-Sopron megye</option>
+                            <option th:value="'Hajdú-Bihar megye'" >Hajdú-Bihar megye</option>
+                            <option th:value="'Heves megye'" >Heves megye</option>
+                            <option th:value="'Jász-Nagykun-Szolnok megye'" >Jász-Nagykun-Szolnok megye</option>
+                            <option th:value="'Komárom-Esztergom megye'" >Komárom-Esztergom megye</option>
+                            <option th:value="'Nógrád megye'" >Nógrád megye</option>
+                            <option th:value="'Pest megye'" >Pest megye</option>
+                            <option th:value="'Somogy megye'" >Somogy megye</option>
+                            <option th:value="'Szabolcs-Szatmár-Bereg megye'" >Szabolcs-Szatmár-Bereg megye</option>
+                            <option th:value="'Tolna megye'" >Tolna megye</option>
+                            <option th:value="'Vas megye'" >Vas megye</option>
+                            <option th:value="'Veszprém megye'" >Veszprém megye</option>
+                            <option th:value="'Zala megye'" >Zala megye</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="number" class="form-control" id="inputZip" placeholder="0000"
+                               th:field="${address.zipcode}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="street">Street</label>
+                        <input type="text" class="form-control" id="street" placeholder="Teréz krt."
+                               th:field="${address.street}">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="housenumber">House Number</label>
+                        <input type="number" class="form-control" id="housenumber" placeholder="122"
+                               th:field="${address.housenumber}">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="floor">Floor</label>
+                        <input type="text" class="form-control" id="floor" placeholder="MF"
+                               th:field="${address.floor}">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="door">Door</label>
+                        <input type="number" class="form-control" id="door" placeholder="3"
+                               th:field="${address.door}">
+                    </div>
+                </div>
+
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+
+            </div>
+
+            <hr>
+
+        </div>
+
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>

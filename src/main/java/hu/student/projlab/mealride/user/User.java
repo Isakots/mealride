@@ -1,6 +1,8 @@
 package hu.student.projlab.mealride.user;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class User {
     private String firstname;
     @Column(name="LASTNAME")
     private String lastname;
+    @JsonIgnore
     @Column(name="PASSWORD")
     private String password; //hash
     @Column(name="EMAIL")

@@ -28,20 +28,28 @@
             <h3 class="mt-4">Add new Credit Card</h3>
             <!-- Title -->
             <hr>
+
+            <div th:if="${numberMustNotBeEmpty}" class="alert alert-danger"
+                 role="alert" th:text="${numberMustNotBeEmpty}"></div>
+
+
             <div class="creditCardForm">
                 <div class="payment">
-            <form>
+            <form th:action="@{/cards}" th:object="${card}"  method="post">
                 <div class="form-group owner">
                     <label for="owner">Owner</label>
-                    <input type="text" class="form-control" id="owner">
+                    <input type="text" class="form-control" id="owner"
+                           th:field="${card.ownername}">
                 </div>
                 <div class="form-group CVV">
                     <label for="cvv">CVV</label>
-                    <input type="text" class="form-control" id="cvv">
+                    <input type="text" class="form-control" id="cvv"
+                           th:field="${card.cvc}">
                 </div>
                 <div class="form-group" id="card-number-field">
                     <label for="cardNumber">Card Number</label>
-                    <input type="text" class="form-control" id="cardNumber">
+                    <input type="text" class="form-control" id="cardNumber"
+                           th:field="${card.number}">
                 </div>
                 <div class="form-group" id="expiration-date">
                     <label>Expiration Date</label>
@@ -73,9 +81,9 @@
                     <img src="assets/images/mastercard.jpg" id="mastercard">
                     <img src="assets/images/amex.jpg" id="amex">
                 </div>
-                <div class="form-group" id="pay-now">
-                    <button type="submit" class="btn btn-secondary" id="confirm-purchase">Confirm</button>
-                </div>
+
+                <button type="submit" class="btn btn-secondary">Confirm</button>
+
             </form>
 
                 </div>
@@ -91,8 +99,6 @@
 
 <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery.payform.min.js" charset="utf-8"></script>
 <script src="assets/js/script.js"></script>
 </body>
