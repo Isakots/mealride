@@ -32,9 +32,7 @@ public class DeliveryAddressService {
     }
 
     public List<DeliveryAddress> getUserAddresses() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userService.findUserByEmail(name);
+        User user = userService.getCurrentUser();
         return deliveryAddressRepository.findAllByUserId(user.getId());
     }
 

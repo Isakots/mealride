@@ -34,9 +34,7 @@ public class BankCardService {
 
     public void addCard(BankCard card) {
         card.setCvc(bCryptPasswordEncoder.encode(card.getCvc()));
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userService.findUserByEmail(name);
+        User user = userService.getCurrentUser();
         card.setUser(user);
         bankCardRepository.save(card);
     }

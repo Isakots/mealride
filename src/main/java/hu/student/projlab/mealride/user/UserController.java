@@ -3,6 +3,7 @@ package hu.student.projlab.mealride.user;
 
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
+import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,10 +58,7 @@ class UserController {
     // We will know which user is logged in, then we can autocomplete the form
     @GetMapping("/personaldata")
     public String getUserData(Model model) {
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userService.findUserByEmail(name);
+        User user = userService.getCurrentUser();
         model.addAttribute("user", user);
         return "personaldata";
     }
@@ -72,6 +70,27 @@ class UserController {
 
         // redirecting to index.html to view it again..
         return "redirect:/personaldata";
+    }
+
+    @GetMapping("/password")
+    public String changePasswordForm(Model model) {
+        model.addAttribute("changer", new PasswordChanger());
+        return "password";
+    }
+
+    @PostMapping("/password")
+    public ModelAndView changePassword(ModelAndView modelAndView, @ModelAttribute(value="changer") PasswordChanger changer ) {
+
+        try {
+            userService.changePassword(changer);
+            modelAndView.addObject("onPasswordChangeSuccess","Password is changed!");
+        }
+        catch(PasswordNotMatchingException e) {
+            modelAndView.addObject("onPasswordChangeFailure",e.getMessage());
+        }
+
+        modelAndView.setViewName("password");
+        return modelAndView;
     }
 
 

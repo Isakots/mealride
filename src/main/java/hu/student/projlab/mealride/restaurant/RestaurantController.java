@@ -15,8 +15,6 @@ class RestaurantController {
 
     @Autowired
     private RestaurantService restaurantService;
-    @Autowired
-    private UserService userService;
 
 
     @GetMapping("/restaurants")

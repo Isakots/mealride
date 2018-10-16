@@ -12,7 +12,7 @@
         <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" href="/personaldata">Personal Data</a>
         <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/addresses' ? 'active' : ''}" href="/addresses">Addresses</a>
         <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/cards' ? 'active' : ''}" href="/cards">Credit Cards</a>
-        <a class="nav-link" href="#">Change Password</a>
+        <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/password' ? 'active' : ''}" href="/password">Change Password</a>
         <a class="nav-link" href="#">Previous Orders</a>
         <form  th:action="@{/logout}" method="post">
            <button type="submit" class="btn btn-link btn-logout">Logout</button>

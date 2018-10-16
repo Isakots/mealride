@@ -52,7 +52,8 @@
                             <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" href="/personaldata">Personal Data</a>
                             <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/addresses' ? 'active' : ''}" href="/addresses">Addresses</a>
                             <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/cards' ? 'active' : ''}" href="/cards">Credit Cards</a>
-                            <a class="dropdown-item" href="#">New Address</a>
+                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/address-modification' ? 'active' : ''}" href="/address-modification">New Address</a>
+                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/password' ? 'active' : ''}" href="/password">Change Password</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Previous Orders</a>
                             <div class="dropdown-divider"></div>
