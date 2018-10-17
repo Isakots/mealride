@@ -8,12 +8,6 @@ public class PasswordChanger {
     public PasswordChanger() {
     }
 
-    public PasswordChanger(String currentPassword, String newPassword1, String newPassword2) {
-        this.currentPassword = currentPassword;
-        this.newPassword1 = newPassword1;
-        this.newPassword2 = newPassword2;
-    }
-
     public String getCurrentPassword() {
         return currentPassword;
     }

@@ -5,8 +5,6 @@ import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,7 +63,7 @@ class UserController {
 
     // We will know which user is logged in so we can call an updateUser method based on UserId
     @PostMapping("/personaldata")
-    public String editUser(@ModelAttribute(value="user") User user) {
+    public String editUserData(@ModelAttribute(value="user") User user) {
         userService.editUser(user);
 
         // redirecting to index.html to view it again..
