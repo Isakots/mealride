@@ -24,6 +24,14 @@ class BankCardController {
         return cards;
     }
 
+    @GetMapping("/cards")
+    public String getCard(Model model) {
+        BankCard card = new BankCard();
+        model.addAttribute("card", card);
+
+        return "cards";
+    }
+
     @PostMapping("/cards")
     public ModelAndView addCard(ModelAndView modelAndView, @ModelAttribute(value="card")BankCard card, BindingResult results) {
 
@@ -35,25 +43,13 @@ class BankCardController {
         if(card.getNumber() == null) {
             modelAndView.addObject("numberMustNotBeEmpty", "The card number must not be empty!");
             modelAndView.setViewName("/cards");
-            System.out.println("Card number is empty!");
             results.reject("number");
             return modelAndView;
         }
-
 
         bankCardService.addCard(card);
         modelAndView.setViewName("/cards");
         return modelAndView;
     }
-
-    @GetMapping("/cards")
-    public String getCard(Model model) {
-        BankCard card = new BankCard();
-        model.addAttribute("card", card);
-
-        return "cards";
-    }
-
-
 
 }

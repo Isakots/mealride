@@ -11,3 +11,9 @@ Thymeleaf is based on creating view templates, we can structure our code into fr
 In Thymeleaf for HTML5 compatibility we can use "data-th-" prefixes instead of "th:". This only works in HTML documents.
 For more complex applications, we can handle the rendering and responses on our own by writing our own WebContext, TemplateEngine and TemplateResolver
 Spring security: https://www.javacodegeeks.com/2013/11/spring-security-behind-the-scenes.html
+
+I will need a frontend (Angular) application to make Controllers communicate with JSON objects (because now I send back a view with the requested data
+and thymeleaf renders it, it's not really economical). I will also need that application for the shopping cart, because I think it's not the best practice
+to store the temporary content of the cart in the backend.
+
+Anyway this project is about learning Spring framework, I will learn Angular later.

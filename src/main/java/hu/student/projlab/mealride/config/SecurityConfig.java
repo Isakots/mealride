@@ -40,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())
                 .and()
                 .jdbcAuthentication()
-                .usersByUsernameQuery("select email,password from Person where email=?")
-                //.authoritiesByUsernameQuery()
+                .usersByUsernameQuery("select email,password from user where email=?")
+                .authoritiesByUsernameQuery("select u.email, r.role_name from user u inner join user_roles ur on(u.user_id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.email=?")
                 .dataSource(dataSource);
     }
 
@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/restaurants","/registration","/fragments").permitAll()
+                .antMatchers("/administration/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

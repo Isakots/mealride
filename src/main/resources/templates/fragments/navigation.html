@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/">
+<html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
 </head>
@@ -30,10 +30,23 @@
                         <a class="nav-link" th:classappend="${#request.getRequestURI() == '/restaurants' ? 'active' : ''}" href="/restaurants">Restaurants</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Trófea Grill Étterem
+                        <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Administration
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <a class="dropdown-item" href="/">Restaurants</a>
+                            <a class="dropdown-item" href="#">Application Logs</a>
+                            <div class="dropdown-divider"></div>
+                            <form  th:action="@{/logout}" method="post">
+                                <button type="submit" class="dropdown-item btn">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a sec:authorize="isAuthenticated()" class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            *Logged-in Restaurant*
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <a class="dropdown-item" href="/">Incoming Orders</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Menu</a>
@@ -41,12 +54,16 @@
                             <a class="dropdown-item" href="#">Restaurant Logs</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Previous Orders</a>
+                            <div class="dropdown-divider"></div>
+                            <form  th:action="@{/logout}" method="post">
+                                <button type="submit" class="dropdown-item btn">Logout</button>
+                            </form>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a th:text="${username}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a sec:authorize="isAuthenticated()" th:text="${username}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                             <a class="dropdown-item" href="/">Home Page</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" href="/personaldata">Personal Data</a>

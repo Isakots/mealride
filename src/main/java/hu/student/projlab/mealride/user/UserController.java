@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.user;
 
 
+import hu.student.projlab.mealride.cart.ShoppingCart;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
@@ -21,6 +22,8 @@ class UserController {
     @Autowired
     private DeliveryAddressService deliveryAddressService;
 
+    private ShoppingCart shoppingCart = new ShoppingCart();
+
     @GetMapping("/users")
     public String listUsers(Model model) {
         model.addAttribute("users", userService.getUsers());
@@ -38,12 +41,19 @@ class UserController {
             return modelAndView;
         }
 
+        if(user.getEmail() == null) {
+            modelAndView.addObject("alreadyRegisteredMessage", "You must provide an email address!");
+            modelAndView.setViewName("registration");
+            return modelAndView;
+        }
+
         User userExists = userService.findUserByEmail(user.getEmail());
 
         if(userExists != null) {
             modelAndView.addObject("alreadyRegisteredMessage", "Oops!  There is already a user registered with the email provided.");
                         bindingResult.reject("email");
         } else {
+
             userService.addUser(user);
             deliveryAddressService.addAddress(address,user);
             modelAndView.addObject("successMessage", "You are registered successfully!");
