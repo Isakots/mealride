@@ -2,17 +2,14 @@ package hu.student.projlab.mealride.user;
 
 import hu.student.projlab.mealride.config.Role;
 import hu.student.projlab.mealride.config.RoleRepository;
-import hu.student.projlab.mealride.config.SecurityConfig;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -34,7 +31,7 @@ public class UserService {
 
     public void addUser(User user) {
         Role role = roleRepository.findByRole("USER");
-        user.getRoles().add(role);
+        user.getRoles().add(role);;
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
@@ -80,11 +77,6 @@ public class UserService {
 
     public User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //
-        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        System.out.println(authorities);
-        //auth.getAuthorities();
-        //
         String name = auth.getName();
         return findUserByEmail(name);
     }

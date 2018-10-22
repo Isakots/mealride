@@ -1,20 +1,14 @@
 package hu.student.projlab.mealride.config;
 
 import hu.student.projlab.mealride.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 
 public class CustomUserDetails implements UserDetails {
 
     private User user;
-
-    @Autowired
-    private RoleRepository roleRepository;
 
     public CustomUserDetails(User user) {
         this.user = user;  }
@@ -29,17 +23,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        Collection<GrantedAuthority> authorities = new HashSet<>();
-        //System.out.println(this.user.getRoles());
-       // authorities.addAll(this.user.getRoles());
-         authorities.add(new GrantedAuthority() {
-             @Override
-             public String getAuthority() {
-                 return "ROLE_ADMIN";
-             }
-         });
-        //return authorities;
+        Collection<GrantedAuthority> authorities = (Collection)user.getRoles();
         return authorities;
     }
 

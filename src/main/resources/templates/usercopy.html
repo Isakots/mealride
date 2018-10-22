@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- Header with Background Image -->
+<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-12">
+
+            <!-- Title -->
+            <h3 class="mt-4">Listing all users</h3>
+
+           <hr>
+
+            <div class="container ">
+                <div class="starter-template" style="overflow-x:auto;">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Phone</th>
+                        </tr>
+                        <tbody>
+                            <tr th:each="user: ${users}" >
+                                <td th:text="${user.id}"> </td>
+                                <td th:text="${user.firstname}"> </td>
+                                <td th:text="${user.lastname}"> </td>
+                                <td th:text="${user.email}"> </td>
+                                <td th:text="${user.password}"> </td>
+                                <td th:text="${user.phone}"> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <hr>
+
+        </div>
+
+        <!--div th:replace="fragments/sidebar :: sidebar"></div-->
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>

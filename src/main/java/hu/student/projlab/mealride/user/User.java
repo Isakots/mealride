@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.config.Role;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,7 +29,7 @@ public class User {
     private String phone;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name="USER_ROLES", joinColumns = { @JoinColumn(name="USER_ID")},
                 inverseJoinColumns = { @JoinColumn(name="ROLE_ID")})
     private Set<Role> roles = new HashSet<>();
@@ -94,11 +93,22 @@ public class User {
         this.phone = phone;
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String rolesToString() {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Role role: roles) {
+            stringBuilder.append("Role: ");
+            stringBuilder.append(role.getRole()+"\n");
+        }
+        return stringBuilder.toString();
     }
 }

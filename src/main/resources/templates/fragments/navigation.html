@@ -43,18 +43,18 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a sec:authorize="isAuthenticated()" class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a sec:authorize="hasRole('ROLE_RESTWORKER')" class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             *Logged-in Restaurant*
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <a class="dropdown-item" href="/">Incoming Orders</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Menu</a>
-                            <a class="dropdown-item" href="#">Manage Workers</a>
-                            <a class="dropdown-item" href="#">Restaurant Logs</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Previous Orders</a>
-                            <div class="dropdown-divider"></div>
+                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item" href="#">Menu</a>
+                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item" href="#">Manage Workers</a>
+                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item" href="#">Restaurant Logs</a>
+                            <div sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-divider"></div>
+                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item" href="#">Previous Orders</a>
+                            <div sec:authorize="hasRole('ROLE_RESTADMIN')"class="dropdown-divider"></div>
                             <form  th:action="@{/logout}" method="post">
                                 <button type="submit" class="dropdown-item btn">Logout</button>
                             </form>

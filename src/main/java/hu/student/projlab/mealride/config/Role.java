@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Role{
+public class Role implements GrantedAuthority{
 
     @Id
     @GeneratedValue
@@ -40,4 +40,8 @@ public class Role{
         this.role = role;
     }
 
+    @Override
+    public String getAuthority() {
+        return role;
+    }
 }
