@@ -16,10 +16,11 @@ public class RestaurantService {
         restaurantRepository.save(rest);
     }
 
-    public List<Restaurant> getRests() {
+    public List<Restaurant> findAll() {
         List<Restaurant> rests = new ArrayList<>();
         restaurantRepository.findAll().forEach(rests::add);
         return rests;
     }
+
 
 }

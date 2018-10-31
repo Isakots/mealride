@@ -39,21 +39,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="rest: ${rests}">
-                            <td th:text="${rest.name}" />
+                        <tr th:each="rest: ${restaurants}">
+                            <td th:text="${rest.name}"/>
+                            <td th:text="${rest.avgdeliverytime}"/>
+                            <td th:text="${rest.deliveryprice}"/>
+                            <td th:text="${rest.minorderprice}"/>
+                            <td th:text="${rest.hours.open} + ' - '+ ${rest.hours.close}"/>
                         </tr>
-                        <tr th:each="rest: ${rests}">
-                            <td th:text="${rest.avgdeliverytime}" />
-                        </tr>
-                        <tr th:each="rest: ${rests}">
-                            <td th:text="${rest.deliveryprice}" />
-                        </tr>
-                        <tr th:each="rest: ${rests}">
-                            <td th:text="${rest.minorderprice}" />
-                        </tr>
-                        <tr th:each="rest: ${rests}">
-                            <td th:text="${rest.hours.open}"/>
-                        </tr>
+
                         </tbody>
                     </table>
 
@@ -71,7 +64,6 @@
 
 </div>
 <!-- /.container -->
-
 
 
 <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->

@@ -50,17 +50,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/restaurants","/registration","/fragments").permitAll()
-                .antMatchers("/administration/**").hasAuthority("ROLE_ADMIN")
+                // Guest access configuration
+                .antMatchers("/", "/restaurants","/registration","/fragments/**")
+                .permitAll()
+
+                // Access of admin pages configuration
+                .antMatchers("/administration/**")
+                .access("hasRole('ADMIN')")
+
+                // Only authenticated users can see other pages
                 .anyRequest().authenticated()
+
+                // Login configuration
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .usernameParameter("email")
                 .passwordParameter("password")
+
+                // Logout configuration
                 .and()
                 .logout().permitAll()
-                .logoutUrl("/logout").logoutSuccessUrl("/")
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
+
+                //
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
     }
@@ -69,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**","/assets/**","/css/**","/icons/**","/pics/**","/vendor/**");
+                .antMatchers("/resources/**","/static/**","/assets/**","/css/**","/icons/**","/pics/**","/vendor/**");
     }
 
 }

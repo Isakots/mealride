@@ -34,6 +34,10 @@ public class DeliveryAddressService {
         return deliveryAddressRepository.findAllByUserId(user.getId());
     }
 
+    public DeliveryAddress getAddresByStreet(String street) {
+        return deliveryAddressRepository.findByStreet(street);
+    }
+
     public void updateAddress(DeliveryAddress address) {
         deliveryAddressRepository.save(address);
     }

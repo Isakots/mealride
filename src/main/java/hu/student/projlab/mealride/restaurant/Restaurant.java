@@ -15,7 +15,7 @@ public class Restaurant {
     @Column(name="RESTAURANT_NAME")
     private String name;
     @Column(name="AVERAGE_DELIVERY_TIME")
-    private Time avgdeliverytime;
+    private String avgdeliverytime;
     @Column(name="MINIMUM_ORDER_PRICE")
     private Short minorderprice;
     @Column(name="DELIVERY_PRICE")
@@ -31,14 +31,13 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(String name, Time avgdeliverytime, Short minorderprice, Short deliveryprice,
-                      ShoppingHours hours, List<Meal> menu) {
+    public Restaurant(String name, String avgdeliverytime, Short minorderprice, Short deliveryprice,
+                      ShoppingHours hours) {
         this.name = name;
         this.avgdeliverytime = avgdeliverytime;
         this.minorderprice = minorderprice;
         this.deliveryprice = deliveryprice;
         this.hours = hours;
-        this.menu = menu;
     }
 
     public Long getId() {
@@ -57,11 +56,11 @@ public class Restaurant {
         this.name = name;
     }
 
-    public Time getAvgdeliverytime() {
+    public String getAvgdeliverytime() {
         return avgdeliverytime;
     }
 
-    public void setAvgdeliverytime(Time avgdeliverytime) {
+    public void setAvgdeliverytime(String avgdeliverytime) {
         this.avgdeliverytime = avgdeliverytime;
     }
 

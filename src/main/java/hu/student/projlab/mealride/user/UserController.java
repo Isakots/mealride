@@ -6,6 +6,7 @@ import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,10 +37,10 @@ class UserController {
     public ModelAndView processRegistrationForm(ModelAndView modelAndView, @ModelAttribute(value="user") User user,
                                    @ModelAttribute(value="address")DeliveryAddress address, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
+        /*if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
             return modelAndView;
-        }
+        }*/
 
         if(user.getEmail() == null) {
             modelAndView.addObject("alreadyRegisteredMessage", "You must provide an email address!");

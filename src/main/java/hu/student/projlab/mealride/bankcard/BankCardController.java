@@ -1,5 +1,6 @@
 package hu.student.projlab.mealride.bankcard;
 
+import hu.student.projlab.mealride.exception.BankCardException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,29 +27,38 @@ class BankCardController {
 
     @GetMapping("/cards")
     public String getCard(Model model) {
-        BankCard card = new BankCard();
-        model.addAttribute("card", card);
-
+        model.addAttribute("cards", bankCardService.getBankcards());
         return "cards";
     }
 
-    @PostMapping("/cards")
+    @GetMapping("/newcard")
+    public String getNewCardForm(Model model) {
+        model.addAttribute("card", new BankCard());
+        return "newcard";
+    }
+
+    @PostMapping("/newcard")
     public ModelAndView addCard(ModelAndView modelAndView, @ModelAttribute(value="card")BankCard card, BindingResult results) {
 
         if(results.hasErrors()) {
-            modelAndView.setViewName("/cards");
+            modelAndView.setViewName("newcard");
+            modelAndView.addObject("errorOccured", "Some errors occured. Please try again!");
             return modelAndView;
         }
 
-        if(card.getNumber() == null) {
-            modelAndView.addObject("numberMustNotBeEmpty", "The card number must not be empty!");
-            modelAndView.setViewName("/cards");
-            results.reject("number");
-            return modelAndView;
-        }
+       try {
+
+           bankCardService.cardValidation(card);
+
+       }catch(BankCardException exception) {
+           modelAndView.addObject("errorOccured", exception.getMessage());
+           modelAndView.setViewName("newcard");
+           return modelAndView;
+       }
+
 
         bankCardService.addCard(card);
-        modelAndView.setViewName("/cards");
+        modelAndView.setViewName("redirect:/cards");
         return modelAndView;
     }
 
