@@ -26,9 +26,9 @@ class RestaurantController {
     }
 
     @GetMapping("/administration/restaurants")
-    public String getAllRestaurants() {
-
-        return "restaurants";
+    public String getAllRestaurants(Model model) {
+        model.addAttribute("restaurants", restaurantService.findAll());
+        return "administration/restaurants";
     }
 
     @GetMapping("/administration/add-restaurant")
@@ -64,7 +64,7 @@ class RestaurantController {
         }
 
         modelandView.addObject("restaurants", restaurantService.findAll());
-        modelandView.setViewName("restaurants");
+        modelandView.setViewName("/administration/restaurants");
         return modelandView;
     }
 

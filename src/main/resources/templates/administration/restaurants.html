@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+            <h3 class="mt-4">Administration</h3>
+
+            <hr>
+            <!-- Title -->
+            <h3 class="mt-4">Restaurants</h3>
+
+            <hr>
+
+            <!-- Date/Time -->
+
+            <div class="container">
+                <div class="starter-template">
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Étterem</th>
+                            <th scope="col">Szállítási idő</th>
+                            <th scope="col">Szállítási költség</th>
+                            <th scope="col">Minimum rendelés</th>
+                            <th scope="col">Nyitvatartás</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="rest: ${restaurants}">
+                            <td th:text="${rest.name}"/>
+                            <td th:text="${rest.avgdeliverytime}"/>
+                            <td th:text="${rest.deliveryprice}"/>
+                            <td th:text="${rest.minorderprice}"/>
+                            <td th:text="${rest.hours.open} + ' - '+ ${rest.hours.close}"/>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <hr>
+
+        </div>
+
+        <div th:replace="fragments/sidebar :: search"></div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>

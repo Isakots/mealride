@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -19,34 +21,31 @@ class DeliveryAddressController {
     public String getAddresses(Model model) {
         List<DeliveryAddress> addresses = deliveryAddressService.getUserAddresses();
         model.addAttribute("addresses", addresses);
-        return "addresses";
+        return "user/addresses";
     }
 
     @GetMapping("/address-modification")
     public String modifyAddress(Model model) {
         DeliveryAddress address = new DeliveryAddress();
         model.addAttribute("address", address);
-        return "address-modification";
+        return "user/address-modification";
     }
 
-    @GetMapping("/addresses/{AddressId}")
-    public String getAddress(Model model, @PathVariable Long AddressId) {
-        return "address-modification";
+    @PostMapping("/addresses/{addressId}")
+    public ModelAndView preFillModifyAddressForm(@PathVariable Long addressId) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("address",deliveryAddressService.findById(addressId));
+        modelAndView.setViewName("user/address-modification");
+        return modelAndView;
     }
 
-    @PostMapping("/addresses/{AddressId}")
-    public String newAddress(Model model, @PathVariable Long AddressId) {
-        return "address-modification";
+    // Here we have to handle modify and new address as well
+    @PostMapping("/address-modification")
+    public ModelAndView processAddressForm(@ModelAttribute DeliveryAddress address) {
+        ModelAndView modelAndView = new ModelAndView(new RedirectView("addresses"));
+        deliveryAddressService.addAddress(address);
+        modelAndView.addObject("address",deliveryAddressService.getAddresses());
+        return modelAndView;
     }
 
-    @PutMapping("/addresses/{AddressId}")
-    public String updateAddress(Model model, @PathVariable Long AddressId) {
-        return "address-modification";
-    }
-
-    @DeleteMapping("/addresses/{AddressId}")
-    public String deleteAddress(Model model, @PathVariable Long AddressId) {
-        return "address-modification";
-    }
-
-}
+ }

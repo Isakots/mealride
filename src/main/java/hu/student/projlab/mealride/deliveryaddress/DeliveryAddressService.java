@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DeliveryAddressService {
@@ -18,8 +19,13 @@ public class DeliveryAddressService {
     @Autowired
     private UserService userService;
 
-    public void addAddress(DeliveryAddress address, User user) {
+    public void registerUserWithAddress(DeliveryAddress address, User user) {
         address.setUser(user);
+        deliveryAddressRepository.save(address);
+    }
+
+    public void addAddress(DeliveryAddress address) {
+        address.setUser(userService.getCurrentUser());
         deliveryAddressRepository.save(address);
     }
 
@@ -36,6 +42,10 @@ public class DeliveryAddressService {
 
     public DeliveryAddress getAddresByStreet(String street) {
         return deliveryAddressRepository.findByStreet(street);
+    }
+
+    public Optional<DeliveryAddress> findById(Long id) {
+       return deliveryAddressRepository.findById(id);
     }
 
     public void updateAddress(DeliveryAddress address) {

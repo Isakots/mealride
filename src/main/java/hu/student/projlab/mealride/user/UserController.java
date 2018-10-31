@@ -6,7 +6,6 @@ import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,10 +36,11 @@ class UserController {
     public ModelAndView processRegistrationForm(ModelAndView modelAndView, @ModelAttribute(value="user") User user,
                                    @ModelAttribute(value="address")DeliveryAddress address, BindingResult bindingResult) {
 
-        /*if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
+            modelAndView.addObject("alreadyRegisteredMessage", "Some error occured during registration prcoess!");
             modelAndView.setViewName("registration");
             return modelAndView;
-        }*/
+        }
 
         if(user.getEmail() == null) {
             modelAndView.addObject("alreadyRegisteredMessage", "You must provide an email address!");
@@ -56,7 +56,7 @@ class UserController {
         } else {
 
             userService.addUser(user);
-            deliveryAddressService.addAddress(address,user);
+            deliveryAddressService.registerUserWithAddress(address,user);
             modelAndView.addObject("successMessage", "You are registered successfully!");
         }
 
@@ -69,22 +69,21 @@ class UserController {
     public String getUserData(Model model) {
         User user = userService.getCurrentUser();
         model.addAttribute("user", user);
-        return "personaldata";
+        return "user/personaldata";
     }
 
     // We will know which user is logged in so we can call an updateUser method based on UserId
     @PostMapping("/personaldata")
-    public String editUserData(@ModelAttribute(value="user") User user) {
+    public ModelAndView editUserData(@ModelAttribute(value="user") User user,ModelAndView modelAndView) {
         userService.editUser(user);
-
-        // redirecting to index.html to view it again..
-        return "redirect:/personaldata";
+        modelAndView.setViewName("/user/personaldata");
+        return modelAndView;
     }
 
     @GetMapping("/password")
     public String changePasswordForm(Model model) {
         model.addAttribute("changer", new PasswordChanger());
-        return "password";
+        return "user/password";
     }
 
     @PostMapping("/password")
@@ -98,7 +97,7 @@ class UserController {
             modelAndView.addObject("onPasswordChangeFailure",e.getMessage());
         }
 
-        modelAndView.setViewName("password");
+        modelAndView.setViewName("user/password");
         return modelAndView;
     }
 

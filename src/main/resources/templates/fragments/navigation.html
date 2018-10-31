@@ -39,7 +39,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                             <a class="dropdown-item" th:href="@{/administration/restaurants}">Restaurants</a>
                             <a class="dropdown-item" th:href="@{/administration/add-restaurant}">New Restaurant</a>
-                            <a class="dropdown-item" href="#">Application Logs</a>
+                            <a class="dropdown-item" th:href="@{/administration/logs}">Application Logs</a>
                             <div class="dropdown-divider"></div>
                             <form  th:action="@{/logout}" method="post">
                                 <button type="submit" class="dropdown-item btn">Logout</button>
@@ -70,7 +70,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                             <a class="dropdown-item" href="/">Home Page</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" href="/personaldata">Personal Data</a>
+                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" th:href="@{/personaldata}">Personal Data</a>
                             <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/addresses' ? 'active' : ''}" href="/addresses">Addresses</a>
                             <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/cards' ? 'active' : ''}" href="/cards">Credit Cards</a>
                             <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/address-modification' ? 'active' : ''}" href="/address-modification">New Address</a>

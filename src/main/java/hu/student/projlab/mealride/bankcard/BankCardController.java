@@ -28,37 +28,45 @@ class BankCardController {
     @GetMapping("/cards")
     public String getCard(Model model) {
         model.addAttribute("cards", bankCardService.getBankcards());
-        return "cards";
+        return "user/cards";
     }
 
     @GetMapping("/newcard")
     public String getNewCardForm(Model model) {
         model.addAttribute("card", new BankCard());
-        return "newcard";
+        return "user/newcard";
     }
 
     @PostMapping("/newcard")
-    public ModelAndView addCard(ModelAndView modelAndView, @ModelAttribute(value="card")BankCard card, BindingResult results) {
+    public ModelAndView addCard(ModelAndView modelAndView, @ModelAttribute(value = "card") BankCard card, BindingResult results) {
 
-        if(results.hasErrors()) {
-            modelAndView.setViewName("newcard");
+        if (results.hasErrors()) {
+            modelAndView.setViewName("user/newcard");
             modelAndView.addObject("errorOccured", "Some errors occured. Please try again!");
             return modelAndView;
         }
 
-       try {
+        try {
 
-           bankCardService.cardValidation(card);
+            bankCardService.cardValidation(card);
 
-       }catch(BankCardException exception) {
-           modelAndView.addObject("errorOccured", exception.getMessage());
-           modelAndView.setViewName("newcard");
-           return modelAndView;
-       }
-
+        } catch (BankCardException exception) {
+            modelAndView.addObject("errorOccured", exception.getMessage());
+            modelAndView.setViewName("user/newcard");
+            return modelAndView;
+        }
 
         bankCardService.addCard(card);
-        modelAndView.setViewName("redirect:/cards");
+        modelAndView.addObject("cards", bankCardService.getBankcards());
+        modelAndView.setViewName("user/cards");
+        return modelAndView;
+    }
+
+    @PostMapping("/cards/{id}")
+    public ModelAndView deleteBankCard(@PathVariable Long id, ModelAndView modelAndView) {
+        bankCardService.deleteCard(id);
+        modelAndView.addObject("cards", bankCardService.getBankcards());
+        modelAndView.setViewName("user/cards");
         return modelAndView;
     }
 

@@ -51,8 +51,8 @@ public class BankCardService {
     }
 
 
-    public void deleteCard(BankCard card) {
-        bankCardRepository.delete(card);
+    public void deleteCard(Long id) {
+        bankCardRepository.deleteById(id);
     }
 
 

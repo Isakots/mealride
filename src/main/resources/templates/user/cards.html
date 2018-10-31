@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- TO DO
+    Write a Thymeleaf script which includes fragments of the page body based on the active tab/page (like navbar)
+    to reduce data usage
+ -->
+
+<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!--/*/ <th:block th:include="fragments/side_navbar :: side_navbar"></th:block> /*/-->
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+            <h3 class="mt-4">Registered Credit cards</h3>
+
+            <hr>
+
+            <div class="container ">
+                <div class="starter-template" style="overflow-x:auto;">
+                    <table class="table">
+                        <tr>
+                            <th>Card Number</th>
+                            <th>Expiration Date</th>
+                        </tr>
+                        <tbody>
+                        <tr th:each="card: ${cards}">
+                            <td th:text="${card.number}"></td>
+                            <td th:text="${card.expriationdate}"></td>
+                            <td>
+                                <form th:action="@{'cards/' + ${card.number}}" method="post">
+                                    <button type="submit" class="btn btn-secondary"/>
+                                    Delete Card  </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a class="btn btn-secondary" th:href="@{/newcard}">
+                        Add new Credit Card
+                    </a>
+                </div>
+            </div>
+
+            <hr>
+
+        </div>
+
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>
+
+
+

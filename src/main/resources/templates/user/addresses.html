@@ -46,9 +46,10 @@
                                 <td th:text="${address.floor}"> </td>
                                 <td th:text="${address.door}"> </td>
                                 <td>
-                                     <a class="btn btn-secondary btn-block" href="/address-modification">
-                                         Modify Address
-                                     </a>
+                                    <form th:action="@{'addresses/' + ${address.id}}" method="post">
+                                        <button type="submit" class="btn btn-secondary btn-block">
+                                        Modify Address  </button>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
