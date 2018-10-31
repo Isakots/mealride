@@ -101,11 +101,4 @@ class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/administration/usercopy")
-    public String getAdminUsers(Model model){
-        model.addAttribute("users", userService.getUsers());
-        return "usercopy";
-    }
-
-
 }

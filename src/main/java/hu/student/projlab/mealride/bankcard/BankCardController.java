@@ -62,6 +62,7 @@ class BankCardController {
         return modelAndView;
     }
 
+    //ID IS POSTED IN URL...IT MUST BE CHANGED
     @PostMapping("/cards/{id}")
     public ModelAndView deleteBankCard(@PathVariable Long id, ModelAndView modelAndView) {
         bankCardService.deleteCard(id);
