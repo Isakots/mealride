@@ -35,4 +35,11 @@ public class HomeController {
         return "registration";
     }
 
+
+    @GetMapping("administration/logs")
+    public String getApplicationLogs() {
+
+        return "administration/logs";
+    }
+
 }

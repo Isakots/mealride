@@ -42,9 +42,9 @@
                         <tbody>
                         <tr th:each="rest: ${restaurants}">
                             <td th:text="${rest.name}"/>
-                            <td th:text="${rest.avgdeliverytime}"/>
-                            <td th:text="${rest.deliveryprice}"/>
-                            <td th:text="${rest.minorderprice}"/>
+                            <td th:text="${rest.avgdeliverytime}+' min'"/>
+                            <td th:text="${rest.deliveryprice}+' Ft'"/>
+                            <td th:text="${rest.minorderprice}+' Ft'"/>
                             <td th:text="${rest.hours.open} + ' - '+ ${rest.hours.close}"/>
                         </tr>
 

@@ -13,11 +13,15 @@ import java.util.Optional;
 @Service
 public class DeliveryAddressService {
 
-    @Autowired
     private DeliveryAddressRepository deliveryAddressRepository;
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public DeliveryAddressService(DeliveryAddressRepository deliveryAddressRepository, UserService userService) {
+        this.deliveryAddressRepository = deliveryAddressRepository;
+        this.userService = userService;
+    }
 
     public void registerUserWithAddress(DeliveryAddress address, User user) {
         address.setUser(user);

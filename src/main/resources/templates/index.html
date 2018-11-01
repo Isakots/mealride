@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org/">
+      xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
 </head>
@@ -27,6 +28,12 @@
 
             <hr>
 
+            <div sec:authorize="hasAuthority('ROLE_ANONYMOUS')" > Has Authority GUEST </div>
+            <div sec:authorize="hasAuthority('ROLE_USER')" > Has Authority USER </div>
+            <div sec:authorize="hasAuthority('ROLE_ADMIN')" > Has Authority ADMIN</div>
+            <div sec:authorize="hasAuthority('ROLE_RESTWORKER')" > Has Authority RESTWORKER </div>
+            <div sec:authorize="hasAuthority('ROLE_RESTADMIN')" > Has Authority RESTADMIN </div>
+
             <p>Házhozszállítás, ételrendelés</p>
             <p>   Szeretnél egy gyors ebédet vagy egy vacsorát házhoz rendelni? Válaszd a pizzarendelést.</p>
 
@@ -37,7 +44,7 @@
             </p>
             <p>   A MealRide-dal nem csak otthonodba, de munkahelyedre, a kampuszodba vagy kollégiumodba is rendelhetsz ételt! Sushi a barátokkal? Pizza a laktótársakkal? Burrito a kollégákkal? Esetleg vegetáriánus vagy? Nálunk mindenki megtalálja a számítását, méghozzá gyorsan! Megéheztél úton hazafelé? Rendelj még útközben a mobilodon, hogy hazatérted előtt már készüljön a vacsorád!
             </p> <hr>
-            <p>Copied from <a href="http://www.netpincer.hu">NetPincér</a>
+            <p>Copied from <a th:href="@{http://www.netpincer.hu}">NetPincér</a>
             </p>
 
             <hr>

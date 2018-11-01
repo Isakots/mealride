@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.restaurant;
 
 
+import hu.student.projlab.mealride.meal.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +11,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.Time;
-
 @Controller
 class RestaurantController {
 
-    @Autowired
     private RestaurantService restaurantService;
+
+    @Autowired
+    public RestaurantController(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
+    }
 
     @GetMapping("/restaurants")
     public String listRestaurants(Model model) {
@@ -48,12 +51,8 @@ class RestaurantController {
             return modelandView;
         }
         try {
-            Time open = formatStringToTime(restaurantform.getOpeningtime());
-            Time close = formatStringToTime(restaurantform.getClosingtime());
 
-            Restaurant restaurant= new Restaurant(restaurantform.getName(),restaurantform.getAvgdeliverytime(),
-                    restaurantform.getMinorderprice(), restaurantform.getDeliveryprice(),new ShoppingHours(open,close));
-            restaurantService.addRestaurant(restaurant);
+            restaurantService.addRestaurant(restaurantform);
 
         }catch(Exception exception) {
             modelandView.addObject("error", "Time formats are wrong! " +
@@ -68,19 +67,53 @@ class RestaurantController {
         return modelandView;
     }
 
-    @GetMapping("administration/logs")
-    public String getApplicationLogs() {
 
-        return "administration/logs";
+    @GetMapping("restaurant/logs")
+    public String getRestaurantLogs() {
+
+        return "restaurant/logs";
     }
 
-    private Time formatStringToTime(String mypattern) {
-        String[] split = mypattern.split(":");
-        int[] formatted = new int[2];
-        formatted[0] = Integer.parseInt(split[0]);
-        formatted[1] = Integer.parseInt(split[1]);
+    @GetMapping("restaurant/menu")
+    public String getRestaurantMenu(Model model) {
+        model.addAttribute("menu", restaurantService.getMeals());
+        return "restaurant/menu";
+    }
 
-        return new Time(formatted[0],formatted[1],0);
+    @PostMapping("restaurant/menu/delete")
+    public ModelAndView deleteMealFromMenu(@ModelAttribute(value="meal") Meal meal, final BindingResult results,
+                                             ModelAndView modelAndView) {
+
+        if(results.hasErrors()) {
+            modelAndView.addObject("errormessage", "There are some error!");
+            modelAndView.addObject("menu", restaurantService.getMeals());
+            modelAndView.setViewName("restaurant/menu");
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("restaurant/menu");
+        return modelAndView;
+    }
+
+    @PostMapping("restaurant/menu/modify")
+    public ModelAndView modifyMealFromMenu(@ModelAttribute(value="meal") Meal meal, final BindingResult results,
+                                             ModelAndView modelAndView) {
+
+        if(results.hasErrors()) {
+            modelAndView.addObject("error", "There are some error!");
+            modelAndView.addObject("menu", restaurantService.getMeals());
+            modelAndView.setViewName("restaurant/menu");
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("restaurant/menu");
+        return modelAndView;
+    }
+
+    @GetMapping("restaurant/newmeal")
+    public String addNewMealToMenu(@ModelAttribute(value="meal") Meal meal, Model model) {
+        model.addAttribute("meal", new Meal());
+        return "restaurant/newmeal";
     }
 
 

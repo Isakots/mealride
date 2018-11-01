@@ -16,13 +16,20 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 class UserController {
 
-    @Autowired
-     private UserService userService;
 
-    @Autowired
+    private UserService userService;
+
     private DeliveryAddressService deliveryAddressService;
 
-    private ShoppingCart shoppingCart = new ShoppingCart();
+    private ShoppingCart shoppingCart;
+
+    @Autowired
+    public UserController(UserService userService, DeliveryAddressService deliveryAddressService) {
+        this.userService = userService;
+        this.deliveryAddressService = deliveryAddressService;
+        this.shoppingCart = new ShoppingCart();
+    }
+
 
     @GetMapping("/users")
     public String listUsers(Model model) {
@@ -33,8 +40,8 @@ class UserController {
 
 
     @PostMapping("/registration")
-    public ModelAndView processRegistrationForm(ModelAndView modelAndView, @ModelAttribute(value="user") User user,
-                                   @ModelAttribute(value="address")DeliveryAddress address, BindingResult bindingResult) {
+    public ModelAndView processRegistrationForm(@ModelAttribute(value="user") User user,@ModelAttribute(value="address")DeliveryAddress address,
+                                                BindingResult bindingResult, ModelAndView modelAndView) {
 
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("alreadyRegisteredMessage", "Some error occured during registration prcoess!");
@@ -42,7 +49,7 @@ class UserController {
             return modelAndView;
         }
 
-        if(user.getEmail() == null) {
+        if(user.getEmail() == null || user.getEmail().equals("")) {
             modelAndView.addObject("alreadyRegisteredMessage", "You must provide an email address!");
             modelAndView.setViewName("registration");
             return modelAndView;

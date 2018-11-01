@@ -13,8 +13,12 @@ import java.util.List;
 @Controller
 class DeliveryAddressController {
 
-    @Autowired
     private DeliveryAddressService deliveryAddressService;
+
+    @Autowired
+    public DeliveryAddressController(DeliveryAddressService deliveryAddressService) {
+        this.deliveryAddressService = deliveryAddressService;
+    }
 
     @GetMapping("/addresses")
     //@ResponseBody

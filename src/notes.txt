@@ -17,3 +17,13 @@ and thymeleaf renders it, it's not really economical). I will also need that app
 to store the temporary content of the cart in the backend.
 
 Anyway this project is about learning Spring framework, I will learn Angular later.
+
+Constructor injection vs. Field injection vs. Setter injection and the use of @Autowired annotation:
+
+https://www.petrikainulainen.net/software-development/design/why-i-changed-my-mind-about-field-injection/
+http://blog.schauderhaft.de/2012/06/05/repeat-after-me-setter-injection-is-a-symptom-of-design-problems/
+http://blog.schauderhaft.de/2012/01/01/the-one-correct-way-to-do-dependency-injection/
+https://spring.io/blog/2007/07/11/setter-injection-versus-constructor-injection-and-the-use-of-required/
+https://stackoverflow.com/questions/19414734/understanding-spring-autowired-usage
+https://www.baeldung.com/spring-autowire
+

@@ -13,8 +13,12 @@ import java.util.List;
 @Controller
 class BankCardController {
 
-    @Autowired
     private BankCardService bankCardService;
+
+    @Autowired
+    public BankCardController(BankCardService bankCardService) {
+        this.bankCardService = bankCardService;
+    }
 
     @GetMapping("/cards/list")
     @ResponseBody

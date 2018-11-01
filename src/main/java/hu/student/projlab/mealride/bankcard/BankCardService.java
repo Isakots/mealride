@@ -13,14 +13,18 @@ import java.util.List;
 @Service
 public class BankCardService {
 
-    @Autowired
     private BankCardRepository bankCardRepository;
 
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public BankCardService(BankCardRepository bankCardRepository, BCryptPasswordEncoder bCryptPasswordEncoder, UserService userService) {
+        this.bankCardRepository = bankCardRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userService = userService;
+    }
 
     List<BankCard> getBankcards() {
         User user = userService.getCurrentUser();
