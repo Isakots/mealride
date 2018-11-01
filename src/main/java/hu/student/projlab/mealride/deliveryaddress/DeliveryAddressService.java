@@ -35,7 +35,7 @@ public class DeliveryAddressService {
         return addresses;
     }
 
-    public List<DeliveryAddress> getUserAddresses() {
+    List<DeliveryAddress> getUserAddresses() {
         User user = userService.getCurrentUser();
         return deliveryAddressRepository.findAllByUserId(user.getId());
     }

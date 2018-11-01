@@ -22,12 +22,12 @@ public class BankCardService {
     @Autowired
     private UserService userService;
 
-    public List<BankCard> getBankcards() {
+    List<BankCard> getBankcards() {
         User user = userService.getCurrentUser();
         return bankCardRepository.findAllByUserId(user.getId());
     }
 
-    public void addCard(BankCard card) {
+   void addCard(BankCard card) {
         card.setCvc(bCryptPasswordEncoder.encode(card.getCvc()));
         User user = userService.getCurrentUser();
         card.setUser(user);
@@ -51,7 +51,7 @@ public class BankCardService {
     }
 
 
-    public void deleteCard(Long id) {
+    void deleteCard(Long id) {
         bankCardRepository.deleteById(id);
     }
 

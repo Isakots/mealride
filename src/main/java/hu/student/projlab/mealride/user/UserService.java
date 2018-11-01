@@ -25,13 +25,13 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public User findUserByEmail(String email) {
+    User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public void addUser(User user) {
+    void addUser(User user) {
         Role role = roleRepository.findByRole("ROLE_USER");
-        user.getRoles().add(role);;
+        user.getRoles().add(role);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
 
 <head>
 </head>
@@ -11,29 +14,40 @@
         <div class="container">
 
             <a class="navbar-brand">
-            <img src="/icons/favicon.ico" width="30" height="30" alt="">
+                <img th:src="@{/icons/favicon.ico}" width="30" height="30" alt="">
             </a>
 
             <a class="navbar-brand" th:classappend="${#request.getRequestURI() == '/' ? 'active' : ''}" href="/">MealRide</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a sec:authorize="hasRole('ROLE_ANONYMOUS')" class="nav-link" th:classappend="${#request.getRequestURI() == '/registration' ? 'active' : ''}" href="/registration">Registration</a>
+                        <a sec:authorize="hasRole('ROLE_ANONYMOUS')" class="nav-link"
+                           th:classappend="${#request.getRequestURI() == '/registration' ? 'active' : ''}"
+                           href="/registration">Registration</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="hasRole('ROLE_USER')" class="nav-link" th:classappend="${#request.getRequestURI() == '/users' ? 'active' : ''}" href="/users">Users</a>
+                        <a sec:authorize="hasRole('ROLE_USER')" class="nav-link"
+                           th:classappend="${#request.getRequestURI() == '/users' ? 'active' : ''}"
+                           href="/users">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:classappend="${#request.getRequestURI() == '/restaurants' ? 'active' : ''}" href="/restaurants">Restaurants</a>
+                        <a class="nav-link"
+                           th:classappend="${#request.getRequestURI() == '/restaurants' ? 'active' : ''}"
+                           href="/restaurants">Restaurants</a>
                     </li>
                     <li class="nav-item">
-                        <a sec:authorize="hasRole('ROLE_ANONYMOUS')" class="nav-link" th:classappend="${#request.getRequestURI() == '/login' ? 'active' : ''}" href="/login">Sign In</a>
+                        <a sec:authorize="hasRole('ROLE_ANONYMOUS')" class="nav-link"
+                           th:classappend="${#request.getRequestURI() == '/login' ? 'active' : ''}" href="/login">Sign
+                            In</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link dropdown-toggle" href="#"
+                           id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
                             Administration
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
@@ -41,44 +55,65 @@
                             <a class="dropdown-item" th:href="@{/administration/add-restaurant}">New Restaurant</a>
                             <a class="dropdown-item" th:href="@{/administration/logs}">Application Logs</a>
                             <div class="dropdown-divider"></div>
-                            <form  th:action="@{/logout}" method="post">
+                            <form th:action="@{/logout}" method="post">
                                 <button type="submit" class="dropdown-item btn">Logout</button>
                             </form>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a sec:authorize="hasRole('ROLE_RESTWORKER')" class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a sec:authorize="hasRole('ROLE_RESTWORKER')" class="nav-link dropdown-toggle" href="#"
+                           id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
                             *Logged-in Restaurant*
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="/">Incoming Orders</a>
+                            <a sec:authorize="hasRole('ROLE_RESTWORKER')" class="dropdown-item" th:href="@{#}">Incoming
+                                Orders</a>
                             <div class="dropdown-divider"></div>
-                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item" href="#">Menu</a>
-                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item" href="#">Manage Workers</a>
-                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item" href="#">Restaurant Logs</a>
+                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item"
+                               th:href="@{/restaurant/menu}">Menu</a>
+                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item"
+                               th:href="@{/restaurant/manage-workers}">Manage Workers</a>
+                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item"
+                               th:href="@{/restaurant/logs}">Restaurant Logs</a>
                             <div sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-divider"></div>
-                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item" href="#">Previous Orders</a>
-                            <div sec:authorize="hasRole('ROLE_RESTADMIN')"class="dropdown-divider"></div>
-                            <form  th:action="@{/logout}" method="post">
+                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item"
+                               th:href="@{/restaurant/previous-orders}">Previous Orders</a>
+                            <div sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-divider"></div>
+                            <form th:action="@{/logout}" method="post">
                                 <button type="submit" class="dropdown-item btn">Logout</button>
                             </form>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a sec:authorize="isAuthenticated()" th:text="${username}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a sec:authorize="isAuthenticated()" th:text="${username}" class="nav-link dropdown-toggle"
+                           href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                             <a class="dropdown-item" href="/">Home Page</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" th:href="@{/personaldata}">Personal Data</a>
-                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/addresses' ? 'active' : ''}" href="/addresses">Addresses</a>
-                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/cards' ? 'active' : ''}" href="/cards">Credit Cards</a>
-                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/address-modification' ? 'active' : ''}" href="/address-modification">New Address</a>
-                            <a class="dropdown-item" th:classappend="${#request.getRequestURI() == '/password' ? 'active' : ''}" href="/password">Change Password</a>
+                            <a class="dropdown-item"
+                               th:classappend="${#request.getRequestURI() == '/personaldata' ? 'active' : ''}"
+                               th:href="@{/personaldata}">Personal Data</a>
+                            <a class="dropdown-item"
+                               th:classappend="${#request.getRequestURI() == '/addresses' ? 'active' : ''}"
+                               th:href="@{/addresses}">Addresses</a>
+                            <a class="dropdown-item"
+                               th:classappend="${#request.getRequestURI() == '/cards' ? 'active' : ''}"
+                               th:href="@{/cards}">Credit Cards</a>
+                            <a class="dropdown-item"
+                               th:classappend="${#request.getRequestURI() == '/address-modification' ? 'active' : ''}"
+                               th:href="@{/address-modification}">New Address</a>
+                            <a class="dropdown-item"
+                               th:classappend="${#request.getRequestURI() == '/password' ? 'active' : ''}"
+                               th:href="@{/password}">Change Password</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Previous Orders</a>
+                            <a class="dropdown-item"
+                               th:classappend="${#request.getRequestURI() == '/previous-orders' ? 'active' : ''}"
+                               th:href="@{previous-orders}">Previous Orders</a>
                             <div class="dropdown-divider"></div>
-                            <form  th:action="@{/logout}" method="post">
+                            <form th:action="@{/logout}" method="post">
                                 <button type="submit" class="dropdown-item btn">Logout</button>
                             </form>
                         </div>

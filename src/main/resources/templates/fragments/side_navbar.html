@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,13 +10,23 @@
 
 <div th:fragment="side_navbar" class="col-lg-4">
     <nav class="nav flex-column nav-pills nav-fill">
-        <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/personaldata' ? 'active' : ''}" href="/personaldata">Personal Data</a>
-        <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/addresses' ? 'active' : ''}" href="/addresses">Addresses</a>
-        <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/cards' ? 'active' : ''}" href="/cards">Credit Cards</a>
-        <a class="nav-link" th:classappend=" ${#request.getRequestURI() == '/password' ? 'active' : ''}" href="/password">Change Password</a>
-        <a class="nav-link" href="#">Previous Orders</a>
-        <form  th:action="@{/logout}" method="post">
-           <button type="submit" class="btn btn-link btn-logout">Logout</button>
+        <a class="nav-link"
+           th:classappend="${#request.getRequestURI() == '/personaldata' ? 'active' : ''}"
+           th:href="@{/personaldata}">Personal Data</a>
+        <a class="nav-link"
+           th:classappend="${#request.getRequestURI() == '/addresses' ? 'active' : ''}"
+           th:href="@{/addresses}">Addresses</a>
+        <a class="nav-link"
+           th:classappend="${#request.getRequestURI() == '/cards' ? 'active' : ''}"
+           th:href="@{/cards}">Credit Cards</a>
+        <a class="nav-link"
+           th:classappend="${#request.getRequestURI() == '/password' ? 'active' : ''}"
+           th:href="@{/password}">Change Password</a>
+        <a class="nav-link"
+           th:classappend="${#request.getRequestURI() == '/previous-orders' ? 'active' : ''}"
+           th:href="@{previous-orders}">Previous Orders</a>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-link btn-logout">Logout</button>
         </form>
     </nav>
 </div>
