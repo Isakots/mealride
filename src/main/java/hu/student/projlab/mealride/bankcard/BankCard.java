@@ -28,6 +28,7 @@ public class BankCard {
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name="USER_ID")
     private User user;
 
     public BankCard() {

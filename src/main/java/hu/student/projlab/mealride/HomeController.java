@@ -32,14 +32,8 @@ public class HomeController {
         DeliveryAddress address = new DeliveryAddress();
         model.addAttribute("user", user);
         model.addAttribute("address", address);
+
         return "registration";
-    }
-
-
-    @GetMapping("administration/logs")
-    public String getApplicationLogs() {
-
-        return "administration/logs";
     }
 
 }

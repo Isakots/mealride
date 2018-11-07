@@ -13,7 +13,7 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     //private User customer;
    // private Restaurant restaurant;

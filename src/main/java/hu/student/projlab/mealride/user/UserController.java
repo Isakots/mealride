@@ -5,6 +5,7 @@ import hu.student.projlab.mealride.cart.ShoppingCart;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
+import hu.student.projlab.mealride.restaurant.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,20 +17,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 class UserController {
 
-
     private UserService userService;
 
     private DeliveryAddressService deliveryAddressService;
 
-    private ShoppingCart shoppingCart;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
-    public UserController(UserService userService, DeliveryAddressService deliveryAddressService) {
+    public UserController(UserService userService, DeliveryAddressService deliveryAddressService,RestaurantRepository restaurantRepository) {
         this.userService = userService;
         this.deliveryAddressService = deliveryAddressService;
-        this.shoppingCart = new ShoppingCart();
+        this.restaurantRepository = restaurantRepository;
     }
-
 
     @GetMapping("/users")
     public String listUsers(Model model) {
@@ -37,7 +36,6 @@ class UserController {
         model.addAttribute("addresses", deliveryAddressService.getAddresses());
         return "users";
     }
-
 
     @PostMapping("/registration")
     public ModelAndView processRegistrationForm(@ModelAttribute(value="user") User user,@ModelAttribute(value="address")DeliveryAddress address,
@@ -63,7 +61,11 @@ class UserController {
         } else {
 
             userService.addUser(user);
+
+            // I have to delegate this call to service layer, but now I would have circular dependencies...
+            // Redesign is necessary
             deliveryAddressService.registerUserWithAddress(address,user);
+
             modelAndView.addObject("successMessage", "You are registered successfully!");
         }
 

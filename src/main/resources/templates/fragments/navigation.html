@@ -27,21 +27,21 @@
                     <li class="nav-item">
                         <a sec:authorize="hasRole('ROLE_ANONYMOUS')" class="nav-link"
                            th:classappend="${#request.getRequestURI() == '/registration' ? 'active' : ''}"
-                           href="/registration">Registration</a>
+                           th:href="@{/registration}">Registration</a>
                     </li>
                     <li class="nav-item">
                         <a sec:authorize="hasRole('ROLE_USER')" class="nav-link"
                            th:classappend="${#request.getRequestURI() == '/users' ? 'active' : ''}"
-                           href="/users">Users</a>
+                           th:href="@{/users}">Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           th:classappend="${#request.getRequestURI() == '/restaurants' ? 'active' : ''}"
-                           href="/restaurants">Restaurants</a>
+                           th:classappend="${#request.getRequestURI() == '/restaurant' ? 'active' : ''}"
+                           th:href="@{/restaurant}">Restaurants</a>
                     </li>
                     <li class="nav-item">
                         <a sec:authorize="hasRole('ROLE_ANONYMOUS')" class="nav-link"
-                           th:classappend="${#request.getRequestURI() == '/login' ? 'active' : ''}" href="/login">Sign
+                           th:classappend="${#request.getRequestURI() == '/login' ? 'active' : ''}" th:href="@{/login}">Sign
                             In</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -61,10 +61,9 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a sec:authorize="hasRole('ROLE_RESTWORKER')" class="nav-link dropdown-toggle" href="#"
-                           id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                            *Logged-in Restaurant*
+                        <a sec:authorize="hasRole('ROLE_RESTWORKER')" th:text="${loggedin_restaurant}" class="nav-link dropdown-toggle"
+                           href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">Étterem
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <a sec:authorize="hasRole('ROLE_RESTWORKER')" class="dropdown-item" th:href="@{#}">Incoming

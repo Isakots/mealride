@@ -40,11 +40,10 @@ public class RestaurantService {
         return rests;
     }
 
-    public List<Meal> getMeals() {
-        List<Meal> meals = new ArrayList<>();
-        mealRepository.findAll().forEach(meals::add);
-        return meals;
+    public Restaurant getRestaurantById(Long id) {
+        return restaurantRepository.getRestaurantById(id);
     }
+
 
     private Time formatStringToTime(String mypattern) {
         String[] split = mypattern.split(":");

@@ -8,20 +8,14 @@
 
 <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
 
-<!-- Header with Background Image -->
-<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
-
 <!-- Page Content -->
 <div class="container">
 
     <div class="row">
 
-        <!--/*/ <th:block th:include="fragments/side_navbar :: side_navbar"></th:block> /*/-->
+        <div class="col-lg-12">
 
-        <!-- Post Content Column -->
-        <div class="col-lg-8">
-
-            <h3 class="mt-4">*Logged-in Restaurant*</h3>
+            <h3 class="mt-4" th:text="${loggedin_restaurant}" ></h3>
 
             <hr>
 
@@ -30,7 +24,6 @@
             <hr>
 
             <div class="container">
-
 
 
             </div>

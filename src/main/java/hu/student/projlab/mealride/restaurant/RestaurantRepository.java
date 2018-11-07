@@ -1,6 +1,12 @@
 package hu.student.projlab.mealride.restaurant;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
-public interface RestaurantRepository extends CrudRepository<Restaurant, String> {
+public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
+
+   @Query(value="SELECT * FROM Restaurant r WHERE r.id = :id", nativeQuery = true)
+   Restaurant getRestaurantById(@Param("id") Long id);
+
 }

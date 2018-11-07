@@ -8,20 +8,15 @@
 
 <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
 
-<!-- Header with Background Image -->
-<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
 
 <!-- Page Content -->
 <div class="container">
 
     <div class="row">
 
-        <!--/*/ <th:block th:include="fragments/side_navbar :: side_navbar"></th:block> /*/-->
+        <div class="col-lg-12">
 
-        <!-- Post Content Column -->
-        <div class="col-lg-8">
-
-            <h3 class="mt-4">*Logged-in Restaurant*</h3>
+            <h3 class="mt-4" th:text="${loggedin_restaurant}" ></h3>
 
             <hr>
 
@@ -30,7 +25,69 @@
             <hr>
 
             <div class="container">
+                <div class="starter-template" style="overflow-x:auto;">
+                    <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Is it garnish?</th>
+                            <th>Comment</th>
+                        </tr>
+                        <tbody>
+                        <tr th:each="meal: ${meals}">
+                            <td>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control"
+                                               th:field="${meal.name}">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="number" class="form-control"
+                                               th:field="${meal.price}">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input  type="checkbox" class="form-check-input"
+                                               th:field="${meal.isgarnish}">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control"
+                                               th:field="${meal.comment}">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <form th:action="@{'menu/' + ${meal.id}}" method="post">
+                                    <button type="submit" class="btn btn-secondary btn-block">
+                                        Save
+                                    </button>
+                                </form>
+                                <div th:if="${notSaved}" class="alert alert-danger"
+                                     role="alert" th:text="${notSaved}"></div>
 
+                                <div th:if="${saved}" class="alert alert-success"
+                                     role="alert" th:text="${saved}"></div>
+                                <form th:action="@{'menu/' + ${meal.id}}" method="post">
+                                    <button type="submit" class="btn btn-secondary btn-block">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 

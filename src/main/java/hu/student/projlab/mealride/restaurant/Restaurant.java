@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.restaurant;
 
 import hu.student.projlab.mealride.meal.Meal;
+import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -10,7 +11,7 @@ import java.util.List;
 public class Restaurant {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name="RESTAURANT_NAME")
     private String name;
@@ -25,7 +26,16 @@ public class Restaurant {
     private ShoppingHours hours;
 
     @ElementCollection
+    @CollectionTable(name = "MENU", joinColumns = @JoinColumn(name = "RESTAURANT_ID"))
+    @Column(name = "MENU")
     private List<Meal> menu;
+
+    @OneToMany
+    @JoinTable(name = "RESTAURANT_WORKERS",
+            joinColumns = {@JoinColumn(name = "RESTAURANT_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "WORKER_ID")})
+    @Column(name = "WORKER_ID")
+    private List<User> workers;
 
 
     public Restaurant() {

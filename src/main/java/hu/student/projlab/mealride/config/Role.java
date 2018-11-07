@@ -2,16 +2,13 @@ package hu.student.projlab.mealride.config;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Role implements GrantedAuthority{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="ROLE_ID")
     private Long id;
     @Column(name="ROLE_NAME")

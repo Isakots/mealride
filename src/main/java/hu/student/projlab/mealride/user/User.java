@@ -3,6 +3,8 @@ package hu.student.projlab.mealride.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.config.Role;
+import hu.student.projlab.mealride.restaurant.Restaurant;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -33,6 +35,11 @@ public class User {
     @JoinTable(name="USER_ROLES", joinColumns = { @JoinColumn(name="USER_ID")},
                 inverseJoinColumns = { @JoinColumn(name="ROLE_ID")})
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name="RESTAURANT_ID")
+    private Restaurant restaurant;
+
 
     public User() {}
 
@@ -110,5 +117,13 @@ public class User {
             stringBuilder.append(role.getRole()+"\n");
         }
         return stringBuilder.toString();
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

@@ -8,7 +8,7 @@ public class RestaurantForm {
     private String openingtime;
     private String closingtime;
 
-    RestaurantForm() {
+    public RestaurantForm() {
     }
 
     public String getName() {

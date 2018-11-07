@@ -12,7 +12,7 @@ import java.util.List;
 public class DeliveryAddress {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name="ZIP")
     private Short zipcode;
@@ -31,8 +31,8 @@ public class DeliveryAddress {
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name="USER_ID")
     private User user;
-
 
     public DeliveryAddress() {
     }

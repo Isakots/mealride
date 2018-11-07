@@ -1,13 +1,14 @@
 package hu.student.projlab.mealride.meal;
 
-import hu.student.projlab.mealride.order.Order;
-
 import javax.persistence.*;
+
 
 @Entity
 public class Meal {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     @Column(name="MEAL_NAME")
     private String name;
     @Column(name="PRICE")

@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 // Guest access configuration
-                .antMatchers("/", "/restaurants","/registration","/fragments/**")
+                .antMatchers("/", "/restaurant","/registration","/fragments/**")
                 .permitAll()
 
                 // Access of admin pages configuration

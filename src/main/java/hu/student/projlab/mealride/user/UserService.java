@@ -4,6 +4,7 @@ import hu.student.projlab.mealride.config.Role;
 import hu.student.projlab.mealride.config.RoleRepository;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -79,11 +81,14 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public Long getRestaurantId(Long userId) {
+        return userRepository.findRestaurantIdByUserId(userId);
+    }
+
     public User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         return findUserByEmail(name);
     }
-
 
 }
