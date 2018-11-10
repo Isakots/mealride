@@ -119,4 +119,19 @@ public class DeliveryAddress {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "DeliveryAddress{" +
+                "id=" + id +
+                ", zipcode=" + zipcode +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", state='" + state + '\'' +
+                ", housenumber=" + housenumber +
+                ", floor=" + floor +
+                ", door=" + door +
+                ", user=" + user +
+                '}';
+    }
 }

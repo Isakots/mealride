@@ -1,7 +1,9 @@
 package hu.student.projlab.mealride.restaurant;
 
+import hu.student.projlab.mealride.exception.RestaurantNotExistingException;
 import hu.student.projlab.mealride.meal.Meal;
 import hu.student.projlab.mealride.meal.MealRepository;
+import hu.student.projlab.mealride.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,16 @@ public class RestaurantService {
 
     public Restaurant getRestaurantById(Long id) {
         return restaurantRepository.getRestaurantById(id);
+    }
+
+    public Restaurant addRestaurantWorker(Long id, User user) throws RestaurantNotExistingException {
+        Restaurant restaurant = getRestaurantById(id);
+        if(restaurant == null) {
+            throw new RestaurantNotExistingException("The restaurant doesn't exist.");
+        }
+        restaurant.getWorkers().add(user);
+        restaurantRepository.save(restaurant);
+        return restaurant;
     }
 
 

@@ -3,6 +3,7 @@ package hu.student.projlab.mealride.user;
 import hu.student.projlab.mealride.config.Role;
 import hu.student.projlab.mealride.config.RoleRepository;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
+import hu.student.projlab.mealride.restaurant.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
@@ -31,7 +32,7 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
-    User findUserByEmail(String email) {
+    public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
@@ -83,6 +84,22 @@ public class UserService {
 
     public Long getRestaurantId(Long userId) {
         return userRepository.findRestaurantIdByUserId(userId);
+    }
+
+    public void setUserToRestaurantAdmin(Restaurant restaurant, User user) {
+        user.setRestaurant(restaurant);
+        Role role = roleRepository.findByRole("ROLE_RESTWORKER");
+        user.getRoles().add(role);
+        role = roleRepository.findByRole("ROLE_RESTADMIN");
+        user.getRoles().add(role);
+        userRepository.save(user);
+    }
+
+    public void setUserToRestaurantWorker(Restaurant restaurant, User user) {
+        user.setRestaurant(restaurant);
+        Role role = roleRepository.findByRole("ROLE_RESTWORKER");
+        user.getRoles().add(role);
+        userRepository.save(user);
     }
 
     public User getCurrentUser() {

@@ -105,4 +105,12 @@ public class Restaurant {
     public void setMenu(List<Meal> menu) {
         this.menu = menu;
     }
+
+    public List<User> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(List<User> workers) {
+        this.workers = workers;
+    }
 }

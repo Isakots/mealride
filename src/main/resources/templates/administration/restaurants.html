@@ -30,39 +30,54 @@
             <div class="container">
                 <div class="starter-template">
 
-                    <table class="table">
-                        <thead>
+                    <form th:action="@{'restaurants'}" method="get">
+                    <input type="hidden" name="error" th:value="${error}">
+                    <input type="hidden" name="success" th:value="${success}">
+                    <div th:if="${error}" class="alert alert-danger"
+                         role="alert" th:text="${error}"></div>
+                    <div th:if="${success}" class="alert alert-success"
+                         role="alert" th:text="${success}"></div>
+                </form>
+                    <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
                         <tr>
-                            <th scope="col">Étterem</th>
-                            <th scope="col">Szállítási idő</th>
-                            <th scope="col">Szállítási költség</th>
-                            <th scope="col">Minimum rendelés</th>
-                            <th scope="col">Nyitvatartás</th>
+                            <th scope="col">Restaurant</th>
+                            <th scope="col">Delivery time</th>
+                            <th scope="col">Delivery Price</th>
+                            <th scope="col">Minimum Order Price</th>
+                            <th scope="col">Shopping Hours</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="rest: ${restaurants}">
-                            <td th:text="${rest.name}"/>
-                            <td th:text="${rest.avgdeliverytime}"/>
-                            <td th:text="${rest.deliveryprice}"/>
-                            <td th:text="${rest.minorderprice}"/>
-                            <td th:text="${rest.hours.open} + ' - '+ ${rest.hours.close}"/>
-                            <td>
-                                <form th:action="@{'restaurants/delete'}" method="post">
-                                    <button type="submit" class="btn btn-secondary btn-block"/>
-                                    Delete</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form th:action="@{'restaurants/setowner'}" method="post">
-                                    <button type="submit" class="btn btn-secondary btn-block"/>
-                                    Set Owner</button>
-                                </form>
-                            </td>
-                        </tr>
+                            <tr th:each="rest: ${restaurants}">
 
+                                <td th:text="${rest.name}"/>
+                                <td th:text="${rest.avgdeliverytime}"/>
+                                <td th:text="${rest.deliveryprice}"/>
+                                <td th:text="${rest.minorderprice}"/>
+                                <td th:text="${rest.hours.open} + ' - '+ ${rest.hours.close}"/>
+                                <td>
+
+                                    <form th:action="@{'restaurants/delete'}" method="post">
+                                        <input type="hidden" name="restaurantId" th:value="${rest.id}">
+                                        <button type="submit" class="btn btn-danger btn-block"/>
+                                        Delete</button>
+                                    </form>
+
+                                </td>
+                                <td>
+                                    <form th:action="@{'restaurants/newadmin'}" method="post">
+                                        <input type="hidden" name="restaurantId" th:value="${rest.id}">
+                                        <input type="email" name="email" class="form-control" id="adminEmail">
+                                        <button type="submit" class="btn btn-secondary btn-block"/>Add Admin</button>
+                                    </form>
+
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
+                    </div>
 
                 </div>
             </div>

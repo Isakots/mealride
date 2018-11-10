@@ -24,6 +24,7 @@ class DeliveryAddressController {
     //@ResponseBody
     public String getAddresses(Model model) {
         List<DeliveryAddress> addresses = deliveryAddressService.getUserAddresses();
+        model.addAttribute("thisaddress", new DeliveryAddress());
         model.addAttribute("addresses", addresses);
         return "user/addresses";
     }
@@ -36,7 +37,7 @@ class DeliveryAddressController {
     }
 
     @PostMapping("/addresses/{addressId}")
-    public ModelAndView preFillModifyAddressForm(@PathVariable Long addressId) {
+    public ModelAndView preFillModifyAddressForm(@PathVariable(value="addressId") Long addressId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("address",deliveryAddressService.findById(addressId));
         modelAndView.setViewName("user/address-modification");

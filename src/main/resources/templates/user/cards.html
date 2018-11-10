@@ -40,9 +40,9 @@
                         <tr th:each="card: ${cards}">
                             <td th:text="${card.number}"></td>
                             <td th:text="${card.expriationdate}"></td>
-                            <td>
+                            <td style="border: none">
                                 <form th:action="@{'cards/' + ${card.number}}" method="post">
-                                    <button type="submit" class="btn btn-secondary"/>
+                                    <button type="submit" class="btn btn-danger btn-block"/>
                                     Delete Card  </button>
                                 </form>
                             </td>

@@ -1,8 +1,9 @@
 h2 { color: #2189ce; }
 
-td, th {
+/*td, th {
     border: 1px solid #dddddd;
-    text-align: left;
+    text-align: center;
+    vertical-align: center;
     padding: 8px;
 }
 
@@ -13,7 +14,7 @@ tr:nth-child(even) {
 .table{
     width: 100%;
     overflow-x: auto;
-}
+}*/
 
 .orange:active{
     color: #E64A19;

@@ -40,6 +40,9 @@ public class ModelAdvice {
         if(user == null)
             return "Restaurant";
 
+        if(user.getRestaurant() == null)
+            return "Restaurant";
+
         Restaurant restaurant = restaurantService.getRestaurantById(userService.getRestaurantId(user.getId()));
 
         return restaurant.getName();

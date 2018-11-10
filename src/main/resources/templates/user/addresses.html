@@ -26,6 +26,10 @@
 
             <div class="container ">
                 <div class="starter-template" style="overflow-x:auto;">
+
+                    <div th:if="${error}" class="alert alert-danger"
+                         role="alert" th:text="${error}"></div>
+
                     <table class="table">
                         <tr>
                             <th>City</th>
@@ -47,8 +51,9 @@
                                 <td th:text="${address.floor}"> </td>
                                 <td th:text="${address.door}"> </td>
                                 <td>
-                                    <form th:action="@{'addresses/' + ${address.id}}" method="post">
-                                        <button type="submit" class="btn btn-secondary btn-block">
+                                    <form th:action="@{'addresses/' + ${address.id}}" th:object="${thisaddress}" method="post">
+                                        <input type="hidden" name="addressID" th:value="${address.id}" th:field="${thisaddress.id}"/>
+                                        <button type="submit" class="btn btn-warning btn-block">
                                         Modify Address  </button>
                                     </form>
                                 </td>
