@@ -48,8 +48,8 @@ public class DeliveryAddressService {
         return deliveryAddressRepository.findByStreet(street);
     }
 
-    public Optional<DeliveryAddress> findById(Long id) {
-       return deliveryAddressRepository.findById(id);
+    public DeliveryAddress findById(Long id) {
+       return deliveryAddressRepository.getDeliveryAddressById(id);
     }
 
     public void updateAddress(DeliveryAddress address) {

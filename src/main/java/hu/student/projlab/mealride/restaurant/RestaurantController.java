@@ -4,6 +4,7 @@ package hu.student.projlab.mealride.restaurant;
 import hu.student.projlab.mealride.cart.ShoppingCartService;
 import hu.student.projlab.mealride.meal.Meal;
 import hu.student.projlab.mealride.meal.MealService;
+import hu.student.projlab.mealride.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
 
 @Controller
 @RequestMapping(value="/restaurant")
@@ -90,7 +93,8 @@ class RestaurantController {
 
     @GetMapping("/manage-workers")
     public String getWorkerManager(Model model) {
-        //model.addAttribute("meal", new Meal());
+        model.addAttribute("worker", new User());
+        model.addAttribute("workers", Arrays.asList(new User()));
         return "restaurant/manage-workers";
     }
 

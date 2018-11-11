@@ -15,16 +15,74 @@
 
         <div class="col-lg-12">
 
-            <h3 class="mt-4" th:text="${loggedin_restaurant}" ></h3>
+            <h3 class="mt-4" th:text="${loggedin_restaurant}"></h3>
 
             <hr>
+
+            <h3 class="mt-4">Invite worker</h3><br>
+
+            <form th:action="@{/inviteworker}" th:object="${worker}" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="email" class="form-control" id="workerEmail"
+                               placeholder="Please enter email address.."
+                               th:field="${worker.email}">
+                    </div>
+                </div>
+                <form th:action="@{'manage-workers'}" method="get">
+                    <input type="hidden" name="error" th:value="${error}">
+                    <input type="hidden" name="success" th:value="${success}">
+                    <div th:if="${error}" class="alert alert-danger"
+                         role="alert" th:text="${error}"></div>
+                    <div th:if="${success}" class="alert alert-success"
+                         role="alert" th:text="${success}"></div>
+                </form>
+                <button type="submit" class="btn btn-secondary">Invite</button>
+            </form>
+
+            <br>
 
             <h3 class="mt-4">Manage Workers</h3>
 
             <hr>
 
             <div class="container">
-
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Admin role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="worker: ${workers}">
+                            <td th:text="${worker.firstname}+' '+${worker.lastname}"></td>
+                            <td th:text="${worker.email}"></td>
+                            <td th:text="${worker.phone}"></td>
+                            <td th:text="${worker.phone}"></td>
+                            <td>
+                                <form th:action="@{'manage-workers/modify'}" method="post">
+                                    <input type="hidden" name="workerId" th:value="${worker.id}">
+                                    <button type="submit" class="btn btn-warning btn-block">
+                                        Modify
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form th:action="@{'manage-workers/delete'}" method="post">
+                                    <input type="hidden" name="workerId" th:value="${worker.id}"/>
+                                    <button type="submit" class="btn btn-danger btn-block">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 

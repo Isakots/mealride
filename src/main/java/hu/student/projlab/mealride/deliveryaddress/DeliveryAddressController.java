@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.deliveryaddress;
 
 
+import hu.student.projlab.mealride.restaurant.RestaurantAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,11 +37,31 @@ class DeliveryAddressController {
         return "user/address-modification";
     }
 
-    @PostMapping("/addresses/{addressId}")
-    public ModelAndView preFillModifyAddressForm(@PathVariable(value="addressId") Long addressId) {
+    @GetMapping("/newaddress")
+    public String newAddress(Model model) {
+        DeliveryAddress address = new DeliveryAddress();
+        model.addAttribute("address", address);
+        return "user/address-modification";
+    }
+
+    //@ModelAttribute(value = "address")
+    //public DeliveryAddress newRestAdmin() {return new DeliveryAddress();}
+
+    @PostMapping("/addresses/modify")
+    public String preFillModifyAddressForm(@RequestParam(value="addressId") Long addressId, Model model) {
+        model.addAttribute("address",deliveryAddressService.findById(addressId));
+        return "user/address-modification";
+    }
+
+    @PostMapping("/addresses/delete")
+    public ModelAndView deleteAddress(@RequestParam(value="addressId") Long addressId) {
+
+        DeliveryAddress deliveryAddress = deliveryAddressService.findById(addressId);
+        deliveryAddressService.deleteAddress(deliveryAddress);
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("address",deliveryAddressService.findById(addressId));
-        modelAndView.setViewName("user/address-modification");
+        modelAndView.setViewName("redirect:/addresses");
         return modelAndView;
     }
 
