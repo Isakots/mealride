@@ -15,4 +15,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Query(value="SELECT u.restaurant_id FROM User u WHERE u.user_id = :userid ", nativeQuery =  true)
     Long findRestaurantIdByUserId(@Param("userid")Long userid);
 
+    User getUserById(Long id);
+
 }

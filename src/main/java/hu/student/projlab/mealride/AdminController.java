@@ -2,7 +2,6 @@ package hu.student.projlab.mealride;
 
 import hu.student.projlab.mealride.exception.RestaurantNotExistingException;
 import hu.student.projlab.mealride.restaurant.Restaurant;
-import hu.student.projlab.mealride.restaurant.RestaurantAdmin;
 import hu.student.projlab.mealride.restaurant.RestaurantForm;
 import hu.student.projlab.mealride.restaurant.RestaurantService;
 import hu.student.projlab.mealride.user.User;
@@ -13,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping(value="/administration")
@@ -38,7 +36,6 @@ class AdminController {
         model.addAttribute("rest1", new Restaurant());
         model.addAttribute("error", error);
         model.addAttribute("success", success);
-        model.addAttribute("restadmin", new RestaurantAdmin());
         return "administration/restaurants";
     }
 
@@ -56,7 +53,7 @@ class AdminController {
 
     @PostMapping("/add-restaurant")
     public ModelAndView addNewRestaurant(@ModelAttribute(value="restaurantForm") RestaurantForm restaurantform,
-                                         final BindingResult results, ModelAndView modelandView) {
+                                         ModelAndView modelandView, final BindingResult results) {
 
         if(results.hasErrors()) {
             modelandView.addObject("error", "There are some validation error!");

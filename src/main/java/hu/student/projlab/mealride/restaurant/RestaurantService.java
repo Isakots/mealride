@@ -4,6 +4,7 @@ import hu.student.projlab.mealride.exception.RestaurantNotExistingException;
 import hu.student.projlab.mealride.meal.Meal;
 import hu.student.projlab.mealride.meal.MealRepository;
 import hu.student.projlab.mealride.user.User;
+import hu.student.projlab.mealride.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class RestaurantService {
     private RestaurantRepository restaurantRepository;
 
     private MealRepository mealRepository;
+
 
     @Autowired
     public RestaurantService(RestaurantRepository restaurantRepository, MealRepository mealRepository) {
@@ -54,6 +56,11 @@ public class RestaurantService {
         restaurant.getWorkers().add(user);
         restaurantRepository.save(restaurant);
         return restaurant;
+    }
+
+    public void deleteRestaurantWorker(Restaurant restaurant, User user) {
+        restaurant.getWorkers().remove(user);
+        restaurantRepository.save(restaurant);
     }
 
 

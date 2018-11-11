@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -51,6 +52,17 @@ public class User {
         this.phone = phone;
         this.roles = roles;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(email, user.email);
+    }
+
 
     public Long getId() {
         return id;

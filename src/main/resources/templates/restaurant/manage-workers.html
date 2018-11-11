@@ -21,7 +21,7 @@
 
             <h3 class="mt-4">Invite worker</h3><br>
 
-            <form th:action="@{/inviteworker}" th:object="${worker}" method="post">
+            <form th:action="@{'manage-workers/inviteworker'}" th:object="${worker}" method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <input type="email" class="form-control" id="workerEmail"
@@ -29,16 +29,16 @@
                                th:field="${worker.email}">
                     </div>
                 </div>
-                <form th:action="@{'manage-workers'}" method="get">
-                    <input type="hidden" name="error" th:value="${error}">
-                    <input type="hidden" name="success" th:value="${success}">
-                    <div th:if="${error}" class="alert alert-danger"
-                         role="alert" th:text="${error}"></div>
-                    <div th:if="${success}" class="alert alert-success"
-                         role="alert" th:text="${success}"></div>
-                </form>
                 <button type="submit" class="btn btn-secondary">Invite</button>
             </form>
+            <form th:action="@{'manage-workers'}" method="get">
+                <input type="hidden" name="error" th:value="${error}">
+                <input type="hidden" name="success" th:value="${success}">
+            </form>
+            <div th:if="${error}" class="alert alert-danger"
+                 role="alert" th:text="${error}"></div>
+            <div th:if="${success}" class="alert alert-success"
+                 role="alert" th:text="${success}"></div>
 
             <br>
 
@@ -66,7 +66,7 @@
                             <td>
                                 <form th:action="@{'manage-workers/modify'}" method="post">
                                     <input type="hidden" name="workerId" th:value="${worker.id}">
-                                    <button type="submit" class="btn btn-warning btn-block">
+                                    <button type="submit" class="btn btn-warning btn-block disabled">
                                         Modify
                                     </button>
                                 </form>

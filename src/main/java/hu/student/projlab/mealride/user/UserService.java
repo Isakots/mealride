@@ -36,6 +36,10 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public User getUserById(Long id) {
+        return userRepository.getUserById(id);
+    }
+
     void addUser(User user) {
         Role role = roleRepository.findByRole("ROLE_USER");
         user.getRoles().add(role);
@@ -99,6 +103,13 @@ public class UserService {
         user.setRestaurant(restaurant);
         Role role = roleRepository.findByRole("ROLE_RESTWORKER");
         user.getRoles().add(role);
+        userRepository.save(user);
+    }
+
+    public void deleteWorkerFromRestaurant(User user) {
+        user.setRestaurant(null);
+        Role role = new Role("ROLE_RESTWORKER");
+        System.out.println(user.getRoles().remove(role));
         userRepository.save(user);
     }
 

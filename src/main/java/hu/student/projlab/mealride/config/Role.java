@@ -3,6 +3,7 @@ package hu.student.projlab.mealride.config;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Role implements GrantedAuthority{
@@ -15,6 +16,14 @@ public class Role implements GrantedAuthority{
     private String role;
 
     public Role() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role1 = (Role) o;
+        return Objects.equals(role, role1.role);
     }
 
     public Role(String role) {
