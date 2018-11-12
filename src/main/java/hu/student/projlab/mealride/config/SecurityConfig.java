@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 // Guest access configuration
-                .antMatchers("/", "/restaurant","/registration","/fragments/**")
+                .antMatchers("/", "/restaurant","/restaurants/**","/registration","/fragments/**")
                 .permitAll()
 
                 // Access of admin pages configuration

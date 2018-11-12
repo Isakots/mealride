@@ -26,8 +26,10 @@ public class Restaurant {
     private ShoppingHours hours;
 
     @ElementCollection
-    @CollectionTable(name = "MENU", joinColumns = @JoinColumn(name = "RESTAURANT_ID"))
-    @Column(name = "MENU")
+    @JoinTable(name = "MENU",
+            joinColumns = {@JoinColumn(name = "RESTAURANT_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "MEAL_ID")})
+    @Column(name = "MEAL_ID")
     private List<Meal> menu;
 
     @OneToMany
@@ -112,5 +114,11 @@ public class Restaurant {
 
     public void setWorkers(List<User> workers) {
         this.workers = workers;
+    }
+
+    public void printmenu() {
+        for(Meal meal: menu) {
+            System.out.println("Meal name: "+ meal.getName()+" Price: "+ meal.getPrice()+" Comment: "+meal.getComment());
+        }
     }
 }

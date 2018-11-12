@@ -12,19 +12,16 @@ public class Meal {
     @Column(name="MEAL_NAME")
     private String name;
     @Column(name="PRICE")
-    private Integer price;
-    @Column(name="IS_GARNISH")
-    private Boolean isgarnish;
+    private int price;
     @Column(name="MEAL_COMMENT")
     private String comment;
 
     public Meal() {
     }
 
-    public Meal(String name, Integer price, Boolean isgarnish, String comment) {
+    public Meal(String name, int price, String comment) {
         this.name = name;
         this.price = price;
-        this.isgarnish = isgarnish;
         this.comment = comment;
     }
 
@@ -36,20 +33,12 @@ public class Meal {
         this.name = name;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(int price) {
         this.price = price;
-    }
-
-    public Boolean isGarnish() {
-        return isgarnish;
-    }
-
-    public void setGarnish(Boolean isgarnish) {
-        this.isgarnish = isgarnish;
     }
 
     public String getComment() {

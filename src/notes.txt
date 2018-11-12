@@ -27,3 +27,6 @@ https://spring.io/blog/2007/07/11/setter-injection-versus-constructor-injection-
 https://stackoverflow.com/questions/19414734/understanding-spring-autowired-usage
 https://www.baeldung.com/spring-autowire
 
+About REST:
+
+http://www.springboottutorial.com/introduction-to-web-services-with-soap-and-rest

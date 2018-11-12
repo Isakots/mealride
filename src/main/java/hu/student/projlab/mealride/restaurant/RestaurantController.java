@@ -51,48 +51,6 @@ class RestaurantController {
         return "restaurant/logs";
     }
 
-    @GetMapping("/menu")
-    public String getRestaurantMenu(Model model) {
-        model.addAttribute("menu", mealService.getMeals());
-        return "restaurant/menu";
-    }
-
-    @PostMapping("/menu/delete")
-    public ModelAndView deleteMealFromMenu(@ModelAttribute(value = "meal") Meal meal, ModelAndView modelAndView,
-                                           final BindingResult results) {
-
-        if (results.hasErrors()) {
-            modelAndView.addObject("errormessage", "There are some error!");
-            modelAndView.addObject("menu", mealService.getMeals());
-            modelAndView.setViewName("restaurant/menu");
-            return modelAndView;
-        }
-
-        modelAndView.setViewName("restaurant/menu");
-        return modelAndView;
-    }
-
-    @PostMapping("/menu/modify")
-    public ModelAndView modifyMealFromMenu(@ModelAttribute(value = "meal") Meal meal, ModelAndView modelAndView,
-                                           final BindingResult results) {
-
-        if (results.hasErrors()) {
-            modelAndView.addObject("error", "There are some error!");
-            modelAndView.addObject("menu", mealService.getMeals());
-            modelAndView.setViewName("restaurant/menu");
-            return modelAndView;
-        }
-
-        modelAndView.setViewName("restaurant/menu");
-        return modelAndView;
-    }
-
-    @GetMapping("/newmeal")
-    public String getNewMealForm(Model model) {
-        model.addAttribute("meal", new Meal());
-        return "restaurant/newmeal";
-    }
-
     @GetMapping("/manage-workers")
     public String getWorkerManager(Model model) {
         model.addAttribute("worker", new User());
