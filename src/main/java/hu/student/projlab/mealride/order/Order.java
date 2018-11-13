@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.order;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.meal.Meal;
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import hu.student.projlab.mealride.user.User;
@@ -14,20 +15,32 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="ORDER_ID")
     private Long id;
-    //private User customer;
-   // private Restaurant restaurant;
+
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name="CUSTOMER_ORDERS", joinColumns = { @JoinColumn(name="ORDER_ID")},
+            inverseJoinColumns = { @JoinColumn(name="CUSTOMER_ID")})
+    private List<User> customer;
+
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name="RESTAURANT_ORDERS", joinColumns = { @JoinColumn(name="ORDER_ID")},
+            inverseJoinColumns = { @JoinColumn(name="RESTAURANT_ID")})
+    private List<Restaurant> restaurant;
+
     @ElementCollection
     private List<Meal> meals;
-    //@Column(name="PRICE")
-    private Integer price;
-    //@Column(name="ORDER_TIME")
+    @Column(name="PRICE")
+    private int price;
+    @Column(name="ORDER_TIME")
     private Timestamp datetime;
-    //@Column(name="COURIER_NAME")
+    @Column(name="COURIER_NAME")
     private String couriername;
-   // @Column(name="CUSTOMER_COMMENT")
+    @Column(name="CUSTOMER_COMMENT")
     private String usercomment;
-   // @Column(name="WORKER_COMMENT")
+    @Column(name="WORKER_COMMENT")
     private String restaurantcomment;
    // private State state;  // enum type State
 
@@ -35,7 +48,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(User customer, Restaurant restaurant, List<Meal> meals, Integer price,
+    public Order(List<User> customer, List<Restaurant> restaurant, List<Meal> meals, Integer price,
                  Timestamp datetime, String couriername, String usercomment, String restaurantcomment) {
        // this.customer = customer;
         //this.restaurant = restaurant;
@@ -55,15 +68,15 @@ public class Order {
         this.id = id;
     }
 
-   /* public User getCustomer() {
+    /*public User getCustomer() {
         return customer;
     }
 
     public void setCustomer(User customer) {
         this.customer = customer;
-    }*/
+    }
 
-    /*public Restaurant getRestaurant() {
+    public Restaurant getRestaurant() {
         return restaurant;
     }
 

@@ -23,35 +23,37 @@
 
             <div class="container">
                 <div class="starter-template">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">Restaurant</th>
-                            <th scope="col">Delivery time</th>
-                            <th scope="col">Delivery Price</th>
-                            <th scope="col">Minimum Order Price</th>
-                            <th scope="col">Shopping Hours</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="rest: ${restaurants}">
-                            <td>
-                                <form th:action="@{'restaurants/'+${rest.id}+'/menu'}" method="post">
-                                    <input type="hidden" name="mealId" th:value="${rest.id}">
-                                    <button type="submit" th:text="${rest.name}" class="btn btn-outline-secondary btn-block">
-                                        Restaurant name
-                                    </button>
-                                </form>
-                            </td>
-                            <td th:text="${rest.avgdeliverytime}+' min'"/>
-                            <td th:text="${rest.deliveryprice}+' Ft'"/>
-                            <td th:text="${rest.minorderprice}+' Ft'"/>
-                            <td th:text="${rest.hours.open} + ' - '+ ${rest.hours.close}" />
-                        </tr>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Restaurant</th>
+                                <th scope="col">Delivery time</th>
+                                <th scope="col">Delivery Price</th>
+                                <th scope="col">Minimum Order Price</th>
+                                <th scope="col">Shopping Hours</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="rest: ${restaurants}">
+                                <td>
+                                    <form th:action="@{'restaurants/'+${rest.id}+'/menu'}" method="post">
+                                        <input type="hidden" name="mealId" th:value="${rest.id}">
+                                        <button type="submit" th:text="${rest.name}"
+                                                class="btn btn-outline-secondary btn-block">
+                                            Restaurant name
+                                        </button>
+                                    </form>
+                                </td>
+                                <td th:text="${rest.avgdeliverytime}+' min'"/>
+                                <td th:text="${rest.deliveryprice}+' Ft'"/>
+                                <td th:text="${rest.minorderprice}+' Ft'"/>
+                                <td th:text="${rest.hours.open} + ' - '+ ${rest.hours.close}"/>
+                            </tr>
 
-                        </tbody>
-                    </table>
-
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

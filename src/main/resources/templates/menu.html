@@ -62,11 +62,11 @@
 
         <div class="col-lg-4">
         <!-- Shopping Card Widget -->
-        <div class="card my-4" th:fragment="cart">
+        <div class="card my-2" th:fragment="cart">
             <h5 class="card-header">Shopping Cart</h5>
             <div class="card-body">
                 <div class="row">
-                    <ul class="list-group list-group-flush pl-2" >
+                    <ul class="list-group list-group-flush pl-2">
                         <li class="list-group-item" th:each="cartitem: ${cartitems}"
                             th:text="${cartitem.amount}+' x '+${cartitem.meal.name}+': '+${cartitem.amount}+' x '+${cartitem.meal.price}+' Ft'">
                             Sample CartItem

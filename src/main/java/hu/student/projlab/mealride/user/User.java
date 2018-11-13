@@ -3,11 +3,13 @@ package hu.student.projlab.mealride.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.config.Role;
+import hu.student.projlab.mealride.order.Order;
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -41,6 +43,10 @@ public class User {
     @JoinColumn(name="RESTAURANT_ID")
     private Restaurant restaurant;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name="CUSTOMER_ORDERS", joinColumns = { @JoinColumn(name="CUSTOMER_ID")},
+            inverseJoinColumns = { @JoinColumn(name="ORDER_ID")})
+    private List<Order> orders;
 
     public User() {}
 

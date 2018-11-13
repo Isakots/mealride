@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.restaurant;
 
 import hu.student.projlab.mealride.meal.Meal;
+import hu.student.projlab.mealride.order.Order;
 import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
@@ -38,6 +39,11 @@ public class Restaurant {
             inverseJoinColumns = {@JoinColumn(name = "WORKER_ID")})
     @Column(name = "WORKER_ID")
     private List<User> workers;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name="RESTAURANT_ORDERS", joinColumns = { @JoinColumn(name="RESTAURANT_ID")},
+            inverseJoinColumns = { @JoinColumn(name="ORDER_ID")})
+    private List<Order> orders;
 
 
     public Restaurant() {
