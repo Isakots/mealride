@@ -11,7 +11,6 @@ public class ShoppingCart {
 
     public ShoppingCart() {
         this.cartItems = new ArrayList<>();
-        cartItems.add(new CartItem(new Meal("Magyaros Pizza",1500,"32 cm"), 2));
     }
 
     public void addItem(Meal meal) {
@@ -52,4 +51,17 @@ public class ShoppingCart {
             System.out.println(item.getMeal()+"\tAmount: "+item.getAmount());
         }
     }
+
+    public int getFullPrice() {
+        if(cartItems.isEmpty())
+            return 0;
+
+        int sum = 0;
+        for(CartItem item: cartItems) {
+            sum += item.getAmount()*item.getMeal().getPrice();
+        }
+        return sum;
+
+    }
+
 }

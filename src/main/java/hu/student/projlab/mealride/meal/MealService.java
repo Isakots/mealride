@@ -48,4 +48,9 @@ public class MealService {
         restaurantRepository.save(restaurant);
     }
 
+    Meal getMealById(Long Id){
+        return mealRepository.getMealById(Id);
+    }
+
+
 }

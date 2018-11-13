@@ -46,19 +46,20 @@ class MealController {
     }
 
     @PostMapping("/restaurant/menu/delete")
-    public ModelAndView deleteMealFromMenu(@ModelAttribute(value = "meal") Meal meal, ModelAndView modelAndView,
+    public ModelAndView deleteMealFromMenu(@RequestParam(value = "mealId") Long mealId, ModelAndView modelAndView,
                                            final BindingResult results) {
+
+        modelAndView = new ModelAndView(new RedirectView("/restaurant/menu"));
 
         if (results.hasErrors()) {
             modelAndView.addObject("errormessage", "There are some error!");
             modelAndView.addObject("menu", mealService.getMeals());
-            modelAndView.setViewName("restaurant/menu");
             return modelAndView;
         }
 
+        //try-catch
+        mealService.deleteMealFromMenu(mealId);
 
-
-        modelAndView.setViewName("redirect:/restaurant/menu");
         return modelAndView;
     }
 
@@ -102,10 +103,10 @@ class MealController {
             modelAndView.setViewName("/restaurant");
             return modelAndView;
         }
-
         modelAndView.addObject("meals", restaurant.getMenu());
         modelAndView.addObject("rest", restaurant);
         modelAndView.addObject("cartitems", shoppingCart.getCartItems());
+        modelAndView.addObject("price", shoppingCart.getFullPrice());
         modelAndView.setViewName("/menu");
         return modelAndView;
     }
@@ -113,6 +114,8 @@ class MealController {
     @PostMapping("/restaurants/{restId}/menu")
     public ModelAndView queryForRestaurantMenu(@PathVariable(value = "restId") Long restId, ModelAndView modelAndView, final BindingResult result) {
 
+        //modelAndView = new ModelAndView(new RedirectView("/restaurants/"+restId+"/menu"));
+
         if (result.hasErrors()) {
             modelAndView.addObject("error", "There are some error!");
             modelAndView.setViewName("/restaurants");
@@ -129,19 +132,20 @@ class MealController {
 
         modelAndView.addObject("meals", restaurant.getMenu());
         modelAndView.addObject("rest", restaurant);
+        modelAndView.addObject("cartitems", shoppingCart.getCartItems());
+        modelAndView.addObject("price", shoppingCart.getFullPrice());
         modelAndView.setViewName("/menu");
         return modelAndView;
     }
 
     @PostMapping("/restaurants/{restId}/menu/addmeal")
-    public ModelAndView addNewMealToCart(@PathVariable(value = "restId") Long restId, @ModelAttribute(value="meal") Meal meal,
+    public ModelAndView addNewMealToCart(@PathVariable(value = "restId") Long restId, @RequestParam(value="mealId") Long mealId, ModelAndView modelAndView,
                                           final BindingResult result) {
 
-        ModelAndView modelAndView = new ModelAndView(new RedirectView("/restaurants/"+restId+"/menu"));
+        modelAndView = new ModelAndView(new RedirectView("/restaurants/"+restId+"/menu"));
 
         if (result.hasErrors()) {
             modelAndView.addObject("error", "There are some error!");
-            modelAndView.setViewName("/restaurants");
             return modelAndView;
         }
 
@@ -149,19 +153,16 @@ class MealController {
 
         if(restaurant == null) {
             modelAndView.addObject("error", "Restaurant cannot be found!");
-            modelAndView.setViewName("/restaurants");
             return modelAndView;
         }
 
+        // check if meal is exists in try-catch block!
+        Meal meal = mealService.getMealById(mealId);
         shoppingCart.addItem(meal);
 
         modelAndView.addObject("meals", restaurant.getMenu());
         modelAndView.addObject("rest", restaurant);
         modelAndView.addObject("cartitems", shoppingCart.getCartItems());
-
-        shoppingCart.printItems();
-
-        //modelAndView.setViewName("/menu");
         return modelAndView;
     }
 

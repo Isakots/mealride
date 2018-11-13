@@ -38,12 +38,12 @@
                             </thead>
                             <tbody>
                             <tr th:each="food: ${meals}">
-                                <td th:text="${food.name}"></td>
-                                <td th:text="${food.price}+' Ft'"></td>
-                                <td th:text="${food.comment}"></td>
+                                <td class="td-text" th:text="${food.name}"></td>
+                                <td class="td-num" th:text="${food.price}+' Ft'"></td>
+                                <td class="td-text" th:text="${food.comment}"></td>
                                 <td>
                                     <form th:action="@{'menu/addmeal'}" method="post">
-                                        <!--input type="hidden" name="mealId" th:value="${food.id}"-->
+                                        <input type="hidden" name="mealId" th:value="${food.id}">
                                         <button type="submit" class="btn btn-outline-secondary btn-block">
                                             Add to Cart
                                         </button>
@@ -59,30 +59,29 @@
         </div>
 
         <hr>
+
+        <div class="col-lg-4">
         <!-- Shopping Card Widget -->
         <div class="card my-4" th:fragment="cart">
             <h5 class="card-header">Shopping Cart</h5>
             <div class="card-body">
                 <div class="row">
-                    <ul class="list-unstyled pl-2" >
-                        <li th:each="cartitem: ${cartitems}"  th:text="${cartitem.meal.name}+': '+${cartitem.amount}">
+                    <ul class="list-group list-group-flush pl-2" >
+                        <li class="list-group-item" th:each="cartitem: ${cartitems}"
+                            th:text="${cartitem.amount}+' x '+${cartitem.meal.name}+': '+${cartitem.amount}+' x '+${cartitem.meal.price}+' Ft'">
                             Sample CartItem
                         </li>
-                        <hr>
-                        <li>
-                            Magyaros pizza (32 cm) - 1290 Ft
+                        <li class="list-group-item" th:text="'Full price: '+${price}+' Ft'">
+                           Price
                         </li>
                         <hr>
-                        <li>
-                            <b>Összesen: 1290 Ft</b>
-                        </li>
                     </ul>
-                    <hr>
                     <button class="btn btn-secondary btn-block" type="button">Order</button>
                 </div>
             </div>
         </div>
 
+        </div>
     </div>
     <!-- /.row -->
 
