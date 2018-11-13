@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.cart;
 
 
+import hu.student.projlab.mealride.meal.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,11 @@ public class ShoppingCartService {
         this.shoppingCart = shoppingCart;
     }
 
+    public void addMealToCart(Meal meal) {
+        shoppingCart.addItem(meal);
+    }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
 }

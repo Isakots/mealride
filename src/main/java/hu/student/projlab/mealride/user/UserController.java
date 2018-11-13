@@ -21,13 +21,10 @@ class UserController {
 
     private DeliveryAddressService deliveryAddressService;
 
-    private RestaurantRepository restaurantRepository;
-
     @Autowired
-    public UserController(UserService userService, DeliveryAddressService deliveryAddressService,RestaurantRepository restaurantRepository) {
+    public UserController(UserService userService, DeliveryAddressService deliveryAddressService) {
         this.userService = userService;
         this.deliveryAddressService = deliveryAddressService;
-        this.restaurantRepository = restaurantRepository;
     }
 
     @GetMapping("/users")

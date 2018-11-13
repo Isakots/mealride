@@ -1,6 +1,7 @@
 package hu.student.projlab.mealride.meal;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 @Entity
@@ -25,6 +26,17 @@ public class Meal {
         this.comment = comment;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meal meal = (Meal) o;
+        return price == meal.price &&
+                Objects.equals(id, meal.id) &&
+                Objects.equals(name, meal.name) &&
+                Objects.equals(comment, meal.comment);
+    }
+
     public String getName() {
         return name;
     }
@@ -47,5 +59,15 @@ public class Meal {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 }

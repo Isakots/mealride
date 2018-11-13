@@ -8,6 +8,8 @@
 
 <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
 
+<!-- Header with Background Image -->
+<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
 
 <!-- Page Content -->
 <div class="container">
@@ -18,22 +20,20 @@
 
     <div class="row">
 
-
-
         <div class="col-lg-8">
 
             <h3 class="mt-4">Menu</h3><br>
 
             <div class="container">
-                <div class="starter-template" style="overflow-x:auto;">
-
+                <div class="starter-template">
                     <div class="table-responsive">
                         <table class="table table-hover">
-                            <thead class="thead-light">
+                            <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Comment</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -42,7 +42,7 @@
                                 <td th:text="${food.price}+' Ft'"></td>
                                 <td th:text="${food.comment}"></td>
                                 <td>
-                                    <form th:action="@{'restaurants/menu/addmeal'}" method="post">
+                                    <form th:action="@{'menu/addmeal'}" method="post">
                                         <!--input type="hidden" name="mealId" th:value="${food.id}"-->
                                         <button type="submit" class="btn btn-outline-secondary btn-block">
                                             Add to Cart
@@ -59,8 +59,29 @@
         </div>
 
         <hr>
-
-        <div th:replace="fragments/sidebar :: cart"></div>
+        <!-- Shopping Card Widget -->
+        <div class="card my-4" th:fragment="cart">
+            <h5 class="card-header">Shopping Cart</h5>
+            <div class="card-body">
+                <div class="row">
+                    <ul class="list-unstyled pl-2" >
+                        <li th:each="cartitem: ${cartitems}"  th:text="${cartitem.meal.name}+': '+${cartitem.amount}">
+                            Sample CartItem
+                        </li>
+                        <hr>
+                        <li>
+                            Magyaros pizza (32 cm) - 1290 Ft
+                        </li>
+                        <hr>
+                        <li>
+                            <b>Összesen: 1290 Ft</b>
+                        </li>
+                    </ul>
+                    <hr>
+                    <button class="btn btn-secondary btn-block" type="button">Order</button>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- /.row -->

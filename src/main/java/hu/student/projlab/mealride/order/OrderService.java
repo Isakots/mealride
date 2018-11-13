@@ -10,12 +10,9 @@ public class OrderService {
 
     private OrderRepository orderRepository;
 
-    private ShoppingCartService shoppingCartService;
-
     @Autowired
-    public OrderService(OrderRepository orderRepository, ShoppingCartService shoppingCartService) {
+    public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.shoppingCartService = shoppingCartService;
     }
 
 

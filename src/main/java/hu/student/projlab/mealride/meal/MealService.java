@@ -3,7 +3,6 @@ package hu.student.projlab.mealride.meal;
 
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import hu.student.projlab.mealride.restaurant.RestaurantRepository;
-import hu.student.projlab.mealride.restaurant.RestaurantService;
 import hu.student.projlab.mealride.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

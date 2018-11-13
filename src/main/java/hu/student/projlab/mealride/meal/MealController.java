@@ -1,6 +1,8 @@
 package hu.student.projlab.mealride.meal;
 
 
+import hu.student.projlab.mealride.cart.ShoppingCart;
+import hu.student.projlab.mealride.cart.ShoppingCartService;
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import hu.student.projlab.mealride.restaurant.RestaurantService;
 import hu.student.projlab.mealride.user.UserService;
@@ -10,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.annotation.Resource;
 
 
 @Controller
-//@RequestMapping(value = "/restaurant")
 class MealController {
 
     private MealService mealService;
@@ -22,8 +26,12 @@ class MealController {
 
     private RestaurantService restaurantService;
 
+    @Resource(name = "shoppingCart")
+    private ShoppingCart shoppingCart;
+
     @Autowired
-    public MealController(MealService mealService, UserService userService, RestaurantService restaurantService) {
+    public MealController(MealService mealService, UserService userService,
+                          RestaurantService restaurantService) {
         this.mealService = mealService;
         this.userService = userService;
         this.restaurantService = restaurantService;
@@ -97,12 +105,13 @@ class MealController {
 
         modelAndView.addObject("meals", restaurant.getMenu());
         modelAndView.addObject("rest", restaurant);
+        modelAndView.addObject("cartitems", shoppingCart.getCartItems());
         modelAndView.setViewName("/menu");
         return modelAndView;
     }
 
     @PostMapping("/restaurants/{restId}/menu")
-    public ModelAndView queryRestaurantMenu(@PathVariable(value = "restId") Long restId, ModelAndView modelAndView, final BindingResult result) {
+    public ModelAndView queryForRestaurantMenu(@PathVariable(value = "restId") Long restId, ModelAndView modelAndView, final BindingResult result) {
 
         if (result.hasErrors()) {
             modelAndView.addObject("error", "There are some error!");
@@ -121,6 +130,38 @@ class MealController {
         modelAndView.addObject("meals", restaurant.getMenu());
         modelAndView.addObject("rest", restaurant);
         modelAndView.setViewName("/menu");
+        return modelAndView;
+    }
+
+    @PostMapping("/restaurants/{restId}/menu/addmeal")
+    public ModelAndView addNewMealToCart(@PathVariable(value = "restId") Long restId, @ModelAttribute(value="meal") Meal meal,
+                                          final BindingResult result) {
+
+        ModelAndView modelAndView = new ModelAndView(new RedirectView("/restaurants/"+restId+"/menu"));
+
+        if (result.hasErrors()) {
+            modelAndView.addObject("error", "There are some error!");
+            modelAndView.setViewName("/restaurants");
+            return modelAndView;
+        }
+
+        Restaurant restaurant = restaurantService.getRestaurantById(restId);
+
+        if(restaurant == null) {
+            modelAndView.addObject("error", "Restaurant cannot be found!");
+            modelAndView.setViewName("/restaurants");
+            return modelAndView;
+        }
+
+        shoppingCart.addItem(meal);
+
+        modelAndView.addObject("meals", restaurant.getMenu());
+        modelAndView.addObject("rest", restaurant);
+        modelAndView.addObject("cartitems", shoppingCart.getCartItems());
+
+        shoppingCart.printItems();
+
+        //modelAndView.setViewName("/menu");
         return modelAndView;
     }
 

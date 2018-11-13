@@ -16,6 +16,10 @@ tr:nth-child(even) {
     overflow-x: auto;
 }*/
 
+.card {
+    display: table;
+}
+
 .orange:active{
     color: #E64A19;
     background-color: #1b1e21;

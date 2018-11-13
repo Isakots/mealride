@@ -17,13 +17,9 @@ public class RestaurantService {
 
     private RestaurantRepository restaurantRepository;
 
-    private MealRepository mealRepository;
-
-
     @Autowired
-    public RestaurantService(RestaurantRepository restaurantRepository, MealRepository mealRepository) {
+    public RestaurantService(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
-        this.mealRepository = mealRepository;
     }
 
     public void addRestaurant(RestaurantForm restaurantform) {

@@ -30,3 +30,6 @@ https://www.baeldung.com/spring-autowire
 About REST:
 
 http://www.springboottutorial.com/introduction-to-web-services-with-soap-and-rest
+
+Beans:
+https://www.baeldung.com/spring-bean-scopes

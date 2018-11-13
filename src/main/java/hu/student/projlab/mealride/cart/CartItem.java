@@ -5,12 +5,12 @@ import hu.student.projlab.mealride.meal.Meal;
 public class CartItem {
 
     private Meal meal;
-    private Integer amount;
+    private int amount;
 
     public CartItem() {
     }
 
-    public CartItem(Meal meal, Integer amount) {
+    public CartItem(Meal meal, int amount) {
         this.meal = meal;
         this.amount = amount;
     }
@@ -23,11 +23,11 @@ public class CartItem {
         this.meal = meal;
     }
 
-    public Integer getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 }

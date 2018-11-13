@@ -3,8 +3,6 @@ package hu.student.projlab.mealride.restaurant;
 
 import hu.student.projlab.mealride.cart.ShoppingCartService;
 import hu.student.projlab.mealride.exception.RestaurantNotExistingException;
-import hu.student.projlab.mealride.meal.Meal;
-import hu.student.projlab.mealride.meal.MealService;
 import hu.student.projlab.mealride.user.User;
 import hu.student.projlab.mealride.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
 
 @Controller
 @RequestMapping(value = "/restaurant")
@@ -22,18 +19,11 @@ class RestaurantController {
 
     private RestaurantService restaurantService;
 
-    private ShoppingCartService shoppingCartService;
-
-    private MealService mealService;
-
     private UserService userService;
 
     @Autowired
-    public RestaurantController(RestaurantService restaurantService, ShoppingCartService shoppingCartService,
-                                MealService mealService, UserService userService) {
+    public RestaurantController(RestaurantService restaurantService, UserService userService) {
         this.restaurantService = restaurantService;
-        this.shoppingCartService = shoppingCartService;
-        this.mealService = mealService;
         this.userService = userService;
     }
 
