@@ -75,8 +75,16 @@
                            Price
                         </li>
                         <hr>
+
+                        <form th:action="@{'/order'}" method="post">
+                            <!--input type="hidden" name="mealId" th:value="${food.id}"-->
+                            <input type="hidden" name="restId" th:value="${rest.id}">
+                           <button type="submit" class="btn btn-outline-secondary btn-block">
+                                Order
+                           </button>
+                        </form>
                     </ul>
-                    <button class="btn btn-secondary btn-block" type="button">Order</button>
+
                 </div>
             </div>
         </div>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+<!-- Header with Background Image -->
+<!--/*/ <th:block th:include="fragments/headerpic :: headerpic"></th:block> /*/-->
+
+<!-- Page Content -->
+<div class="container">
+
+    <h3 class="mt-4">Order finalization</h3>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="container">
+                <div class="starter-template">
+
+                    <br>
+
+                    <h4 th:text="'Restaurant name: '+ ${rest.name}"></h4>
+
+                    <br>
+
+                    <h4 th:text="'Customer name: '+ ${user.firstname}+' '+${user.lastname}"></h4>
+
+                    <br>
+
+                    <h5>Ordered meals:</h5>
+
+                    <br>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Amount</th>
+                                <th>Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cartitem: ${cartitems}">
+                                <td th:text="${cartitem.meal.name}"></td>
+                                <td th:text="${cartitem.amount}"></td>
+                                <td th:text="${cartitem.amount}+' x '+${cartitem.meal.price}+' Ft'"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br>
+
+                    <h5 th:text="'Full price: '+ ${fullprice}+' Ft'" style="text-align: right"></h5>
+
+                    <hr>
+
+                    <form th:action="@{'/order'}" method="post">
+
+                        <div class="form-group col-md-4">
+                            <label for="inputAddress">Select Delivery address:</label>
+                            <select id="inputAddress" class="form-control">
+                                <option th:each="address : ${addresses}" th:value="${address.id}"
+                                        th:text="${address.street}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="inputCard">Select Credit card:</label>
+                            <select id="inputCard" class="form-control">
+                                <option th:each="card : ${cards}" th:value="${card.number}"
+                                        th:text="${card.number}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orderCustomerComment">Comment: </label>
+                            <textarea class="form-control" id="orderCustomerComment" rows="4"></textarea>
+                        </div>
+
+                        <input type="hidden" name="restId" th:value="${rest.id}">
+                        <button type="submit" class="btn btn-secondary btn-block">
+                            Send Order
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+            <hr>
+
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+
+<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+
+</body>
+</html>

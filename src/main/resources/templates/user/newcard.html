@@ -3,7 +3,7 @@
       xmlns:th="https://www.thymeleaf.org/">
 <head>
     <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
-    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/styles.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{assets/css/styles.css}">
 </head>
 <body>
 
@@ -72,9 +72,9 @@
                             </select>
                         </div>
                         <div class="form-group" id="credit_cards">
-                            <img th:src="@{/assets/images/visa.jpg}" id="visa">
-                            <img th:src="@{/assets/images/mastercard.jpg}" id="mastercard">
-                            <img th:src="@{/assets/images/amex.jpg}" id="amex">
+                            <img th:src="@{'/assets/images/visa.jpg'}" id="visa">
+                            <img th:src="@{'/assets/images/mastercard.jpg'}" id="mastercard">
+                            <img th:src="@{'/assets/images/amex.jpg'}" id="amex">
                         </div>
 
                         <button type="submit" class="btn btn-secondary">Submit</button>
@@ -91,8 +91,8 @@
 </div>
 <!-- /.container -->
 
-<script th:src="@{'/assets/js/jquery.payform.min.js'}" charset="utf-8"></script>
-<script th:src="@{'/assets/js/script.js'}"></script>
+<script th:src="@{'assets/js/jquery.payform.min.js'}" charset="utf-8"></script>
+<script th:src="@{'assets/js/script.js'}"></script>
 
 <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
 

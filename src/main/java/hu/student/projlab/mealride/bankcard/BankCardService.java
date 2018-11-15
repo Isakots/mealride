@@ -26,7 +26,7 @@ public class BankCardService {
         this.userService = userService;
     }
 
-    List<BankCard> getBankcards() {
+    public List<BankCard> getBankcards() {
         User user = userService.getCurrentUser();
         return bankCardRepository.findAllByUserId(user.getId());
     }

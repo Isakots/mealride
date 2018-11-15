@@ -40,7 +40,7 @@ class AdminController {
     }
 
     @GetMapping("/add-restaurant")
-    public String getNewlRestaurantForm(Model model) {
+    public String getNewRestaurantForm(Model model) {
         model.addAttribute("restaurantForm", new RestaurantForm());
         return "administration/add-restaurant";
     }
