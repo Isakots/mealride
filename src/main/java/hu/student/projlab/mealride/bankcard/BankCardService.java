@@ -59,5 +59,9 @@ public class BankCardService {
         bankCardRepository.deleteById(id);
     }
 
+    public BankCard getCardByNumber(Long number) {
+        return bankCardRepository.getBankCardByNumber(number);
+    }
+
 
 }

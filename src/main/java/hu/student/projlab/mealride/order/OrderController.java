@@ -1,22 +1,16 @@
 package hu.student.projlab.mealride.order;
 
-
-import hu.student.projlab.mealride.restaurant.Restaurant;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Map;
 
 @Controller
-//@RequestMapping(value="/order")
 class OrderController {
 
     private OrderService orderService;
@@ -25,26 +19,6 @@ class OrderController {
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
-
-    /*@GetMapping("/order")
-    public ModelAndView showOrderForm(/*@RequestParam(value="restId") Long restId, ModelAndView modelAndView, final BindingResult result) {
-
-        if (result.hasErrors()) {
-            modelAndView.addObject("error", "There are some error!");
-            return modelAndView;
-        }
-
-        //modelAndView.addObject("rest", orderService.getRestaurant(restId));
-        modelAndView.addObject("user", orderService.getUser());
-        modelAndView.addObject("cartitems", orderService.getCartItems());
-        modelAndView.addObject("fullprice", orderService.getFullPrice());
-        modelAndView.addObject("addresses", orderService.getAddresses());
-        modelAndView.addObject("cards", orderService.getCards());
-        modelAndView.setViewName("user/order");
-
-        return modelAndView;
-
-    }*/
 
 
     @PostMapping("/order")
@@ -63,7 +37,37 @@ class OrderController {
         modelAndView.addObject("fullprice", orderService.getFullPrice());
         modelAndView.addObject("addresses", orderService.getAddresses());
         modelAndView.addObject("cards", orderService.getCards());
+        modelAndView.addObject("comment", new String());
         modelAndView.setViewName("user/order");
+        return modelAndView;
+
+    }
+
+    @PostMapping("/order/finalize")
+    public ModelAndView finalizeOrder(@RequestParam(value="restId") Long restId,
+                                      @RequestParam(value="selectedAddress") Long addressId,
+                                      @RequestParam(value="selectedCard") Long cardNumber,
+                                      @RequestParam(value="orderCustomerComment") String comment,
+                                      ModelAndView modelAndView, final BindingResult result) {
+
+       modelAndView = new ModelAndView(new RedirectView("/"));
+
+
+       //TODO throw a lot of exceptions inside this method and then handle those here
+       orderService.createNewOrder(restId,addressId,cardNumber,comment);
+
+        if (result.hasErrors()) {
+            modelAndView.addObject("error", "There are some error!");
+            return modelAndView;
+        }
+
+        /*modelAndView.addObject("rest", orderService.getRestaurant(restId));
+        modelAndView.addObject("user", orderService.getUser());
+        modelAndView.addObject("cartitems", orderService.getCartItems());
+        modelAndView.addObject("fullprice", orderService.getFullPrice());
+        modelAndView.addObject("addresses", orderService.getAddresses());
+        modelAndView.addObject("cards", orderService.getCards());
+        modelAndView.setViewName("user/order");*/
         return modelAndView;
 
     }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.config.Role;
 import hu.student.projlab.mealride.order.Order;
 import hu.student.projlab.mealride.restaurant.Restaurant;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -43,7 +42,7 @@ public class User {
     @JoinColumn(name="RESTAURANT_ID")
     private Restaurant restaurant;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="CUSTOMER_ORDERS", joinColumns = { @JoinColumn(name="CUSTOMER_ID")},
             inverseJoinColumns = { @JoinColumn(name="ORDER_ID")})
     private List<Order> orders;

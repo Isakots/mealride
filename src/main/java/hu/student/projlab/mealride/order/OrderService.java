@@ -5,7 +5,6 @@ import hu.student.projlab.mealride.bankcard.BankCard;
 import hu.student.projlab.mealride.bankcard.BankCardService;
 import hu.student.projlab.mealride.cart.CartItem;
 import hu.student.projlab.mealride.cart.ShoppingCart;
-import hu.student.projlab.mealride.cart.ShoppingCartService;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import hu.student.projlab.mealride.restaurant.Restaurant;
@@ -66,5 +65,15 @@ public class OrderService {
 
     List<DeliveryAddress> getAddresses() {
         return deliveryAddressService.getAddresses();
+    }
+
+    void createNewOrder(Long restId, Long addressId, Long cardNumber, String comment) {
+
+        Order order = new Order( userService.getCurrentUser(), restaurantService.getRestaurantById(restId),
+                shoppingCart.getCartItems(), deliveryAddressService.findById(addressId),
+                bankCardService.getCardByNumber(cardNumber),shoppingCart.getFullPrice(),
+                System.currentTimeMillis(),null,comment,null);
+
+        orderRepository.save(order);
     }
 }

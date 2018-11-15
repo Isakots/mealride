@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface BankCardRepository extends JpaRepository<BankCard, Long> {
      List<BankCard> findAllByUserId(Long userId);
+
+     BankCard getBankCardByNumber(Long number);
 }

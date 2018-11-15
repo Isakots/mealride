@@ -63,11 +63,11 @@
 
                     <hr>
 
-                    <form th:action="@{'/order'}" method="post">
+                    <form th:action="@{'/order/finalize'}" method="post">
 
                         <div class="form-group col-md-4">
                             <label for="inputAddress">Select Delivery address:</label>
-                            <select id="inputAddress" class="form-control">
+                            <select id="inputAddress" class="form-control" name="selectedAddress">
                                 <option th:each="address : ${addresses}" th:value="${address.id}"
                                         th:text="${address.street}"></option>
                             </select>
@@ -75,7 +75,7 @@
 
                         <div class="form-group col-md-4">
                             <label for="inputCard">Select Credit card:</label>
-                            <select id="inputCard" class="form-control">
+                            <select id="inputCard" class="form-control" name="selectedCard">
                                 <option th:each="card : ${cards}" th:value="${card.number}"
                                         th:text="${card.number}"></option>
                             </select>
@@ -83,7 +83,8 @@
 
                         <div class="form-group">
                             <label for="orderCustomerComment">Comment: </label>
-                            <textarea class="form-control" id="orderCustomerComment" rows="4"></textarea>
+                            <textarea class="form-control" id="orderCustomerComment"
+                                      name="orderCustomerComment" th:value="${comment}" rows="4"></textarea>
                         </div>
 
                         <input type="hidden" name="restId" th:value="${rest.id}">

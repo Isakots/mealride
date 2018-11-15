@@ -2,14 +2,13 @@ package hu.student.projlab.mealride.order;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import hu.student.projlab.mealride.bankcard.BankCard;
 import hu.student.projlab.mealride.cart.CartItem;
-import hu.student.projlab.mealride.meal.Meal;
+import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -22,26 +21,32 @@ public class Order {
     private Long id;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="CUSTOMER_ORDERS", joinColumns = { @JoinColumn(name="ORDER_ID")},
             inverseJoinColumns = { @JoinColumn(name="CUSTOMER_ID")})
-    private List<User> customers;
+    private User customer;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="RESTAURANT_ORDERS", joinColumns = { @JoinColumn(name="ORDER_ID")},
             inverseJoinColumns = { @JoinColumn(name="RESTAURANT_ID")})
-    private List<Restaurant> restaurants;
+    private Restaurant restaurant;
 
-    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name="ORDER_MEALS", joinColumns = { @JoinColumn(name="ORDER_ID")},
             inverseJoinColumns = { @JoinColumn(name="CARTITEM_ID")})
     private List<CartItem> meals;
 
+    @OneToOne
+    @JoinColumn(name="ADDRESS_ID")
+    private DeliveryAddress address;
+    @OneToOne
+    @JoinColumn(name="CARD_ID")
+    private BankCard card;
     @Column(name="PRICE")
     private int price;
     @Column(name="ORDER_TIME")
-    private Date datetime;
+    private Long datetime;
     @Column(name="COURIER_NAME")
     private String couriername;
     @Column(name="CUSTOMER_COMMENT")
@@ -54,11 +59,14 @@ public class Order {
     public Order() {
     }
 
-    public Order(List<User> customer, List<Restaurant> restaurant, List<CartItem> meals, int price,
-                 Date datetime, String couriername, String usercomment, String restaurantcomment) {
-       // this.customer = customer;
-        //this.restaurant = restaurant;
+    public Order(User customer, Restaurant restaurant, List<CartItem> meals,
+                 DeliveryAddress address, BankCard card, int price, Long datetime,
+                 String couriername, String usercomment, String restaurantcomment) {
+        this.customer = customer;
+        this.restaurant = restaurant;
         this.meals = meals;
+        this.address = address;
+        this.card = card;
         this.price = price;
         this.datetime = datetime;
         this.couriername = couriername;
@@ -74,20 +82,20 @@ public class Order {
         this.id = id;
     }
 
-    public List<User> getCustomers() {
-        return customers;
+    public User getCustomer() {
+        return customer;
     }
 
-    public void setCustomer(List<User> customers) {
-        this.customers = customers;
+    public void setCustomer(User customer) {
+        this.customer = customer;
     }
 
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurant(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public List<CartItem> getMeals() {
@@ -98,6 +106,22 @@ public class Order {
         this.meals = meals;
     }
 
+    public DeliveryAddress getAddress() {
+        return address;
+    }
+
+    public void setAddress(DeliveryAddress address) {
+        this.address = address;
+    }
+
+    public BankCard getCard() {
+        return card;
+    }
+
+    public void setCard(BankCard card) {
+        this.card = card;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -106,11 +130,11 @@ public class Order {
         this.price = price;
     }
 
-    public Date getDatetime() {
+    public Long getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(Date datetime) {
+    public void setDatetime(Long datetime) {
 
         this.datetime = datetime;
     }
