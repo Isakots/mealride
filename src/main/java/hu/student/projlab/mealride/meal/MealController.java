@@ -2,7 +2,6 @@ package hu.student.projlab.mealride.meal;
 
 
 import hu.student.projlab.mealride.cart.ShoppingCart;
-import hu.student.projlab.mealride.cart.ShoppingCartService;
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import hu.student.projlab.mealride.restaurant.RestaurantService;
 import hu.student.projlab.mealride.user.UserService;

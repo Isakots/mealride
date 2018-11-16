@@ -1,7 +1,6 @@
 package hu.student.projlab.mealride.restaurant;
 
 
-import hu.student.projlab.mealride.cart.ShoppingCartService;
 import hu.student.projlab.mealride.exception.RestaurantNotExistingException;
 import hu.student.projlab.mealride.user.User;
 import hu.student.projlab.mealride.user.UserService;

@@ -1,6 +1,6 @@
 package hu.student.projlab.mealride.order;
 
-import com.sun.xml.internal.bind.v2.TODO;
+import hu.student.projlab.mealride.exception.OrderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,7 +22,7 @@ class OrderController {
 
 
     @PostMapping("/order")
-    public ModelAndView OrderForm(@RequestParam(value="restId") Long restId, ModelAndView modelAndView, final BindingResult result) {
+    public ModelAndView OrderForm(@RequestParam(value = "restId") Long restId, ModelAndView modelAndView, final BindingResult result) {
 
         modelAndView = new ModelAndView(new RedirectView("/order"));
 
@@ -44,36 +44,49 @@ class OrderController {
     }
 
     @PostMapping("/order/finalize")
-    public ModelAndView finalizeOrder(@RequestParam(value="restId") Long restId,
-                                      @RequestParam(value="selectedAddress") Long addressId,
-                                      @RequestParam(value="selectedCard") Long cardNumber,
-                                      @RequestParam(value="orderCustomerComment") String comment,
+    public ModelAndView finalizeOrder(@RequestParam(value = "restId") Long restId,
+                                      @RequestParam(value = "selectedAddress") Long addressId,
+                                      @RequestParam(value = "selectedCard") Long cardNumber,
+                                      @RequestParam(value = "orderCustomerComment") String comment,
                                       ModelAndView modelAndView, final BindingResult result) {
 
-       modelAndView = new ModelAndView(new RedirectView("/"));
-
-
-       //TODO throw a lot of exceptions inside this method and then handle those here
-       orderService.createNewOrder(restId,addressId,cardNumber,comment);
+        modelAndView = new ModelAndView(new RedirectView("/"));
 
         if (result.hasErrors()) {
             modelAndView.addObject("error", "There are some error!");
             return modelAndView;
         }
 
-        /*modelAndView.addObject("rest", orderService.getRestaurant(restId));
-        modelAndView.addObject("user", orderService.getUser());
-        modelAndView.addObject("cartitems", orderService.getCartItems());
-        modelAndView.addObject("fullprice", orderService.getFullPrice());
-        modelAndView.addObject("addresses", orderService.getAddresses());
-        modelAndView.addObject("cards", orderService.getCards());
-        modelAndView.setViewName("user/order");*/
+        try {
+            orderService.createNewOrder(restId, addressId, cardNumber, comment);
+        }catch(OrderException e) {
+            modelAndView = new ModelAndView(new RedirectView("/order"));
+            modelAndView.addObject("rest", orderService.getRestaurant(restId));
+            modelAndView.addObject("user", orderService.getUser());
+            modelAndView.addObject("cartitems", orderService.getCartItems());
+            modelAndView.addObject("fullprice", orderService.getFullPrice());
+            modelAndView.addObject("addresses", orderService.getAddresses());
+            modelAndView.addObject("cards", orderService.getCards());
+            modelAndView.addObject("comment", new String());
+            modelAndView.addObject("error", e.getMessage());
+            modelAndView.setViewName("user/order");
+            return modelAndView;
+        } catch (Exception e) {
+            modelAndView = new ModelAndView(new RedirectView("/order"));
+            modelAndView.addObject("rest", orderService.getRestaurant(restId));
+            modelAndView.addObject("user", orderService.getUser());
+            modelAndView.addObject("cartitems", orderService.getCartItems());
+            modelAndView.addObject("fullprice", orderService.getFullPrice());
+            modelAndView.addObject("addresses", orderService.getAddresses());
+            modelAndView.addObject("cards", orderService.getCards());
+            modelAndView.addObject("comment", new String());
+            modelAndView.addObject("error", "An unknown error occured!");
+            modelAndView.setViewName("user/order");
+            return modelAndView;
+        }
+
         return modelAndView;
-
     }
-
-
-
 
 
 }

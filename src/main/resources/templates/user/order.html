@@ -24,6 +24,8 @@
             <div class="container">
                 <div class="starter-template">
 
+                    <div th:if="${error}" class="alert alert-danger"
+                         role="alert" th:text="${error}"></div>
                     <br>
 
                     <h4 th:text="'Restaurant name: '+ ${rest.name}"></h4>

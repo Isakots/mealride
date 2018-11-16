@@ -7,6 +7,7 @@ import hu.student.projlab.mealride.cart.CartItem;
 import hu.student.projlab.mealride.cart.ShoppingCart;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
+import hu.student.projlab.mealride.exception.OrderException;
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import hu.student.projlab.mealride.restaurant.RestaurantService;
 import hu.student.projlab.mealride.user.User;
@@ -67,7 +68,17 @@ public class OrderService {
         return deliveryAddressService.getAddresses();
     }
 
-    void createNewOrder(Long restId, Long addressId, Long cardNumber, String comment) {
+    void createNewOrder(Long restId, Long addressId, Long cardNumber, String comment) throws OrderException {
+
+        if(shoppingCart.getCartItems().isEmpty())
+            throw new OrderException("Shopping Cart contains no meal!");
+
+        if(!deliveryAddressService.getUserAddresses().contains(deliveryAddressService.findById(addressId)))
+            throw new OrderException("This address is not in your saved addresses!");
+
+        if(!bankCardService.getBankcards().contains(bankCardService.getCardByNumber(cardNumber)))
+            throw new OrderException("Invalid Credit Card!");
+
 
         Order order = new Order( userService.getCurrentUser(), restaurantService.getRestaurantById(restId),
                 shoppingCart.getCartItems(), deliveryAddressService.findById(addressId),
@@ -75,5 +86,7 @@ public class OrderService {
                 System.currentTimeMillis(),null,comment,null);
 
         orderRepository.save(order);
+
+        shoppingCart.getCartItems().clear();
     }
 }

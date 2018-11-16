@@ -28,7 +28,7 @@ public class DeliveryAddressService {
         deliveryAddressRepository.save(address);
     }
 
-    public void addAddress(DeliveryAddress address) {
+    void addAddress(DeliveryAddress address) {
         address.setUser(userService.getCurrentUser());
         deliveryAddressRepository.save(address);
     }
@@ -39,7 +39,7 @@ public class DeliveryAddressService {
         return addresses;
     }
 
-    List<DeliveryAddress> getUserAddresses() {
+    public List<DeliveryAddress> getUserAddresses() {
         User user = userService.getCurrentUser();
         return deliveryAddressRepository.findAllByUserId(user.getId());
     }
@@ -52,11 +52,11 @@ public class DeliveryAddressService {
        return deliveryAddressRepository.getDeliveryAddressById(id);
     }
 
-    public void updateAddress(DeliveryAddress address) {
+    /*public void updateAddress(DeliveryAddress address) {
         deliveryAddressRepository.save(address);
-    }
+    }*/
 
-    public void deleteAddress(DeliveryAddress address) {
+    void deleteAddress(DeliveryAddress address) {
         deliveryAddressRepository.delete(address);
     }
 

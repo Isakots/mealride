@@ -54,7 +54,7 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public void deleteRestaurantWorker(Restaurant restaurant, User user) {
+    void deleteRestaurantWorker(Restaurant restaurant, User user) {
         restaurant.getWorkers().remove(user);
         restaurantRepository.save(restaurant);
     }
