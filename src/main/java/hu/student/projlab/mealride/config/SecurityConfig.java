@@ -49,11 +49,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .authorizeRequests()
                 // Guest access configuration
-                .antMatchers("/", "/restaurant","/restaurants/**","/registration","/fragments/**")
+                .antMatchers("/", "/restaurants/**","/registration","/fragments/**")
                 .permitAll()
+
+                .antMatchers("/restaurant/incoming-orders","/restaurant/menu")
+                .access("hasRole('RESTWORKER')")
+
+                .antMatchers("/restaurant/**")
+                .access("hasRole('RESTADMIN')")
 
                 // Access of admin pages configuration
                 .antMatchers("/administration/**")

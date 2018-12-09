@@ -162,4 +162,21 @@ public class Order {
     public void setRestaurantcomment(String restaurantcomment) {
         this.restaurantcomment = restaurantcomment;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", restaurant=" + restaurant +
+                ", meals=" + meals +
+                ", address=" + address +
+                ", card=" + card +
+                ", price=" + price +
+                ", datetime=" + datetime +
+                ", couriername='" + couriername + '\'' +
+                ", usercomment='" + usercomment + '\'' +
+                ", restaurantcomment='" + restaurantcomment + '\'' +
+                '}';
+    }
 }

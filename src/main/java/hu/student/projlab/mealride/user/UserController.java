@@ -5,6 +5,8 @@ import hu.student.projlab.mealride.cart.ShoppingCart;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
+import hu.student.projlab.mealride.order.Order;
+import hu.student.projlab.mealride.order.OrderService;
 import hu.student.projlab.mealride.restaurant.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @Controller
@@ -21,11 +25,17 @@ class UserController {
 
     private DeliveryAddressService deliveryAddressService;
 
+    private OrderService orderService;
+
     @Autowired
-    public UserController(UserService userService, DeliveryAddressService deliveryAddressService) {
+    public UserController(UserService userService, DeliveryAddressService deliveryAddressService, OrderService orderService) {
         this.userService = userService;
         this.deliveryAddressService = deliveryAddressService;
+        this.orderService = orderService;
     }
+
+
+
 
     @GetMapping("/users")
     public String listUsers(Model model) {
@@ -53,14 +63,13 @@ class UserController {
         User userExists = userService.findUserByEmail(user.getEmail());
 
         if(userExists != null) {
-            modelAndView.addObject("alreadyRegisteredMessage", "Oops!  There is already a user registered with the email provided.");
+            modelAndView.addObject("alreadyRegisteredMessage", "Oops!  " +
+                    "There is already a user registered with the email provided.");
                         bindingResult.reject("email");
         } else {
 
             userService.addUser(user);
 
-            // I have to delegate this call to service layer, but now I would have circular dependencies...
-            // Redesign is necessary
             deliveryAddressService.registerUserWithAddress(address,user);
 
             modelAndView.addObject("successMessage", "You are registered successfully!");
@@ -105,6 +114,13 @@ class UserController {
 
         modelAndView.setViewName("user/password");
         return modelAndView;
+    }
+
+    @GetMapping("/previous-orders")
+    public String getPreviousOrders(Model model) {
+        List<Order> orders = orderService.getUserOrders(userService.getCurrentUser().getId());
+        model.addAttribute("orders", orders);
+        return "user/previous-orders";
     }
 
 }

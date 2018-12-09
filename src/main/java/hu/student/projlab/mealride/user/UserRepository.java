@@ -17,4 +17,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     User getUserById(Long id);
 
+    List<User> findByRestaurant_Id(Long restaurantId);
 }

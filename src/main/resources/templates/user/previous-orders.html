@@ -26,7 +26,31 @@
             <hr>
 
             <div class="container">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Restaurant</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Credit Card</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Meals</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order: ${orders}">
+                            <td th:text="${order.restaurant.name}"/>
+                            <td th:text="${order.address.zipcode}+' '+${order.address.city}+' '+${order.address.street}+' '+${order.address.housenumber}"/>
+                            <td th:text="${order.card.number}"/>
+                            <td th:text="${order.price}+' Ft'"/>
+                            <td th:each="food: ${order.meals}">
+                                <p th:text="${food.meal.name}+': '+${food.amount}+' db'"></p>
+                            </td>
+                        </tr>
 
+                        </tbody>
+                    </table>
+                </div>
 
 
 

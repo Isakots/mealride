@@ -89,4 +89,11 @@ public class OrderService {
 
         shoppingCart.getCartItems().clear();
     }
+
+    public List<Order> getUserOrders(Long userId) {
+        return orderRepository.findByUser_Id(userId);
+    }
+    public List<Order> getRestaurantOrders(Long restId) {
+        return orderRepository.findByRestaurant_Id(restId);
+    }
 }

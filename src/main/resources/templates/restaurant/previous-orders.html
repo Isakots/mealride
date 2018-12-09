@@ -15,7 +15,7 @@
 
         <div class="col-lg-12">
 
-            <h3 class="mt-4" th:text="${loggedin_restaurant}" ></h3>
+            <h3 class="mt-4" th:text="${loggedin_restaurant}"></h3>
 
             <hr>
 
@@ -24,6 +24,29 @@
             <hr>
 
             <div class="container">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Meals</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="order: ${orders}">
+                            <td th:text="${order.customer.firstname}+' '+${order.customer.lastname}"/>
+                            <td th:text="${order.address.zipcode}+' '+${order.address.city}+' '+${order.address.street}+' '+${order.address.housenumber}"/>
+                             <td th:text="${order.price}+' Ft'"/>
+                            <td th:each="food: ${order.meals}">
+                                <p th:text="${food.meal.name}+' '+${food.amount}+' db'"></p>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
 
 
             </div>
