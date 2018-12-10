@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 // Guest access configuration
-                .antMatchers("/", "/restaurants/**","/registration","/fragments/**")
+                .antMatchers("/", "/restaurant","/registration","/fragments/**")
                 .permitAll()
 
                 .antMatchers("/restaurant/incoming-orders","/restaurant/menu")

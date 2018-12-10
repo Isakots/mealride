@@ -79,16 +79,8 @@
                                 <td th:text="${food.price}+' Ft'"></td>
                                 <td th:text="${food.comment}"></td>
                                 <td>
-                                    <form th:action="@{'restaurant/menu/modify'}" method="post">
-                                        <!--input type="hidden" name="mealId" th:value="${food.id}"-->
-                                        <button type="submit" class="btn btn-warning btn-block disabled">
-                                            Modify
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form th:action="@{'restaurant/menu/delete'}" method="post">
-                                        <!--input type="hidden" name="mealId" th:value="${food.id}"-->
+                                    <form th:action="@{'/restaurant/menu/delete'}" method="post">
+                                        <input type="hidden" name="mealId" th:value="${food.id}">
                                         <button type="submit" class="btn btn-danger btn-block">
                                             Delete
                                         </button>

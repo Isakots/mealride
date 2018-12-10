@@ -43,6 +43,7 @@
                             <td th:text="${order.address.zipcode}+' '+${order.address.city}+' '+${order.address.street}+' '+${order.address.housenumber}"/>
                             <td th:text="${order.card.number}"/>
                             <td th:text="${order.price}+' Ft'"/>
+                            <td th:text="${order.usercomment}"/>
                             <td th:each="food: ${order.meals}">
                                 <p th:text="${food.meal.name}+': '+${food.amount}+' db'"></p>
                             </td>
@@ -50,6 +51,7 @@
 
                         </tbody>
                     </table>
+
                 </div>
 
 

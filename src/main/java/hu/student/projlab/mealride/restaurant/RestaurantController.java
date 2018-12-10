@@ -41,6 +41,7 @@ class RestaurantController {
 
     @GetMapping("/previous-orders")
     public String previousOrders(Model model) {
+        System.out.println("Restaurant ID is: "+ userService.getCurrentUser().getRestaurant().getId());
         model.addAttribute("orders", orderService.getRestaurantOrders(userService.getCurrentUser().getRestaurant().getId()));
         return "restaurant/previous-orders";
     }
@@ -77,26 +78,22 @@ class RestaurantController {
 
         try {
             Restaurant currentRestaurant = userService.getCurrentUser().getRestaurant();
-            Restaurant restaurant = restaurantService.addRestaurantWorker(currentRestaurant.getId(), user);
+            Restaurant restaurant = restaurantService.addRestaurantWorker(currentRestaurant.getId(), userExists);
             userService.setUserToRestaurantWorker(restaurant, userExists);
         }
         catch(RestaurantNotExistingException e) {
             modelAndView.addObject("error", e.getMessage());
             modelAndView.setViewName("restaurant/manage-workers");
-            //modelAndView.addObject("restaurants", restaurantService.findAll());
             return modelAndView;
         }
         catch(Exception e) {
             modelAndView.addObject("error", "Some unknown error occured.");
+            modelAndView.setViewName("redirect:/restaurant/manage-workers");
+            return modelAndView;
         }
 
         modelAndView.addObject("success", "The user has been added to Restaurant successfully!");
         modelAndView.setViewName("redirect:/restaurant/manage-workers");
-        return modelAndView;
-    }
-
-    @PostMapping("/manage-workers/modify")
-    public ModelAndView modifyWorker(@RequestParam(value="workerId") Long workerId, ModelAndView modelAndView) {
         return modelAndView;
     }
 

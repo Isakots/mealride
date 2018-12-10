@@ -35,6 +35,7 @@ public class BankCardService {
         card.setCvc(bCryptPasswordEncoder.encode(card.getCvc()));
         User user = userService.getCurrentUser();
         card.setUser(user);
+        card.setCreated_at(System.currentTimeMillis());
         bankCardRepository.save(card);
     }
 
@@ -56,7 +57,11 @@ public class BankCardService {
 
 
     void deleteCard(Long id) {
-        bankCardRepository.deleteById(id);
+        BankCard card = getCardByNumber(id);
+        card.setUser(null);
+        card.setDeleted_at(System.currentTimeMillis());
+        bankCardRepository.save(card);
+        //bankCardRepository.deleteById(id);
     }
 
     public BankCard getCardByNumber(Long number) {

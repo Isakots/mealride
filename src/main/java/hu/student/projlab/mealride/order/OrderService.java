@@ -65,7 +65,7 @@ public class OrderService {
     }
 
     List<DeliveryAddress> getAddresses() {
-        return deliveryAddressService.getAddresses();
+        return deliveryAddressService.getUserAddresses();
     }
 
     void createNewOrder(Long restId, Long addressId, Long cardNumber, String comment) throws OrderException {

@@ -48,7 +48,6 @@ class MealController {
     public ModelAndView deleteMealFromMenu(@RequestParam(value = "mealId") Long mealId, ModelAndView modelAndView,
                                            final BindingResult results) {
 
-        modelAndView = new ModelAndView(new RedirectView("/restaurant/menu"));
 
         if (results.hasErrors()) {
             modelAndView.addObject("errormessage", "There are some error!");
@@ -56,26 +55,17 @@ class MealController {
             return modelAndView;
         }
 
-        //try-catch
-        mealService.deleteMealFromMenu(mealId);
-
-        return modelAndView;
-    }
-
-    @PostMapping("/restaurant/menu/modify")
-    public ModelAndView modifyMealFromMenu(@ModelAttribute(value = "meal") Meal meal, ModelAndView modelAndView,
-                                           final BindingResult results) {
-
-        if (results.hasErrors()) {
-            modelAndView.addObject("error", "There are some error!");
-            modelAndView.addObject("menu", mealService.getMeals());
-            modelAndView.setViewName("restaurant/menu");
-            return modelAndView;
+        try {
+            mealService.deleteMealFromMenu(mealId);
+        } catch(Exception e) {
+            modelAndView.addObject("errormessage", "Unknown error occured!");
         }
 
-        modelAndView.setViewName("restaurant/menu");
+
+        modelAndView.setViewName("redirect:/restaurant/menu");
         return modelAndView;
     }
+
 
     @PostMapping("/restaurant/menu/newmeal")
     public String addNewMealToMenu(@ModelAttribute(value="meal") Meal meal, Model model, final BindingResult result) {

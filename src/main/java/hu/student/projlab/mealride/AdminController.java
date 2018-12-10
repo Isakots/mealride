@@ -109,8 +109,13 @@ class AdminController {
             if(user == null) {
                 modelAndView.addObject("error", "The user, with the specified email address, doesn't exist!");
             }else {
-                Restaurant restaurant = restaurantService.addRestaurantWorker(id, user);
-                userService.setUserToRestaurantAdmin(restaurant, user);
+                if(user.getRestaurant() != null) {
+                    Restaurant restaurant = restaurantService.addRestaurantWorker(id, user);
+                    userService.setUserToRestaurantAdmin(restaurant, user);
+                }
+                else {
+                    modelAndView.addObject("error", "The user is already added to a restaurant.");
+                }
             }
 
         }catch(RestaurantNotExistingException e) {

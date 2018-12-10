@@ -41,11 +41,11 @@ public class MealService {
     }
 
     void deleteMealFromMenu(Long id) {
-        Meal meal = mealRepository.getOne(id);
-        mealRepository.deleteById(id);
+        Meal meal = mealRepository.getMealById(id);
         Restaurant restaurant = userService.getCurrentUser().getRestaurant();
         restaurant.getMenu().remove(meal);
         restaurantRepository.save(restaurant);
+        //mealRepository.deleteById(id);
     }
 
     Meal getMealById(Long Id){

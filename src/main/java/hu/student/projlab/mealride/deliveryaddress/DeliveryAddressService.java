@@ -25,11 +25,13 @@ public class DeliveryAddressService {
 
     public void registerUserWithAddress(DeliveryAddress address, User user) {
         address.setUser(user);
+        address.setCreated_at(System.currentTimeMillis());
         deliveryAddressRepository.save(address);
     }
 
     void addAddress(DeliveryAddress address) {
         address.setUser(userService.getCurrentUser());
+        address.setCreated_at(System.currentTimeMillis());
         deliveryAddressRepository.save(address);
     }
 
@@ -57,7 +59,10 @@ public class DeliveryAddressService {
     }*/
 
     void deleteAddress(DeliveryAddress address) {
-        deliveryAddressRepository.delete(address);
+        address.setUser(null);
+        address.setDeleted_at(System.currentTimeMillis());
+        deliveryAddressRepository.save(address);
+        //deliveryAddressRepository.delete(address);
     }
 
 

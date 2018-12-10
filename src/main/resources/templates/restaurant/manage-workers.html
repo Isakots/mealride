@@ -64,14 +64,6 @@
                             <td th:text="${worker.phone}"></td>
                             <td th:text="${worker.phone}"></td>
                             <td>
-                                <form th:action="@{'manage-workers/modify'}" method="post">
-                                    <input type="hidden" name="workerId" th:value="${worker.id}">
-                                    <button type="submit" class="btn btn-warning btn-block disabled">
-                                        Modify
-                                    </button>
-                                </form>
-                            </td>
-                            <td>
                                 <form th:action="@{'manage-workers/delete'}" method="post">
                                     <input type="hidden" name="workerId" th:value="${worker.id}"/>
                                     <button type="submit" class="btn btn-danger btn-block">

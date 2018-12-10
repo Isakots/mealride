@@ -68,9 +68,9 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <a sec:authorize="hasRole('ROLE_RESTWORKER')" class="dropdown-item" th:href="@{#}">Incoming
                                 Orders</a>
-                            <div class="dropdown-divider"></div>
-                            <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item"
+                            <a sec:authorize="hasRole('ROLE_RESTWORKER')" class="dropdown-item"
                                th:href="@{/restaurant/menu}">Menu</a>
+                            <div class="dropdown-divider"></div>
                             <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item"
                                th:href="@{/restaurant/manage-workers}">Manage Workers</a>
                             <a sec:authorize="hasRole('ROLE_RESTADMIN')" class="dropdown-item"

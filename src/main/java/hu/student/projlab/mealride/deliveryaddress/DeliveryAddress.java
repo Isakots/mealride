@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,10 @@ public class DeliveryAddress {
     private Short floor;
     @Column(name="DOOR")
     private Short door;
+    @Column(name="CREATED_AT")
+    private Long created_at;
+    @Column(name="DELETED_AT")
+    private Long deleted_at;
 
     @JsonIgnore
     @ManyToOne
@@ -35,17 +40,6 @@ public class DeliveryAddress {
     private User user;
 
     public DeliveryAddress() {
-    }
-
-    public DeliveryAddress(Short zipcode, String city, String street, String state, Short housenumber, Short floor, Short door, User user) {
-        this.zipcode = zipcode;
-        this.city = city;
-        this.street = street;
-        this.state = state;
-        this.housenumber = housenumber;
-        this.floor = floor;
-        this.door = door;
-        this. user = user;
     }
 
     public Long getId() {
@@ -118,6 +112,22 @@ public class DeliveryAddress {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Long getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Long created_at) {
+        this.created_at = created_at;
+    }
+
+    public Long getDeleted_at() {
+        return deleted_at;
+    }
+
+    public void setDeleted_at(Long deleted_at) {
+        this.deleted_at = deleted_at;
     }
 
     @Override
