@@ -26,7 +26,6 @@ public class MealService {
         this.userService = userService;
     }
 
-
     List<Meal> getMeals() {
         List<Meal> meals = new ArrayList<>();
         mealRepository.findAll().forEach(meals::add);
@@ -45,12 +44,10 @@ public class MealService {
         Restaurant restaurant = userService.getCurrentUser().getRestaurant();
         restaurant.getMenu().remove(meal);
         restaurantRepository.save(restaurant);
-        //mealRepository.deleteById(id);
     }
 
     Meal getMealById(Long Id){
         return mealRepository.getMealById(Id);
     }
-
 
 }

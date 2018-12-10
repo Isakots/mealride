@@ -27,14 +27,12 @@ public class BankCardService {
     }
 
     public List<BankCard> getBankcards() {
-        User user = userService.getCurrentUser();
-        return bankCardRepository.findAllByUserId(user.getId());
+        return bankCardRepository.findAllByUserId(userService.getCurrentUser().getId());
     }
 
    void addCard(BankCard card) {
         card.setCvc(bCryptPasswordEncoder.encode(card.getCvc()));
-        User user = userService.getCurrentUser();
-        card.setUser(user);
+        card.setUser(userService.getCurrentUser());
         card.setCreated_at(System.currentTimeMillis());
         bankCardRepository.save(card);
     }
@@ -55,13 +53,11 @@ public class BankCardService {
 
     }
 
-
     void deleteCard(Long id) {
         BankCard card = getCardByNumber(id);
         card.setUser(null);
         card.setDeleted_at(System.currentTimeMillis());
         bankCardRepository.save(card);
-        //bankCardRepository.deleteById(id);
     }
 
     public BankCard getCardByNumber(Long number) {

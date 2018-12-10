@@ -21,7 +21,6 @@ class DeliveryAddressController {
     }
 
     @GetMapping("/addresses")
-    //@ResponseBody
     public String getAddresses(Model model) {
         List<DeliveryAddress> addresses = deliveryAddressService.getUserAddresses();
         model.addAttribute("thisaddress", new DeliveryAddress());
@@ -42,9 +41,6 @@ class DeliveryAddressController {
         model.addAttribute("address", address);
         return "user/address-modification";
     }
-
-    //@ModelAttribute(value = "address")
-    //public DeliveryAddress newRestAdmin() {return new DeliveryAddress();}
 
     @PostMapping("/addresses/modify")
     public String preFillModifyAddressForm(@RequestParam(value="addressId") Long addressId, Model model) {

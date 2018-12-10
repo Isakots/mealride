@@ -67,7 +67,7 @@ class OrderController {
             modelAndView.addObject("fullprice", orderService.getFullPrice());
             modelAndView.addObject("addresses", orderService.getAddresses());
             modelAndView.addObject("cards", orderService.getCards());
-            modelAndView.addObject("comment", new String());
+            modelAndView.addObject("comment", comment);
             modelAndView.addObject("error", e.getMessage());
             modelAndView.setViewName("user/order");
             return modelAndView;
@@ -79,7 +79,7 @@ class OrderController {
             modelAndView.addObject("fullprice", orderService.getFullPrice());
             modelAndView.addObject("addresses", orderService.getAddresses());
             modelAndView.addObject("cards", orderService.getCards());
-            modelAndView.addObject("comment", new String());
+            modelAndView.addObject("comment", comment);
             modelAndView.addObject("error", "An unknown error occured!");
             modelAndView.setViewName("user/order");
             return modelAndView;

@@ -118,8 +118,7 @@ class UserController {
 
     @GetMapping("/previous-orders")
     public String getPreviousOrders(Model model) {
-        List<Order> orders = orderService.getUserOrders(userService.getCurrentUser().getId());
-        model.addAttribute("orders", orders);
+        model.addAttribute("orders", userService.getCurrentUser().getOrders());
         return "user/previous-orders";
     }
 

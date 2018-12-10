@@ -35,20 +35,17 @@ class RestaurantController {
     @GetMapping("")
     public String listRestaurants(Model model) {
         model.addAttribute("restaurants", restaurantService.findAll());
-
         return "restaurants";
     }
 
     @GetMapping("/previous-orders")
     public String previousOrders(Model model) {
-        System.out.println("Restaurant ID is: "+ userService.getCurrentUser().getRestaurant().getId());
-        model.addAttribute("orders", orderService.getRestaurantOrders(userService.getCurrentUser().getRestaurant().getId()));
+        model.addAttribute("orders", userService.getCurrentUser().getRestaurant().getOrders());
         return "restaurant/previous-orders";
     }
 
     @GetMapping("/logs")
     public String getRestaurantLogs() {
-
         return "restaurant/logs";
     }
 
@@ -117,6 +114,5 @@ class RestaurantController {
 
         return modelAndView;
     }
-
 
 }

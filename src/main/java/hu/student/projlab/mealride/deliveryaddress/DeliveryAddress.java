@@ -1,12 +1,9 @@
 package hu.student.projlab.mealride.deliveryaddress;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="ADDRESS")

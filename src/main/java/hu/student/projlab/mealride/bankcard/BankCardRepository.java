@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface BankCardRepository extends JpaRepository<BankCard, Long> {
-     List<BankCard> findAllByUserId(Long userId);
 
+     List<BankCard> findAllByUserId(Long userId);
 
      BankCard getBankCardByNumber(Long number);
 }

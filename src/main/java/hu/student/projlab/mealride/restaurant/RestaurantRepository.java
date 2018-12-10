@@ -9,6 +9,4 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
    @Query(value="SELECT * FROM Restaurant r WHERE r.id = :id", nativeQuery = true)
    Restaurant getRestaurantById(@Param("id") Long id);
 
-
-
 }

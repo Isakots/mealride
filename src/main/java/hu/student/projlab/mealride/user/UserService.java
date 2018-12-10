@@ -5,7 +5,6 @@ import hu.student.projlab.mealride.config.RoleRepository;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
 import hu.student.projlab.mealride.restaurant.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -80,10 +78,6 @@ public class UserService {
                 currentUser.setPassword(bCryptPasswordEncoder.encode(changer.getNewPassword1()));
                 userRepository.save(currentUser);
         }
-    }
-
-    void deleteUser(Long id) {
-        userRepository.deleteById(id);
     }
 
     public Long getRestaurantId(Long userId) {

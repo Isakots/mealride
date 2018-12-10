@@ -46,23 +46,14 @@ public class DeliveryAddressService {
         return deliveryAddressRepository.findAllByUserId(user.getId());
     }
 
-    public DeliveryAddress getAddresByStreet(String street) {
-        return deliveryAddressRepository.findByStreet(street);
-    }
-
     public DeliveryAddress findById(Long id) {
        return deliveryAddressRepository.getDeliveryAddressById(id);
     }
-
-    /*public void updateAddress(DeliveryAddress address) {
-        deliveryAddressRepository.save(address);
-    }*/
 
     void deleteAddress(DeliveryAddress address) {
         address.setUser(null);
         address.setDeleted_at(System.currentTimeMillis());
         deliveryAddressRepository.save(address);
-        //deliveryAddressRepository.delete(address);
     }
 
 

@@ -122,6 +122,14 @@ public class Restaurant {
         this.workers = workers;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     public void printmenu() {
         for(Meal meal: menu) {
             System.out.println("Meal name: "+ meal.getName()+" Price: "+ meal.getPrice()+" Comment: "+meal.getComment());

@@ -1,12 +1,8 @@
 package hu.student.projlab.mealride.user;
 
-import hu.student.projlab.mealride.bankcard.BankCard;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
-import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
@@ -16,6 +12,4 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Long findRestaurantIdByUserId(@Param("userid")Long userid);
 
     User getUserById(Long id);
-
-    List<User> findByRestaurant_Id(Long restaurantId);
 }
