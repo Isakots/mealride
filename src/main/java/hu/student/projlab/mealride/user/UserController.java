@@ -1,22 +1,14 @@
 package hu.student.projlab.mealride.user;
 
-
-import hu.student.projlab.mealride.cart.ShoppingCart;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddress;
 import hu.student.projlab.mealride.deliveryaddress.DeliveryAddressService;
 import hu.student.projlab.mealride.exception.PasswordNotMatchingException;
-import hu.student.projlab.mealride.order.Order;
-import hu.student.projlab.mealride.order.OrderService;
-import hu.student.projlab.mealride.restaurant.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-
 
 @Controller
 class UserController {
@@ -25,17 +17,11 @@ class UserController {
 
     private DeliveryAddressService deliveryAddressService;
 
-    private OrderService orderService;
-
     @Autowired
-    public UserController(UserService userService, DeliveryAddressService deliveryAddressService, OrderService orderService) {
+    public UserController(UserService userService, DeliveryAddressService deliveryAddressService) {
         this.userService = userService;
         this.deliveryAddressService = deliveryAddressService;
-        this.orderService = orderService;
     }
-
-
-
 
     @GetMapping("/users")
     public String listUsers(Model model) {

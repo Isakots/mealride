@@ -1,6 +1,5 @@
 package hu.student.projlab.mealride.order;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.student.projlab.mealride.bankcard.BankCard;
 import hu.student.projlab.mealride.cart.CartItem;
@@ -10,6 +9,7 @@ import hu.student.projlab.mealride.user.User;
 
 import javax.persistence.*;
 import java.util.List;
+
 
 @Entity
 @Table(name="ORDERS")
@@ -53,7 +53,7 @@ public class Order {
     private String usercomment;
     @Column(name="WORKER_COMMENT")
     private String restaurantcomment;
-   // private State state;  // enum type State
+    // private State state;  // enum type State
 
 
     public Order() {

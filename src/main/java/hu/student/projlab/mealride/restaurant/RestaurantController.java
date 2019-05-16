@@ -2,7 +2,6 @@ package hu.student.projlab.mealride.restaurant;
 
 
 import hu.student.projlab.mealride.exception.RestaurantNotExistingException;
-import hu.student.projlab.mealride.order.OrderService;
 import hu.student.projlab.mealride.user.User;
 import hu.student.projlab.mealride.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +20,11 @@ class RestaurantController {
 
     private UserService userService;
 
-    private OrderService orderService;
-
     @Autowired
-    public RestaurantController(RestaurantService restaurantService, UserService userService, OrderService orderService) {
+    public RestaurantController(RestaurantService restaurantService, UserService userService) {
         this.restaurantService = restaurantService;
         this.userService = userService;
-        this.orderService = orderService;
     }
-
-
 
     @GetMapping("")
     public String listRestaurants(Model model) {

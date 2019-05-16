@@ -31,10 +31,7 @@
                 </div>
                 <button type="submit" class="btn btn-secondary">Invite</button>
             </form>
-            <form th:action="@{'manage-workers'}" method="get">
-                <input type="hidden" name="error" th:value="${error}">
-                <input type="hidden" name="success" th:value="${success}">
-            </form>
+
             <div th:if="${error}" class="alert alert-danger"
                  role="alert" th:text="${error}"></div>
             <div th:if="${success}" class="alert alert-success"
